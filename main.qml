@@ -241,9 +241,9 @@ ApplicationWindow {
     Image {
         anchors.fill: parent
         source: "qrc:/rsrc/Masque-Video.png"
-        opacity: 0.5
+        //opacity: 0.5
         fillMode: Image.Pad
-        visible: false
+        visible: true
     }
     Text {
         anchors.top: parent.top
