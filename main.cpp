@@ -44,7 +44,7 @@ int main(int argc, char *argv[])
     QmlControler ctr;
     ctr.setEngine(&engine);
 
-    //ctr.setVisible(true);
+    ctr.setVisible(true);
 
 
     return app.exec();
