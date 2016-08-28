@@ -6,12 +6,33 @@ import QtQuick.Dialogs 1.2
 
 ApplicationWindow {
     id: app
-    //visibility: Window.FullScreen;
-    width: ScreenW
-    height: ScreenH
+    visibility: Window.FullScreen;
+    width: app.width
+    height: app.height
     visible: true
-    title: qsTr("Rolisteam: Libérez vos parties!")
+    title: qsTr("End Users and QML in Rolisteam!")
     signal currentItemChanged(int current)
+    ListModel {
+            id: qtConModel
+            ListElement {
+                name: "Intro"
+                path: "01_qtCon_intro.qml"
+                time: 1
+                next: "rcse"
+            }
+            ListElement {
+                name: "Rolisteam CharacterSheet Editor"
+                path: "02_qtCon_rcse.qml"
+                time: 1
+                next: "stay in touch"
+            }
+            ListElement {
+                name: "Stay In Touch"
+                path: "03_qtCon_stayintouch.qml"
+                time: 1
+                next: ""
+            }
+    }
     ListModel {
             id: panelModel
             ListElement {
@@ -24,24 +45,24 @@ ApplicationWindow {
                 name: "Présentation de Rolisteam"
                 path: "02_presentation.qml"
                 time: 1
-                next: "définition Jdr"
+                next: "définition app"
             }
             ListElement {
-                name: "Introduction au jdr"
-                path: "03_jdr_et_rolisteam.qml"
+                name: "Introduction au app"
+                path: "03_app_et_rolisteam.qml"
                 time: 1
                 next: "Les contraintes"
             }
             ListElement {
-                name: "Advantages du Jdr et Inconvénients"
-                path: "04_jdr_avantages_pb.qml"
+                name: "Advantages du app et Inconvénients"
+                path: "04_app_avantages_pb.qml"
                 time: 1
                 next: "Avantages de l'informatique"
             }
 
             ListElement {
-                name: "Pourquoi faire de JDR ?"
-                path: "05_avantage_jdr_virtuel.qml"
+                name: "Pourquoi faire de app ?"
+                path: "05_avantage_app_virtuel.qml"
                 time: 1
                 next: "Fonctionnalités"
             }
@@ -141,13 +162,12 @@ ApplicationWindow {
     PathView {
         id: view
         anchors.fill: parent
-        model: panelModel
+        model: qtConModel
         highlightRangeMode:PathView.StrictlyEnforceRange
         snapMode: PathView.SnapOneItem
         delegate:  Loader {
             //property variant model: model
              source: "pages/"+path
-
         }
 
         Timer {
@@ -185,29 +205,29 @@ ApplicationWindow {
         path: Path {
             startX: view.width/2
             startY: view.height/2
-            PathLine { x: view.width/2+view.width*panelModel.count; y: view.height/2 }
+            PathLine { x: view.width/2+view.width*qtConModel.count; y: view.height/2 }
         }
     }
 
     ListView {
         id: listView1
-        x: ScreenW*0.02
-        y: ScreenH*0.3
-        width: ScreenW/2
-        height: ScreenH*0.2
+        x: app.width*0.02
+        y: app.height*0.3
+        width: app.width/2
+        height: app.height*0.2
         delegate: Item {
-            width: ScreenW/2
+            width: app.width/2
             height: listView1.height/listView1.count
                 Text {
                     color: view.currentIndex>=index ? "black" : "gray"
                     text: name
-                    font.pointSize: ScreenH/48
+                    font.pointSize: app.height/48
                     anchors.verticalCenter: parent.verticalCenter
                     font.bold: true
 
                 }
         }
-        visible: view.currentIndex>0 ? true : false
+        visible: false //view.currentIndex>0 ? true : false
 
         model: ListModel {
             ListElement {
@@ -243,11 +263,12 @@ ApplicationWindow {
         source: "qrc:/rsrc/Masque-Video.png"
         //opacity: 0.5
         fillMode: Image.Pad
-        visible: true
+        visible: false
     }
     Text {
         anchors.top: parent.top
         anchors.right: parent.right
-        text: panelModel.get(view.currentIndex).next+">"
+        text: qtConModel.get(view.currentIndex).next+">"
+        visible: qtConModel.get(view.currentIndex).next !== "" ? true : false
     }
 }

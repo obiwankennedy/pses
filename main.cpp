@@ -31,8 +31,8 @@ int main(int argc, char *argv[])
 
     QQmlApplicationEngine engine;
 
-    engine.rootContext()->setContextProperty("ScreenW",1280);
-    engine.rootContext()->setContextProperty("ScreenH",720);
+   /* engine.rootContext()->setContextProperty("ScreenW",1280);
+    engine.rootContext()->setContextProperty("ScreenH",720);*/
 
    /* QTextDocument text(NULL);
     CppHighLighter cppHighLighter(&text);

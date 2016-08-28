@@ -55,5 +55,12 @@
         <file>rsrc/generatorConvertor.png</file>
         <file>rsrc/v1.8.png</file>
         <file>rsrc/fiche_perso.png</file>
+        <file>pages/01_qtCon_intro.qml</file>
+        <file>pages/02_qtCon_rcse.qml</file>
+        <file>pages/03_qtCon_stayintouch.qml</file>
+        <file>rsrc/charactersheet_in_rolisteam.png</file>
+        <file>rsrc/design_cs.png</file>
+        <file>rsrc/qml_generated.png</file>
+        <file>rsrc/test_rcse.png</file>
     </qresource>
 </RCC>
