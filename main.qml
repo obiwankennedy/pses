@@ -168,6 +168,8 @@ ApplicationWindow {
         delegate:  Loader {
             //property variant model: model
              source: "pages/"+path
+             width: app.width
+             height: app.height
         }
 
         Timer {

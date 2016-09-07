@@ -1,6 +1,6 @@
 import QtQuick 2.0
 import QtQuick.Window 2.2
-
+import QtMultimedia 5.6
 Rectangle {
     id: jdr
     width: Screen.width
@@ -45,10 +45,10 @@ Rectangle {
         x: jdr.width*0.1
         y: jdr.height*0.20
         width: jdr.width
-        height: parent.height*0.5
+        height: parent.height*0.8
         delegate: Item {
             width: jdr.width
-            height: parent.height/listView1.count
+            height: listView1.height/listView1.count
                 Text {
                     color: "black"
                     text: name
@@ -65,7 +65,7 @@ Rectangle {
 
         model: ListModel {
             ListElement {
-                name: "Do annoying stuff (e.g: design UI, field positioning)"
+                name: "Design UI"
                 index:0
             }
             ListElement {
@@ -74,15 +74,15 @@ Rectangle {
             }
             ListElement {
                 name: "Learn QML"
-                index:5
+                index:4
             }
             ListElement {
                 name: "Edit QML code"
-                index:6
+                index:5
             }
             ListElement {
-                name: "Test how it will appear in game"
-                index:7
+                name: "Play with it"
+                index:6
             }
         }
     }
@@ -114,7 +114,7 @@ Rectangle {
         anchors.bottom: jdr.bottom
         fillMode: Image.PreserveAspectFit
         source: "qrc:/rsrc/qml_generated.png"
-        opacity: (jdr.idState == 3 ) ? 1.0: 0.0
+        opacity: (jdr.idState == 4 ) ? 1.0: 0.0
         Behavior on opacity {
             NumberAnimation {
                 duration: 1000
@@ -131,7 +131,7 @@ Rectangle {
         anchors.bottom: jdr.bottom
         fillMode: Image.PreserveAspectFit
         source: "qrc:/rsrc/test_rcse.png"
-        opacity: (jdr.idState == 4 ) ? 1.0: 0.0
+        opacity: (jdr.idState == 3 ) ? 1.0: 0.0
         Behavior on opacity {
             NumberAnimation {
                 duration: 1000
@@ -139,21 +139,26 @@ Rectangle {
         }
     }
 
-    Image {
+   Image {
         id: img4
-        anchors.top: listView1.top
-        anchors.left: listView1.right
-        anchors.leftMargin: -listView1.width*0.4
-
-        anchors.right: jdr.right
-        anchors.bottom: jdr.bottom
+        anchors.fill:parent
         fillMode: Image.PreserveAspectFit
-        source: "qrc:/rsrc/charactersheet_in_rolisteam.png"
-        opacity: (jdr.idState == 8) ? 1.0: 0.0
-        Behavior on opacity {
-            NumberAnimation {
-                duration: 1000
-            }
+        source: "qrc:/rsrc/end.png"
+        opacity: (jdr.idState == 7) ? 1.0: 0.0
+    }
+    Video {
+        id: video
+        anchors.fill:parent
+        source: "qrc:/rsrc/opening_CharacterSheet.mp4"
+        visible: (jdr.idState == 7) ? true: false
+        fillMode:VideoOutput.PreserveAspectFit
+        onVisibleChanged: {
+            video.play()
         }
+       /* onStatusChanged:{
+            video.play()
+            video.seek(64*1000)
+            video.pause()
+        }*/
     }
 }

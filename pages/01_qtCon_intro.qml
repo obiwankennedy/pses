@@ -3,8 +3,9 @@ import QtQuick.Window 2.2
 
 Rectangle {
     id: jdr
-    width: Screen.width
-    height: Screen.height
+    width: app.width
+    height: app.height
+    //anchors.fill:parent
     border.color: "#E3E3E3"
     border.width: 5
     color: "#E3E3E3"
@@ -90,16 +91,8 @@ Rectangle {
                 index:2
             }
             ListElement {
-                name: "Completely Customizable"
+                name: "QML"
                 index:3
-            }
-            ListElement {
-                name: "Why QML ?"
-                index:4
-            }
-            ListElement {
-                name: "RCSE"
-                index:5
             }
         }
     }

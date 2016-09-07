@@ -62,5 +62,7 @@
         <file>rsrc/design_cs.png</file>
         <file>rsrc/qml_generated.png</file>
         <file>rsrc/test_rcse.png</file>
+        <file>rsrc/opening_CharacterSheet.mp4</file>
+        <file>rsrc/end.png</file>
     </qresource>
 </RCC>

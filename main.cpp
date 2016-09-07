@@ -31,13 +31,6 @@ int main(int argc, char *argv[])
 
     QQmlApplicationEngine engine;
 
-   /* engine.rootContext()->setContextProperty("ScreenW",1280);
-    engine.rootContext()->setContextProperty("ScreenH",720);*/
-
-   /* QTextDocument text(NULL);
-    CppHighLighter cppHighLighter(&text);
-    engine.rootContext()->setContextProperty("_hightedDoc",&text);*/
-    //engine.rootContext()->setContextProperty("CppHighLightedDocument",720);
 
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
 
