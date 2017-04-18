@@ -5,10 +5,9 @@ Rectangle {
     id: rectangle1
     width: ScreenW //ScreenW
     height: ScreenH //ScreenH
-    //  height: 600
-    //  anchors.centerIn: parent
+
     border.width: 0
-    color: "#E3E3E3"
+    color: app.bgColor
 
     Image {
         id: image1
@@ -26,7 +25,7 @@ Rectangle {
         anchors.horizontalCenter: parent.horizontalCenter
         width: ScreenW*0.5
         height: ScreenH*0.1
-        color: "black"
+        color: app.txtColor
         text: qsTr("Libérez vos parties!")
         font.family: "Verdana"
         font.bold: true

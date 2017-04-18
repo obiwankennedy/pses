@@ -3,6 +3,7 @@ import QtQuick 2.5
 import QtQuick.Window 2.1
 import QtQuick.Controls 1.4
 import QtQuick.Dialogs 1.2
+import QtGraphicalEffects 1.0
 
 ApplicationWindow {
     id: app
@@ -11,7 +12,63 @@ ApplicationWindow {
     height: app.height
     visible: true
     title: qsTr("End Users and QML in Rolisteam!")
+
+    property color bgColor: "transparent"
+    property color txtColor: "white"
+
     signal currentItemChanged(int current)
+    property alias current: view.currentIndex
+    onCurrentChanged: {
+        //topcornerimage.visible = false
+        //bottomcornerimage.visible = false
+        if(current==0)
+            bgimg.source = "qrc:/rsrc/graywood2.jpg"
+        else if(current % 9 == 0)
+        {
+            bgimg.source = "qrc:/rsrc/graywood2.jpg"
+        }
+        else if(current % 9 == 1)
+        {
+            bgimg.source = "qrc:/rsrc/chaton.jpg";
+        }
+        else if(current % 9 == 2)
+        {
+            bgimg.source = "qrc:/rsrc/lionne.jpg";
+           // topcornerimage.visible = true
+        }
+        else if(current % 9 == 3)
+        {
+            bgimg.source = "qrc:/rsrc/dice.jpg";
+           // topcornerimage.visible = true
+        }
+        else if(current % 9 == 4)
+        {
+            bgimg.source = "qrc:/rsrc/dragon.jpg";
+           // topcornerimage.visible = true
+        }
+        else if(current % 9 == 5)
+        {
+            bgimg.source = "qrc:/rsrc/cloud.jpg";
+           // topcornerimage.visible = true
+        }
+        else if(current % 9 == 6)
+        {
+            bgimg.source = "qrc:/rsrc/arbre.jpeg";
+           // topcornerimage.visible = true
+        }
+        else if(current % 9 == 7)
+        {
+            bgimg.source = "qrc:/rsrc/square.jpg";
+           // topcornerimage.visible = true
+        }
+        else if(current % 9 == 8)
+        {
+            bgimg.source = "qrc:/rsrc/nyc.jpg";
+           // topcornerimage.visible = true
+        }
+    }
+
+    signal rollDiceCmd(string cmd)
     ListModel {
             id: qtConModel
             ListElement {
@@ -49,20 +106,20 @@ ApplicationWindow {
             }
             ListElement {
                 name: "Introduction au app"
-                path: "03_app_et_rolisteam.qml"
+                path: "03_jdr_et_rolisteam.qml"
                 time: 1
                 next: "Les contraintes"
             }
             ListElement {
                 name: "Advantages du app et Inconvénients"
-                path: "04_app_avantages_pb.qml"
+                path: "04_jdr_avantages_pb.qml"
                 time: 1
                 next: "Avantages de l'informatique"
             }
 
             ListElement {
                 name: "Pourquoi faire de app ?"
-                path: "05_avantage_app_virtuel.qml"
+                path: "05_avantage_jdr_virtuel.qml"
                 time: 1
                 next: "Fonctionnalités"
             }
@@ -70,7 +127,25 @@ ApplicationWindow {
                 name: "Fonctionnalités Rolisteam"
                 path: "06_fonctionnalites_rolisteam.qml"
                 time: 1
-                next: "le commencement"
+                next: "Système de dés"
+            }
+            ListElement {
+                name: "Dice Parser"
+                path: "13_dice_parser.qml"
+                time: 1
+                next: "Début de rolisteam"
+            }
+            ListElement {
+                name: "Themes et audio 3 pistes"
+                path: "14_themes_audio_3_pistes.qml"
+                next: "Les nouveautées 1.8"
+                time: 1
+            }
+            ListElement {
+                name: "Les Nouveautés 1.8"
+                path: "15_nouveaute_1_8.qml"
+                time: 1
+                next: "À venir"
             }
             ListElement {
                 name: "Début de rolisteam"
@@ -100,25 +175,7 @@ ApplicationWindow {
                 name: "Son fonctionnement"
                 path: "12_son_fonctionnement.qml"
                 time: 1
-                next: "DiceParser"
-            }
-            ListElement {
-                name: "Dice Parser"
-                path: "13_dice_parser.qml"
-                time: 1
-                next: "Themes et audio"
-            }
-            ListElement {
-                name: "Themes et audio 3 pistes"
-                path: "14_themes_audio_3_pistes.qml"
-                next: "Les nouveautées 1.8"
-                time: 1
-            }
-            ListElement {
-                name: "Les Nouveautés 1.8"
-                path: "15_nouveaute_1_8.qml"
-                time: 1
-                next: "À venir"
+                next: "Thème et audio"
             }
             ListElement {
                 name: "Projets d'avenir"
@@ -150,19 +207,40 @@ ApplicationWindow {
                 time: 1
                 next: ""
             }
+            /*ListElement {
+                name: "Contact"
+                path: "03_qtCon_stayintouch.qml"
+                time: 1
+                next: ""
+            }*/
         }
     //Component.onCompleted: app.currentItemChanged(0)
-    onVisibleChanged: trigger.start()
+   /* onVisibleChanged: trigger.start()
     Rectangle {
         id: rect
         anchors.fill: parent
-        color: "#E3E3E3"
+        color: app.bgColor
+    }*/
+    Image {
+        id: bgimg
+        anchors.fill: parent
+        fillMode: Image.PreserveAspectCrop
+        source: "qrc:/rsrc/graywood2.jpg"
+        verticalAlignment: Image.AlignBottom
     }
+    FastBlur {
+        anchors.fill: bgimg
+        source: bgimg
+        radius: 32
+        opacity: bgimg.opacity
+    }
+
+    onVisibleChanged: trigger.start()
 
     PathView {
         id: view
         anchors.fill: parent
-        model: qtConModel
+        model: panelModel
         highlightRangeMode:PathView.StrictlyEnforceRange
         snapMode: PathView.SnapOneItem
         delegate:  Loader {
@@ -207,7 +285,7 @@ ApplicationWindow {
         path: Path {
             startX: view.width/2
             startY: view.height/2
-            PathLine { x: view.width/2+view.width*qtConModel.count; y: view.height/2 }
+            PathLine { x: view.width/2+view.width*panelModel.count; y: view.height/2 }
         }
     }
 
@@ -223,7 +301,7 @@ ApplicationWindow {
                 Text {
                     color: view.currentIndex>=index ? "black" : "gray"
                     text: name
-                    font.pointSize: app.height/48
+                    font.pointSize: ScreenH/48
                     anchors.verticalCenter: parent.verticalCenter
                     font.bold: true
 
@@ -256,6 +334,7 @@ ApplicationWindow {
         anchors.left: parent.left
         anchors.leftMargin: 50
         anchors.bottomMargin: 50
+        color: app.txtColor
         text: (view.currentIndex+1)+"/"+view.count
         visible: view.currentIndex>0 ? true : false
     }
@@ -269,8 +348,9 @@ ApplicationWindow {
     }
     Text {
         anchors.top: parent.top
+        color: app.txtColor
         anchors.right: parent.right
-        text: qtConModel.get(view.currentIndex).next+">"
-        visible: qtConModel.get(view.currentIndex).next !== "" ? true : false
+        text: panelModel.get(view.currentIndex).next+">"
+        visible: panelModel.get(view.currentIndex).next !== "" ? true : false
     }
 }

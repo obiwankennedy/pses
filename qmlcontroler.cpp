@@ -22,6 +22,7 @@
 #include <QDebug>
 #include "cpphighlighter.h"
 #include <QQuickTextDocument>
+#include <QQmlContext>
 
 template <class T> T childObject(QQmlApplicationEngine& engine,
                                  const QString& objectName,
@@ -52,6 +53,10 @@ QmlControler::QmlControler(QWidget *parent) :
     ui(new Ui::QmlControler)
 {
     ui->setupUi(this);
+
+    m_diceParser = new DiceParser();
+    m_resultModel = new DiceResultModel();
+
     m_label = new QLabel();
     m_label->setLineWidth(0);
     m_label->setFrameStyle(QFrame::NoFrame);
@@ -168,6 +173,16 @@ bool QmlControler::eventFilter(QObject* label, QEvent* vt)
     return false;
 }
 
+DiceResultModel *QmlControler::getResultModel() const
+{
+    return m_resultModel;
+}
+
+void QmlControler::setResultModel(DiceResultModel *resultModel)
+{
+    m_resultModel = resultModel;
+}
+
 QQmlApplicationEngine *QmlControler::getEngine() const
 {
     return m_engine;
@@ -189,13 +204,15 @@ void QmlControler::initConnection()
 
 
 
+
+
 }
 void QmlControler::currentPageHasChanged(int i)
 {
     m_currentScreen = i;
     QImage img = m_window->grabWindow();
 
-    if(img.isNull())
+    /*if(img.isNull())
         return;
 
     static int count = 0;
@@ -232,7 +249,6 @@ void QmlControler::resizeLabel()
     {
         m_label->resize(w,w*m_ratioImageBis);
     }
-    double m_ratioImage;
 }
 void QmlControler::resizeEvent(QResizeEvent *event)
 {
@@ -249,4 +265,148 @@ void QmlControler::closeEvent(QCloseEvent* closeEvnt)
 void QmlControler::showEvent(QShowEvent * nt)
 {
     QMainWindow::showEvent(nt);
+}
+void QmlControler::rollDice(QString str)
+{
+    qDebug() << str;
+    m_resultModel->insertCommand(str);
+    QString result="";
+    if(m_diceParser->parseLine(str))
+    {
+        m_diceParser->Start();
+        if(!m_diceParser->getErrorMap().isEmpty())
+        {
+            result +=  "<span style=\"color: #FF0000;font-weight:bold\">Error:</span>" + m_diceParser->humanReadableError() + "<br/>";
+        }
+        else
+        {
+
+            ExportedDiceResult list;
+            bool homogeneous = true;
+            m_diceParser->getLastDiceResult(list,homogeneous);
+            QString diceText = diceToText(list,true,homogeneous);
+            QString scalarText;
+            QString str;
+
+            if(m_diceParser->hasIntegerResultNotInFirst())
+            {
+                scalarText = QString("%1").arg(m_diceParser->getLastIntegerResult());
+            }
+            else if(!list.isEmpty())
+            {
+                scalarText = QString("%1").arg(m_diceParser->getSumOfDiceResult());
+            }
+            str = QString("Result: <span style=\"color: #FF0000;font-weight:bold\">%1</span>, details:[%3 (%2)]").arg(scalarText).arg(diceText).arg(m_diceParser->getDiceCommand());
+
+
+            if(m_diceParser->hasStringResult())
+            {
+                str = m_diceParser->getStringResult();
+            }
+            result += str + "<br/>";
+        }
+    }
+
+    m_resultModel->insertResult(result);
+}
+QString QmlControler::diceToText(ExportedDiceResult& dice,bool highlight,bool homogeneous)
+{
+    QStringList resultGlobal;
+    foreach(int face, dice.keys())
+    {
+        QStringList result;
+        QStringList currentStreak;
+        QList<QStringList> allStreakList;
+        ListDiceResult diceResult =  dice.value(face);
+        bool previousHighlight=false;
+        QString previousColor;
+        QString patternColor("<span style=\"color: #FF0000;font-weight:bold\">");
+        foreach (HighLightDice tmp, diceResult)
+        {
+            if(previousColor != tmp.getColor())
+            {
+                if(!currentStreak.isEmpty())
+                {
+                    QStringList list;
+                    list << patternColor+currentStreak.join(',')+"</span>";
+                    allStreakList.append(list);
+                    currentStreak.clear();
+                }
+                if(tmp.getColor().isEmpty())
+                {
+                    patternColor = QStringLiteral("<span style=\"color: #FF0000;font-weight:bold\">");
+                }
+                else
+                {
+                    patternColor = QStringLiteral("<span style=\"color:%1;font-weight:bold\">").arg(tmp.getColor());
+                }
+            }
+            QStringList diceListStr;
+            if((previousHighlight)&&(!tmp.isHighlighted()))
+            {
+                if(!currentStreak.isEmpty())
+                {
+                    QStringList list;
+                    list << patternColor+currentStreak.join(',')+"</span>";
+                    allStreakList.append(list);
+                    currentStreak.clear();
+                }
+
+            }
+            else if((!previousHighlight)&&(tmp.isHighlighted()))
+            {
+                if(!currentStreak.isEmpty())
+                {
+                    QStringList list;
+                    list << currentStreak.join(',');
+                    allStreakList.append(list);
+                    currentStreak.clear();
+                }
+            }
+            previousHighlight = tmp.isHighlighted();
+            previousColor = tmp.getColor();
+            for(int i =0; i < tmp.getResult().size(); ++i)
+            {
+                qint64 dievalue = tmp.getResult()[i];
+                diceListStr << QString::number(dievalue);
+            }
+            if(diceListStr.size()>1)
+            {
+                QString first = diceListStr.takeFirst();
+                first = QString("%1 [%2]").arg(first).arg(diceListStr.join(','));
+                diceListStr.clear();
+                diceListStr << first;
+            }
+            currentStreak << diceListStr.join(' ');
+        }
+
+        if(previousHighlight)
+        {
+            QStringList list;
+            list <<  patternColor+currentStreak.join(',')+"</span>";
+            allStreakList.append(list);
+        }
+        else
+        {
+            if(!currentStreak.isEmpty())
+            {
+                QStringList list;
+                list << currentStreak.join(',');
+                allStreakList.append(list);
+            }
+        }
+        foreach(QStringList a, allStreakList)
+        {
+            result << a;
+        }
+        if(dice.keys().size()>1)
+        {
+            resultGlobal << QString(" d%2:(%1)").arg(result.join(",")).arg(face);
+        }
+        else
+        {
+            resultGlobal << result.join(",");
+        }
+    }
+    return resultGlobal.join("");
 }

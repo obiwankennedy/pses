@@ -3,11 +3,11 @@ import QtQuick.Window 2.2
 
 Rectangle {
     id: jdr
-    width: app.height
+    width: app.width
     height: app.height
-    border.color: "#E3E3E3"
+    border.color: app.bgColor
     border.width: 5
-    color: "#E3E3E3"
+    color: app.bgColor
     property int idState: 0
     Text {
         id: text1
@@ -15,7 +15,7 @@ Rectangle {
         anchors.left: parent.left
         anchors.right: parent.right
         height: jdr.height*0.1
-        color: "black"
+        color: app.txtColor
         text: qsTr("Stay in touch")
         font.family: "Verdana"
         font.bold: true
@@ -50,9 +50,9 @@ Rectangle {
             width: jdr.width/2
             height: listView1.height/listView1.count
                 Text {
-                    color: "black"
+                    color: app.txtColor
                     text: name
-                    font.pointSize: jdr.height/28
+                    font.pointSize: ScreenH/28
                     anchors.verticalCenter: parent.verticalCenter
                 }
                 opacity: (jdr.idState >= index ) ? 1.0: 0.0
@@ -65,28 +65,32 @@ Rectangle {
 
         model: ListModel {
             ListElement {
-                name: "Web Site: <font color=\"blue\"><b>www.rolisteam.org</b></font>"
+                name: "A vos questions!"
                 index:0
+            }
+            ListElement {
+                name: "Site web: <font color=\"blue\"><b>www.rolisteam.org</b></font>"
+                index:1
             }
             ListElement {
                 name: "Email: <font color=\"blue\"><b>renaud@rolisteam.org</b></font>"
-                index:0
+                index:1
             }
             ListElement {
                 name: "Twitter: <font color=\"blue\"><b>@Rolisteam</b></font>"
-                index:0
+                index:1
             }
             ListElement {
                 name: "Facebook: <font color=\"blue\"><b>www.facebook.com/rolisteam</b></font>"
-                index:0
+                index:1
             }
             ListElement {
                 name: "Irc: <font color=\"blue\"><b>#RolisteamOfficial</b></font> on freenode.net"
-                index:0
+                index:1
             }
             ListElement {
                 name: "Github: <font color=\"blue\"><b>github.com/Rolisteam</b></font>"
-                index:0
+                index:1
             }
         }
     }

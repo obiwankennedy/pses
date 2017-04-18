@@ -5,9 +5,9 @@ Rectangle {
     id: jdr
     width: Screen.width
     height: Screen.height
-    border.color: "#E3E3E3"
+    border.color: app.bgColor
     border.width: 5
-    color: "#E3E3E3"
+    color: app.bgColor
     property int idState: 0
     Text {
         id: text1
@@ -15,7 +15,7 @@ Rectangle {
         anchors.left: parent.left
         anchors.right: parent.right
         height: jdr.height*0.1
-        color: "black"
+        color: app.txtColor
         text: qsTr("Rolisteam Character Sheet Editor")
         font.family: "Verdana"
         font.bold: true
@@ -50,9 +50,9 @@ Rectangle {
             width: jdr.width
             height: listView1.height/listView1.count
                 Text {
-                    color: "black"
+                    color: app.txtColor
                     text: name
-                    font.pointSize: jdr.height/28
+                    font.pointSize: ScreenH/28
                     anchors.verticalCenter: parent.verticalCenter
                 }
                 opacity: (jdr.idState >= index ) ? 1.0: 0.0

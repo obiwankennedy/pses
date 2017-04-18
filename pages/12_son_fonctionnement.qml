@@ -10,9 +10,9 @@ Rectangle {
     width: ScreenW
     height: ScreenH
     property int idState : 0
-    border.color: "#E3E3E3"
+    border.color: app.bgColor
     border.width: 5
-    color: "#E3E3E3"
+    color: app.bgColor
     property alias listView1: listView1
     Image {
         id: image1
@@ -31,7 +31,7 @@ Rectangle {
         anchors.bottom: image1.bottom
         width: ScreenW*0.5
         height: ScreenH*0.01
-        color: "black"
+        color: app.txtColor
         text: qsTr("Son fonctionnement ?")
         anchors.horizontalCenterOffset: 1
         //anchors.topMargin: -203
@@ -68,7 +68,7 @@ Rectangle {
             width: ScreenW/2
             height: listView1.height/listView1.count
             Text {
-                color: "black"
+                color: app.txtColor
                 text: name
                 font.pointSize: ScreenH/28
                 anchors.verticalCenter: parent.verticalCenter
