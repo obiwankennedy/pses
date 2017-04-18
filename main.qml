@@ -15,6 +15,7 @@ ApplicationWindow {
 
     property color bgColor: "transparent"
     property color txtColor: "white"
+    readonly property int bgcount : 5
 
     signal currentItemChanged(int current)
     property alias current: view.currentIndex
@@ -23,24 +24,31 @@ ApplicationWindow {
         //bottomcornerimage.visible = false
         if(current==0)
             bgimg.source = "qrc:/rsrc/graywood2.jpg"
-        else if(current % 9 == 0)
+        else if(current % bgcount == 0)
         {
             bgimg.source = "qrc:/rsrc/graywood2.jpg"
         }
-        else if(current % 9 == 1)
+        else if(current % bgcount == 1)
         {
             bgimg.source = "qrc:/rsrc/chaton.jpg";
         }
-        else if(current % 9 == 2)
+        else if(current % bgcount == 2)
         {
             bgimg.source = "qrc:/rsrc/lionne.jpg";
            // topcornerimage.visible = true
         }
-        else if(current % 9 == 3)
+        else if(current % bgcount == 3)
         {
             bgimg.source = "qrc:/rsrc/dice.jpg";
            // topcornerimage.visible = true
         }
+        else if(current % bgcount == 4)
+        {
+            bgimg.source = "qrc:/rsrc/arbre.jpeg";
+           // topcornerimage.visible = true
+        }
+/*
+
         else if(current % 9 == 4)
         {
             bgimg.source = "qrc:/rsrc/dragon.jpg";
@@ -49,11 +57,6 @@ ApplicationWindow {
         else if(current % 9 == 5)
         {
             bgimg.source = "qrc:/rsrc/cloud.jpg";
-           // topcornerimage.visible = true
-        }
-        else if(current % 9 == 6)
-        {
-            bgimg.source = "qrc:/rsrc/arbre.jpeg";
            // topcornerimage.visible = true
         }
         else if(current % 9 == 7)
@@ -65,7 +68,7 @@ ApplicationWindow {
         {
             bgimg.source = "qrc:/rsrc/nyc.jpg";
            // topcornerimage.visible = true
-        }
+        }*/
     }
 
     signal rollDiceCmd(string cmd)

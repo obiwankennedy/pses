@@ -235,7 +235,7 @@ void QmlControler::currentPageHasChanged(int i)
     if(NULL!=doc)
     {
         new CppHighLighter(doc->textDocument());
-    }
+    }*/
 }
 void QmlControler::resizeLabel()
 {

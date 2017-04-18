@@ -62,8 +62,35 @@ Rectangle {
             }
         }
         model: ListModel {
-            ListElement {
-                name: "A vos questions!"
+            model: ListModel {
+                ListElement {
+                    name: "A vos questions!"
+                    index:0
+                }
+                ListElement {
+                    name: "Site web: <font color=\"blue\"><b>www.rolisteam.org</b></font>"
+                    index:1
+                }
+                ListElement {
+                    name: "Email: <font color=\"blue\"><b>renaud@rolisteam.org</b></font>"
+                    index:1
+                }
+                ListElement {
+                    name: "Twitter: <font color=\"blue\"><b>@Rolisteam</b></font>"
+                    index:1
+                }
+                ListElement {
+                    name: "Facebook: <font color=\"blue\"><b>www.facebook.com/rolisteam</b></font>"
+                    index:1
+                }
+                ListElement {
+                    name: "Irc: <font color=\"blue\"><b>#RolisteamOfficial</b></font> on freenode.net"
+                    index:1
+                }
+                ListElement {
+                    name: "Github: <font color=\"blue\"><b>github.com/Rolisteam</b></font>"
+                    index:1
+                }
             }
         }
     }

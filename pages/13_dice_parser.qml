@@ -152,13 +152,14 @@ Rectangle {
 
                 width: ScreenW*0.5
                 height: ScreenH*0.05
-                Rectangle {
+                /*Rectangle {
                     color:"#E8E8E8"
                     anchors.fill: parent
                     opacity: 0.5
-                }
+                }*/
                 Text {
                     text: result
+                    color:app.txtColor
                     textFormat: Text.RichText
                     font.pointSize: ScreenH*0.02
                     anchors.verticalCenter: parent.verticalCenter

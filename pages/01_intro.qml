@@ -38,6 +38,7 @@ Rectangle {
         id: text2
         anchors.bottom: parent.bottom
         anchors.right: parent.right
+        color: app.txtColor
         text: qsTr("Renaud Guezennec")
         font.pixelSize: ScreenH/25
     }
