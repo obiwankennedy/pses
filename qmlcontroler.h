@@ -24,6 +24,8 @@
 #include <QQmlApplicationEngine>
 #include <QQuickWindow>
 #include <QLabel>
+#include "diceparser.h"
+#include "diceresultmodel.h"
 
 namespace Ui {
 class QmlControler;
@@ -40,8 +42,13 @@ public:
     QQmlApplicationEngine *getEngine() const;
     void setEngine(QQmlApplicationEngine *engine);
 
+    QString diceToText(ExportedDiceResult &dice, bool highlight, bool homogeneous);
+    DiceResultModel *getResultModel() const;
+    void setResultModel(DiceResultModel *resultModel);
+
 public slots:
     void currentPageHasChanged(int i);
+    void rollDice(QString);
 protected:
     void initConnection();
     void resizeEvent(QResizeEvent *event);
@@ -58,7 +65,8 @@ private:
     qreal m_ratioImage;
     qreal m_ratioImageBis;
     int m_currentScreen;
-
+    DiceParser* m_diceParser;
+    DiceResultModel* m_resultModel;
 };
 
 #endif // QMLCONTROLER_H

@@ -17,44 +17,38 @@
     *   Free Software Foundation, Inc.,                                       *
     *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
     ***************************************************************************/
-#include <QApplication>
-#include <QQmlApplicationEngine>
-#include "qmlcontroler.h"
-#include <QQmlContext>
-#include <QQuickTextDocument>
-#include <QScreen>
+#ifndef DICERESULTMODEL_H
+#define DICERESULTMODEL_H
 
-#include "cpphighlighter.h"
-#include "diceresultmodel.h"
-int main(int argc, char *argv[])
+#include <QAbstractListModel>
+
+class DiceResultModel : public QAbstractListModel
 {
-    QApplication app(argc, argv);
+    Q_OBJECT
 
-    QQmlApplicationEngine engine;
+public:
+    enum CustomRole {Result = Qt::UserRole+1,Command};
+    explicit DiceResultModel(QObject *parent = 0);
 
-    engine.rootContext()->setContextProperty("ScreenW",1920);//1920x1080
-    engine.rootContext()->setContextProperty("ScreenH",1080);
-    DiceResultModel* model = new DiceResultModel();
+    // Header:
+    QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const override;
 
-    engine.rootContext()->setContextProperty("_diceModel",model);
+    // Basic functionality:
+    int rowCount(const QModelIndex &parent = QModelIndex()) const override;
 
-   /* QTextDocument text(NULL);
-    CppHighLighter cppHighLighter(&text);
-    engine.rootContext()->setContextProperty("_hightedDoc",&text);*/
-    //engine.rootContext()->setContextProperty("CppHighLightedDocument",720);
+    QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
 
-    QmlControler ctr;
-    ctr.setResultModel(model);
+    // Add data:
+    bool insertResult(QString result);
+    bool insertCommand(QString cmd);
 
-    engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
-    QList<QObject*> roots = engine.rootObjects();
-    QObject* root = roots.at(0);
-    QObject::connect(root,SIGNAL(rollDiceCmd(QString)),&ctr,SLOT(rollDice(QString)));
-
-    ctr.setEngine(&engine);
-
-    ctr.setVisible(true);
+    QHash<int, QByteArray> roleNames() const;
 
 
-    return app.exec();
-}
+    Q_INVOKABLE QVariant getCmd(int i);
+private:
+    QStringList m_result;
+    QStringList m_command;
+};
+
+#endif // DICERESULTMODEL_H

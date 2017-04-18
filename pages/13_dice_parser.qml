@@ -1,14 +1,15 @@
 import QtQuick 2.0
 import QtQuick.Window 2.2
+import QtQuick.Controls 2.0
 
 Rectangle {
     id: rectangle1
     width: ScreenW
     height: ScreenH
     property int idState: 0
-    border.color: "#E3E3E3"
+    border.color: app.bgColor
     border.width: 5
-    color: "#E3E3E3"
+    color: app.bgColor
     state: ""
     Image {
         id: image1
@@ -23,13 +24,11 @@ Rectangle {
     Text {
         id: text1
         anchors.top:image1.top
-        //anchors.horizontalCenter: parent.horizontalCenter
         anchors.left: image1.right
         anchors.bottom: image1.bottom
-        //width: ScreenW*0.5
         anchors.right: parent.right
         height: ScreenH*0.01
-        color: "black"
+        color: app.txtColor
         text: qsTr("DiceParser: Le système de dés")
         font.family: "Verdana"
         font.bold: true
@@ -72,7 +71,7 @@ Rectangle {
             width: ScreenW/2
             height: listView1.height/listView1.count
                 Text {
-                    color: "black"
+                    color: app.txtColor
                     text: name
                     font.pointSize: ScreenH/28
                     anchors.verticalCenter: parent.verticalCenter
@@ -103,11 +102,79 @@ Rectangle {
         opacity: (rectangle1.idState < 3 ) ? 1.0: 0.0
     }
 
-    Text {
+    Item {
+        id: diceRoller
+        anchors.fill: parent
+        opacity: (rectangle1.idState == 3 ) ? 1.0: 0.0
+        TextField {
+            property int current: 0
+            id: diceCommand
+            anchors.horizontalCenter: parent.horizontalCenter
+            y: ScreenH*0.2
+            width:ScreenW*0.2
+            onEditingFinished:{
+                app.rollDiceCmd(diceCommand.text)
+                diceCommand.text = ""
+            }
+            Keys.onUpPressed: {
+                current++;
+                if(current>_diceModel.rowCount()-1)
+                {
+                    current=_diceModel.rowCount()-1
+                }
+                updateText()
+            }
+            Keys.onDownPressed: {
+                current--;
+                if(current<0)
+                   current = 0;
+
+                updateText()
+            }
+
+            function updateText()
+            {
+                diceCommand.text = _diceModel.getCmd(current)
+            }
+
+
+        }
+
+        ListView {
+            id: diceResult
+            model: _diceModel
+            anchors.top: diceCommand.bottom
+            anchors.bottom: parent.bottom
+            anchors.horizontalCenter: parent.horizontalCenter
+            width: ScreenW*0.5
+            delegate: Item
+            {
+
+                width: ScreenW*0.5
+                height: ScreenH*0.05
+                Rectangle {
+                    color:"#E8E8E8"
+                    anchors.fill: parent
+                    opacity: 0.5
+                }
+                Text {
+                    text: result
+                    textFormat: Text.RichText
+                    font.pointSize: ScreenH*0.02
+                    anchors.verticalCenter: parent.verticalCenter
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+
+                }
+            }
+        }
+
+    }
+
+    /*Text {
         id: panelInfo
         x: ScreenW/4
         anchors.top: image1.bottom
-        //height: parent.height*0.3
         font.pointSize: ScreenH/50
         text: "Lancer N dés à 10 faces allant de 0 à 9<br/> Garder les M plus bas <br/>compter parmis les M ceux qui sont inférieurs ou égaux à P"
         opacity: (rectangle1.idState >= 3 ) ? 1.0: 0.0
@@ -117,16 +184,11 @@ Rectangle {
             }
         }
     }
-    /*
-    ListElement{
-        name: "!6d[0-9]kl3c[<=4]"
-    }y*/
-Text {
+    Text {
         id: panelInfo2
         anchors.left: panelInfo.left
         anchors.top: panelInfo.bottom
         anchors.right: panelInfo.right
-        //height: parent.height*0.3
         font.pointSize: ScreenH/50
         text: "(.*)day(.*),(.*) => \\1d[0-9]kl\\2c[<=\\3]"
         opacity: (rectangle1.idState >= 4 ) ? 1.0: 0.0
@@ -149,6 +211,6 @@ Text {
                 duration: 1000
             }
         }
-    }
+    }*/
 
 }

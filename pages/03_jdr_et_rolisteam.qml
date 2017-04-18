@@ -5,9 +5,9 @@ Rectangle {
     id: jdr
     width: ScreenW
     height: ScreenH
-    border.color: "#E3E3E3"
+    border.color: app.bgColor
     border.width: 5
-    color: "#E3E3E3"
+    color: app.bgColor
     property int idState: 0
     Image {
         id: image1
@@ -26,7 +26,7 @@ Rectangle {
         anchors.bottom: image1.bottom
         width: ScreenW*0.5
         height: ScreenH*0.01
-        color: "black"
+        color: app.txtColor
         text: qsTr("Rolisteam et le jdr")
         anchors.horizontalCenterOffset: 1
         //anchors.topMargin: -203
@@ -72,7 +72,7 @@ Rectangle {
             width: ScreenW/2
             height: listView1.height/listView1.count
                 Text {
-                    color: "black"
+                    color: app.txtColor
                     text: name
                     font.pointSize: ScreenH/28
                     anchors.verticalCenter: parent.verticalCenter
@@ -111,6 +111,7 @@ Rectangle {
         horizontalAlignment: Text.AlignHCenter
         width: parent.width*0.8
         //height: parent.height*0.3
+        color: app.txtColor
         font.pointSize: ScreenH/50
         text: "«<i>Le jeu de rôle est un jeu de société dans lequel les participants <br/>conçoivent ensemble une fiction par l’interprétation de rôles et par la narration,<br/> dans le cadre de contraintes de jeu qu’ils s’imposent.</i>»<br/>   -Wikipedia"
         opacity: (jdr.idState == 1 ) ? 1.0: 0.0

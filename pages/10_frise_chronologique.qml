@@ -9,9 +9,10 @@ Rectangle {
     height: ScreenH
     //    height: 600
     //  anchors.centerIn: parent
-    border.color: "#E3E3E3"
+    border.color: app.bgColor
     border.width: 3
-    color: "#E3E3E3"
+    color: app.bgColor
+    property real sizePerYear: Screen.width/((2017-2009)+1)
 
     Image {
         id: image1
@@ -30,7 +31,7 @@ Rectangle {
         anchors.bottom: image1.bottom
         width: ScreenW*0.5
         height: ScreenH*0.01
-        color: "black"
+        color: app.txtColor
         text: qsTr("La chronologie")
         anchors.horizontalCenterOffset: 1
         //anchors.topMargin: -203
@@ -86,7 +87,7 @@ Rectangle {
     }
     Rectangle {//24 janvier 2009
         id: date1
-        x: 0.08*ScreenW/8
+        x: 0.08*sizePerYear
         anchors.verticalCenter: frise.verticalCenter
         anchors.verticalCenterOffset: 0
         width:   ScreenW/48
@@ -99,17 +100,17 @@ Rectangle {
             text: (parent.index+1).toString()
             verticalAlignment: Text.AlignVCenter
             horizontalAlignment: Text.AlignHCenter
-            color: "black"
+            color: app.txtColor
             anchors.fill:parent
             font.bold: true
             font.pixelSize: ScreenH/60
         }
         border.width: 3
-        border.color: "black"
+        border.color: app.txtColor
         color: listView1.currentIndex === index ? "lightsteelblue" : "gray"
     }
     Rectangle {//21 dec 2009
-        x: 0.9*ScreenW/8
+        x: 0.9*sizePerYear
         anchors.verticalCenter: frise.verticalCenter
         anchors.verticalCenterOffset: -frise.height/4
         width:   ScreenW/48
@@ -122,13 +123,13 @@ Rectangle {
             text: (parent.index+1).toString()
             verticalAlignment: Text.AlignVCenter
             horizontalAlignment: Text.AlignHCenter
-            color: "black"
+            color: app.txtColor
             anchors.fill:parent
             font.bold: true
             font.pixelSize: ScreenH/60
         }
         border.width: 3
-        border.color: "black"
+        border.color: app.txtColor
         color: listView1.currentIndex === index ? "lightsteelblue" : "gray"
     }
     Canvas{
@@ -157,7 +158,7 @@ Rectangle {
 
     Rectangle {//10 janvier 2010
         id: v2
-        x: 1*ScreenW/8+0.02*ScreenW/8
+        x: 1.02*sizePerYear
         anchors.verticalCenter: frise.verticalCenter
         anchors.verticalCenterOffset: -frise.height/4 +   ScreenW/48
         width:   ScreenW/48
@@ -170,17 +171,17 @@ Rectangle {
             text: (parent.index+1).toString()
             verticalAlignment: Text.AlignVCenter
             horizontalAlignment: Text.AlignHCenter
-            color: "black"
+            color: app.txtColor
             anchors.fill:parent
             font.bold: true
             font.pixelSize: ScreenH/60
         }
         border.width: 3
-        border.color: "black"
+        border.color: app.txtColor
         color: listView1.currentIndex === index ? "lightsteelblue" : "gray"
     }
-    Rectangle {
-        x: 1*ScreenW/8+0.08*ScreenW/8
+    /*Rectangle {
+        x: 1*sizePerYear+0.08*sizePerYear
         anchors.verticalCenter: frise.verticalCenter
         anchors.verticalCenterOffset: -frise.height/4 + 2*  ScreenW/48
         width:   ScreenW/48
@@ -193,40 +194,40 @@ Rectangle {
             text: (parent.index+1).toString()
             verticalAlignment: Text.AlignVCenter
             horizontalAlignment: Text.AlignHCenter
-            color: "black"
+            color: app.txtColor
             anchors.fill:parent
             font.bold: true
                         font.pixelSize: ScreenH/60
         }
         border.width: 3
-        border.color: "black"
+        border.color: app.txtColor
         color: listView1.currentIndex === index ? "lightsteelblue" : "gray"
-    }
+    }*/
     Rectangle {
-        x: 1*ScreenW/8+0.11*ScreenW/8
+        x: 1.11*sizePerYear
         anchors.verticalCenter: frise.verticalCenter
         anchors.verticalCenterOffset: -frise.height/4 + 3*  ScreenW/48
         width:   ScreenW/48
         height:   ScreenW/48
         radius: ScreenW/25
-        property int index: 4
+        property int index: 3
         scale: listView1.currentIndex === index ? 1.2 : 1.0
         visible: listView1.currentIndex >= index ? true : false
         Text {
             text: (parent.index+1).toString()
             verticalAlignment: Text.AlignVCenter
             horizontalAlignment: Text.AlignHCenter
-            color: "black"
+            color: app.txtColor
             anchors.fill:parent
             font.bold: true
                         font.pixelSize: ScreenH/60
         }
         border.width: 3
-        border.color: "black"
+        border.color: app.txtColor
         color: listView1.currentIndex === index ? "lightsteelblue" : "gray"
     }
-    Rectangle {
-        x: 1*ScreenW/8+0.8*ScreenW/8
+   /* Rectangle {
+        x: 1*sizePerYear+0.8*sizePerYear
         anchors.verticalCenter: frise.verticalCenter
         anchors.verticalCenterOffset: 0
         width:   ScreenW/48
@@ -239,59 +240,59 @@ Rectangle {
             text: (parent.index+1).toString()
             verticalAlignment: Text.AlignVCenter
             horizontalAlignment: Text.AlignHCenter
-            color: "black"
+            color: app.txtColor
             anchors.fill:parent
             font.bold: true
                         font.pixelSize: ScreenH/60
         }
         border.width: 3
-        border.color: "black"
+        border.color: app.txtColor
        color: listView1.currentIndex === index ? "lightsteelblue" : "gray"
-    }
+    }*/
     Rectangle {//22 octobre 2011
-        x: 2*ScreenW/8+0.7*ScreenW/8
+        x: 2.7*sizePerYear
         anchors.verticalCenter: frise.verticalCenter
         anchors.verticalCenterOffset: -frise.height/4
         width:   ScreenW/48
         height:   ScreenW/48
         radius: ScreenW/25
-        property int index: 6
+        property int index: 4
         scale: listView1.currentIndex === index ? 1.2 : 1.0
         visible: listView1.currentIndex >= index ? true : false
         Text {
             text: (parent.index+1).toString()
             verticalAlignment: Text.AlignVCenter
             horizontalAlignment: Text.AlignHCenter
-            color: "black"
+            color: app.txtColor
             anchors.fill:parent
             font.bold: true
                         font.pixelSize: ScreenH/60
         }
         border.width: 3
-        border.color: "black"
+        border.color: app.txtColor
        color: listView1.currentIndex === index ? "lightsteelblue" : "gray"
     }
     Rectangle {//26 octobre 2011
-        x: 2*ScreenW/8+0.75*ScreenW/8
+        x: 2.75*sizePerYear
         anchors.verticalCenter: frise.verticalCenter
         anchors.verticalCenterOffset: -frise.height/4+  ScreenW/48
         width:   ScreenW/48
         height:   ScreenW/48
         radius: ScreenW/25
-        property int index: 7
+        property int index: 5
         scale: listView1.currentIndex === index ? 1.2 : 1.0
         visible: listView1.currentIndex >= index ? true : false
         Text {
             text: (parent.index+1).toString()
             verticalAlignment: Text.AlignVCenter
             horizontalAlignment: Text.AlignHCenter
-            color: "black"
+            color: app.txtColor
             anchors.fill:parent
             font.bold: true
                         font.pixelSize: ScreenH/60
         }
         border.width: 3
-        border.color: "black"
+        border.color: app.txtColor
        color: listView1.currentIndex === index ? "lightsteelblue" : "gray"
     }
     Canvas{
@@ -319,49 +320,49 @@ Rectangle {
     }
     Rectangle {//30 octobre 2011
         id: v152
-        x: 2*ScreenW/8+0.78*ScreenW/8
+        x: 2.78*sizePerYear
         anchors.verticalCenter: frise.verticalCenter
         anchors.verticalCenterOffset: -frise.height/4+2*  ScreenW/48
         width:   ScreenW/48
         height:   ScreenW/48
         radius: ScreenW/25
-        property int index: 8
+        property int index: 6
         scale: listView1.currentIndex === index ? 1.2 : 1.0
         visible: listView1.currentIndex >= index ? true : false
         Text {
             text: (parent.index+1).toString()
             verticalAlignment: Text.AlignVCenter
             horizontalAlignment: Text.AlignHCenter
-            color: "black"
+            color: app.txtColor
             anchors.fill:parent
             font.bold: true
                         font.pixelSize: ScreenH/60
         }
         border.width: 3
-        border.color: "black"
+        border.color: app.txtColor
        color: listView1.currentIndex === index ? "lightsteelblue" : "gray"
     }
     Rectangle {//29 novembre 2011
-        x: 2*ScreenW/8+0.85*ScreenW/8
+        x: 2.85*sizePerYear
         anchors.verticalCenter: frise.verticalCenter
         anchors.verticalCenterOffset: -frise.height/4+3*  ScreenW/48
         width:   ScreenW/48
         height:   ScreenW/48
         radius: ScreenW/25
-        property int index: 9
+        property int index: 7
         scale: listView1.currentIndex === index ? 1.2 : 1.0
         visible: listView1.currentIndex >= index ? true : false
         Text {
             text: (parent.index+1).toString()
             verticalAlignment: Text.AlignVCenter
             horizontalAlignment: Text.AlignHCenter
-            color: "black"
+            color: app.txtColor
             anchors.fill:parent
             font.bold: true
                         font.pixelSize: ScreenH/60
         }
         border.width: 3
-        border.color: "black"
+        border.color: app.txtColor
        color: listView1.currentIndex === index ? "lightsteelblue" : "gray"
     }
     Canvas{
@@ -389,53 +390,53 @@ Rectangle {
     }
     Rectangle {//16 novembre 2013
         id: v160
-        x: 4*ScreenW/8+0.81*ScreenW/8
+        x: 4.81*sizePerYear
         anchors.verticalCenter: frise.verticalCenter
         anchors.verticalCenterOffset: 0
         width:   ScreenW/48
         height:   ScreenW/48
         radius: ScreenW/25
-        property int index: 10
+        property int index: 8
         scale: listView1.currentIndex === index ? 1.2 : 1.0
         visible: listView1.currentIndex >= index ? true : false
         Text {
             text: (parent.index+1).toString()
             verticalAlignment: Text.AlignVCenter
             horizontalAlignment: Text.AlignHCenter
-            color: "black"
+            color: app.txtColor
             anchors.fill:parent
             font.bold: true
                         font.pixelSize: ScreenH/60
         }
         border.width: 3
-        border.color: "black"
+        border.color: app.txtColor
        color: listView1.currentIndex === index ? "lightsteelblue" : "gray"
     }
     Rectangle {//29 décembre 2013
-        x: 4*ScreenW/8+0.99*ScreenW/8
+        x: 4.99*sizePerYear
         anchors.verticalCenter: frise.verticalCenter
         anchors.verticalCenterOffset:   ScreenW/48
         width:   ScreenW/48
         height:   ScreenW/48
         radius: ScreenW/25
-        property int index: 11
+        property int index: 9
         scale: listView1.currentIndex === index ? 1.2 : 1.0
         visible: listView1.currentIndex >= index ? true : false
         Text {
             text: (parent.index+1).toString()
             verticalAlignment: Text.AlignVCenter
             horizontalAlignment: Text.AlignHCenter
-            color: "black"
+            color: app.txtColor
             anchors.fill:parent
             font.bold: true
                         font.pixelSize: ScreenH/60
         }
         border.width: 3
-        border.color: "black"
+        border.color: app.txtColor
        color: listView1.currentIndex === index ? "lightsteelblue" : "gray"
     }
-    Rectangle {//12 février 2015
-        x: 6*ScreenW/8+0.02*ScreenW/8
+   /* Rectangle {//12 février 2015
+        x: 6*sizePerYear+0.02*sizePerYear
         anchors.verticalCenter: frise.verticalCenter
         anchors.verticalCenterOffset: -frise.height/4
         width:   ScreenW/48
@@ -448,63 +449,63 @@ Rectangle {
             text: (parent.index+1).toString()
             verticalAlignment: Text.AlignVCenter
             horizontalAlignment: Text.AlignHCenter
-            color: "black"
+            color: app.txtColor
             anchors.fill:parent
             font.bold: true
                         font.pixelSize: ScreenH/60
         }
         border.width: 3
-        border.color: "black"
+        border.color: app.txtColor
        color: listView1.currentIndex === index ? "lightsteelblue" : "gray"
-    }
+    }*/
     Rectangle {//18 février 2015
-        x: 6*ScreenW/8+0.03*ScreenW/8
+        x: 6.03*sizePerYear
         anchors.verticalCenter: frise.verticalCenter
         anchors.verticalCenterOffset: -frise.height/4+  ScreenW/48
         width:   ScreenW/48
         height:   ScreenW/48
         radius: ScreenW/25
-        property int index: 13
+        property int index: 10
         scale: listView1.currentIndex === index ? 1.2 : 1.0
         visible: listView1.currentIndex >= index ? true : false
         Text {
             text: (parent.index+1).toString()
             verticalAlignment: Text.AlignVCenter
             horizontalAlignment: Text.AlignHCenter
-            color: "black"
+            color: app.txtColor
             anchors.fill:parent
             font.bold: true
                         font.pixelSize: ScreenH/60
         }
         border.width: 3
-        border.color: "black"
+        border.color: app.txtColor
        color: listView1.currentIndex === index ? "lightsteelblue" : "gray"
     }
     Rectangle {//27 mai 2015
-        x: 6*ScreenW/8+0.40*ScreenW/8
+        x: 6.40*sizePerYear
         anchors.verticalCenter: frise.verticalCenter
         anchors.verticalCenterOffset: -frise.height/4+2*  ScreenW/48
         width:   ScreenW/48
         height:   ScreenW/48
         radius: ScreenW/25
-        property int index: 14
+        property int index: 11
         scale: listView1.currentIndex === index ? 1.2 : 1.0
         visible: listView1.currentIndex >= index ? true : false
         Text {
             text: (parent.index+1).toString()
             verticalAlignment: Text.AlignVCenter
             horizontalAlignment: Text.AlignHCenter
-            color: "black"
+            color: app.txtColor
             anchors.fill:parent
             font.bold: true
                         font.pixelSize: ScreenH/60
         }
         border.width: 3
-        border.color: "black"
+        border.color: app.txtColor
        color: listView1.currentIndex === index ? "lightsteelblue" : "gray"
     }
-    Rectangle {//22 août 2015
-        x: 6*ScreenW/8+0.55*ScreenW/8
+  /*  Rectangle {//22 août 2015
+        x: 6*sizePerYear+0.55*sizePerYear
         anchors.verticalCenter: frise.verticalCenter
         anchors.verticalCenterOffset: -frise.height/4+3*  ScreenW/48
         width:   ScreenW/48
@@ -517,59 +518,105 @@ Rectangle {
             text: (parent.index+1).toString()
             verticalAlignment: Text.AlignVCenter
             horizontalAlignment: Text.AlignHCenter
-            color: "black"
-            anchors.fill:parent
-            font.bold: true
-                        font.pixelSize: ScreenH/60
-        }
-        border.width: 3
-        border.color: "black"
-       color: listView1.currentIndex === index ? "lightsteelblue" : "gray"
-    }
-    Rectangle {//22 août 2015
-        x: 6*ScreenW/8+0.6*ScreenW/8
-        anchors.verticalCenter: frise.verticalCenter
-        anchors.verticalCenterOffset: -frise.height/4+4*  ScreenW/48
-        width:   ScreenW/48
-        height:   ScreenW/48
-        radius: ScreenW/25
-        property int index: 16
-        scale: listView1.currentIndex === index ? 1.2 : 1.0
-        visible: listView1.currentIndex >= index ? true : false
-        Text {
-            text: (parent.index+1).toString()
-            verticalAlignment: Text.AlignVCenter
-            horizontalAlignment: Text.AlignHCenter
-            color: "black"
-            anchors.fill:parent
-            font.bold: true
-                        font.pixelSize: ScreenH/60
-        }
-        border.width: 3
-        border.color: "black"
-       color: listView1.currentIndex === index ? "lightsteelblue" : "gray"
-    }
-    Rectangle {//Pas Sage en seine
-        x: 7*ScreenW/8+0.55*ScreenW/8
-        anchors.verticalCenter: frise.verticalCenter
-        anchors.verticalCenterOffset: -frise.height/4+4*  ScreenW/48
-        width:   ScreenW/48
-        height:   ScreenW/48
-        radius: ScreenW/25
-        property int index: 17
-        scale: listView1.currentIndex === index ? 1.2 : 1.0
-        visible: listView1.currentIndex >= index ? true : false
-        Text {
-            text: (parent.index+1).toString()
-            verticalAlignment: Text.AlignVCenter
-            horizontalAlignment: Text.AlignHCenter
-            color: "black"
+            color: app.txtColor
             anchors.fill:parent
             font.bold: true
             font.pixelSize: ScreenH/60
         }
         border.width: 3
-        border.color: "black"
+        border.color: app.txtColor
+       color: listView1.currentIndex === index ? "lightsteelblue" : "gray"
+    }*/
+    Rectangle {//22 août 2015
+        x: 6.6*sizePerYear
+        anchors.verticalCenter: frise.verticalCenter
+        anchors.verticalCenterOffset: -frise.height/4+4*  ScreenW/48
+        width:   ScreenW/48
+        height:   ScreenW/48
+        radius: ScreenW/25
+        property int index: 12
+        scale: listView1.currentIndex === index ? 1.2 : 1.0
+        visible: listView1.currentIndex >= index ? true : false
+        Text {
+            text: (parent.index+1).toString()
+            verticalAlignment: Text.AlignVCenter
+            horizontalAlignment: Text.AlignHCenter
+            color: app.txtColor
+            anchors.fill:parent
+            font.bold: true
+                        font.pixelSize: ScreenH/60
+        }
+        border.width: 3
+        border.color: app.txtColor
+       color: listView1.currentIndex === index ? "lightsteelblue" : "gray"
+    }
+    Rectangle {//Pas Sage en seine
+        x: 7.55*sizePerYear
+        anchors.verticalCenter: frise.verticalCenter
+        anchors.verticalCenterOffset: -frise.height/4+4*  ScreenW/48
+        width:   ScreenW/48
+        height:   ScreenW/48
+        radius: ScreenW/25
+        property int index: 13
+        scale: listView1.currentIndex === index ? 1.2 : 1.0
+        visible: listView1.currentIndex >= index ? true : false
+        Text {
+            text: (parent.index+1).toString()
+            verticalAlignment: Text.AlignVCenter
+            horizontalAlignment: Text.AlignHCenter
+            color: app.txtColor
+            anchors.fill:parent
+            font.bold: true
+            font.pixelSize: ScreenH/60
+        }
+        border.width: 3
+        border.color: app.txtColor
+       color: listView1.currentIndex === index ? "lightsteelblue" : "gray"
+    }
+    Rectangle {//v1.8.0
+        x: 8.13*sizePerYear
+        anchors.verticalCenter: frise.verticalCenter
+        anchors.verticalCenterOffset: -frise.height/4*  ScreenW/48
+        width:   ScreenW/48
+        height:   ScreenW/48
+        radius: ScreenW/25
+        property int index: 14
+        scale: listView1.currentIndex === index ? 1.2 : 1.0
+        visible: listView1.currentIndex >= index ? true : false
+        Text {
+            text: (parent.index+1).toString()
+            verticalAlignment: Text.AlignVCenter
+            horizontalAlignment: Text.AlignHCenter
+            color: app.txtColor
+            anchors.fill:parent
+            font.bold: true
+            font.pixelSize: ScreenH/60
+        }
+        border.width: 3
+        border.color: app.txtColor
+       color: listView1.currentIndex === index ? "lightsteelblue" : "gray"
+    }
+    Rectangle {//v1.8.1
+        x: 8.25*sizePerYear
+        anchors.verticalCenter: frise.verticalCenter
+        anchors.verticalCenterOffset:  -frise.height/4
+        width:   ScreenW/48
+        height:   ScreenW/48
+        radius: ScreenW/25
+        property int index: 15
+        scale: listView1.currentIndex === index ? 1.2 : 1.0
+        visible: listView1.currentIndex >= index ? true : false
+        Text {
+            text: (parent.index+1).toString()
+            verticalAlignment: Text.AlignVCenter
+            horizontalAlignment: Text.AlignHCenter
+            color: app.txtColor
+            anchors.fill:parent
+            font.bold: true
+            font.pixelSize: ScreenH/60
+        }
+        border.width: 3
+        border.color: app.txtColor
        color: listView1.currentIndex === index ? "lightsteelblue" : "gray"
     }
        ListView {
@@ -580,7 +627,7 @@ Rectangle {
            anchors.bottomMargin: 0
            anchors.left: parent.left
            anchors.leftMargin: ScreenW*0.15
-           //anchors.horizontalCenterOffset: -ScreenW/8
+           //anchors.horizontalCenterOffset: -sizePerYear
            focus: true
            //spacing: ScreenH*0.01
 
@@ -603,7 +650,7 @@ Rectangle {
                Row {
                    id: row1
                    Text {
-                       color: "black"
+                       color: app.txtColor
                        width: ScreenW/120
                        text: index
                        font.pixelSize: ScreenH/50
@@ -611,15 +658,15 @@ Rectangle {
                        verticalAlignment: Qt.AlignTop
                    }
                    Text {
-                       color: "black"
-                       width: ScreenW/8
+                       color: app.txtColor
+                       width: sizePerYear
                        text: date
                        font.pixelSize:ScreenH/50
                        anchors.verticalCenter: parent.verticalCenter
                        verticalAlignment: Qt.AlignTop
                    }
                    Text {
-                       color: "black"
+                       color: app.txtColor
                        width: ScreenW/12
                        text: desc
                        font.pixelSize: ScreenH/50
@@ -654,101 +701,107 @@ Rectangle {
                    desc: "Sortie de la version 1.0"
                    colorItem: "lightsteelblue"
                }
-               ListElement {
+             /*  ListElement {
                    index: 3
                    date: "10 janvier 2010"
                    desc: "Début de la réécriture (2.0)"
                    colorItem: "steelblue"
-               }
+               }*/
                ListElement {
-                   index: 4
+                   index: 3
                    date: "15 février 2010"
                    desc: "Sortie de la version 1.0.1"
                    colorItem: "lightsteelblue"
                }
-               ListElement {
+              /* ListElement {
                    index: 5
                    date: "6 mars 2010"
                    desc: "Ouverture du nom de domaine rolisteam.org (auto-hébergé)"
                    colorItem: "transparent"
-               }
+               }*/
                ListElement {
-                   index: 6
+                   index: 4
                    date: "30 octobre 2010"
                    desc: "Sortie de la version 1.0.2"
                    colorItem: "lightsteelblue"
                }
                ListElement {
-                   index: 7
+                   index: 5
                    date: "22 octobre 2011"
                    desc: "Sortie de la version 1.5.0"
                    colorItem: "lightsteelblue"
                }
                ListElement {
-                   index: 8
+                   index: 6
                    date: "26 octobre 2011"
                    desc: "Sortie de la version 1.5.1"
                    colorItem: "lightsteelblue"
                }
                ListElement {
-                   index: 9
+                   index: 7
                    date: "30 octobre 2011"
                    desc: "Sortie de la version 1.5.2"
                    colorItem: "lightsteelblue"
                }
                ListElement {
-                   index: 10
+                   index: 8
                    date: "29 novembre 2011"
                    desc: "Création de l’association Rolisteam"
                    colorItem: "lightsteelblue"
                }
                ListElement {
-                   index: 11
+                   index: 9
                    date: "16 novembre 2013"
                    desc: "Sortie de la version 1.6.0"
                    colorItem: "lightsteelblue"
                }
-               ListElement {
+              /* ListElement {
                    index: 12
                    date: "29 décembre 2013"
                    desc: "Création du dépôt pour DiceParser (premier essai avec git)"
                    colorItem: "transparent"
-               }
+               }*/
                ListElement {
-                   index: 13
+                   index: 10
                    date: "12 février 2015"
                    desc: "Sortie de la version 1.6.1"
                    colorItem: "lightsteelblue"
                }
                ListElement {
-                   index: 14
+                   index: 11
                    date: "18 février 2015"
                    desc: "Passage à Git pour la gestion de rolisteam"
                    colorItem: "transparent"
                }
-               ListElement {
+               /*ListElement {
                    index: 15
                    date: "27 mai 2015"
                    desc: "Ouverture comptes réseau sociaux"
                    colorItem: "transparent"
-               }
+               }*/
                ListElement {
-                   index: 16
+                   index: 12
                    date: "22 août 2015"
                    desc: "Sortie de la version 1.7.0"
                    colorItem: "lightsteelblue"
                }
                ListElement {
-                   index: 17
+                   index: 13
                    date: "5 septembre 2015"
                    desc: "Sortie de la version 1.7.1"
                    colorItem: "lightsteelblue"
                }
                ListElement {
-                   index: 18
-                   date: "30 juin 2016"
-                   desc: "Pas sage en Seine"
-                   colorItem: "transparent"
+                   index: 14
+                   date: "19 Février 2017"
+                   desc: "Sortie version 1.8"
+                   colorItem: "lightsteelblue"
+               }
+               ListElement {
+                   index: 15
+                   date: "9 avril 2017"
+                   desc: "Sortie version 1.8.1"
+                   colorItem: "lightsteelblue"
                }
            }
        }
@@ -757,7 +810,7 @@ Rectangle {
             anchors.verticalCenter: frise.verticalCenter
             anchors.right: frise.right
             anchors.rightMargin: ScreenW/28
-            text: qsTr("2016")
+            text: qsTr("2017")
             font.pixelSize: ScreenH/20
             color:"white"
         }

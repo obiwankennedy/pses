@@ -62,5 +62,15 @@
         <file>rsrc/design_cs.png</file>
         <file>rsrc/qml_generated.png</file>
         <file>rsrc/test_rcse.png</file>
+        <file>rsrc/chaton.jpg</file>
+        <file>rsrc/graywood.jpg</file>
+        <file>rsrc/graywood2.jpg</file>
+        <file>rsrc/lionne.jpg</file>
+        <file>rsrc/arbre.jpeg</file>
+        <file>rsrc/cloud.jpg</file>
+        <file>rsrc/dice.jpg</file>
+        <file>rsrc/dragon.jpg</file>
+        <file>rsrc/nyc.jpg</file>
+        <file>rsrc/square.jpg</file>
     </qresource>
 </RCC>

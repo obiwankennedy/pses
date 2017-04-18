@@ -1,0 +1,3 @@
+[submodule "DiceParser"]
+	path = DiceParser
+	url = https://github.com/Rolisteam/DiceParser.git

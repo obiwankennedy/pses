@@ -17,44 +17,67 @@
     *   Free Software Foundation, Inc.,                                       *
     *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
     ***************************************************************************/
-#include <QApplication>
-#include <QQmlApplicationEngine>
-#include "qmlcontroler.h"
-#include <QQmlContext>
-#include <QQuickTextDocument>
-#include <QScreen>
-
-#include "cpphighlighter.h"
 #include "diceresultmodel.h"
-int main(int argc, char *argv[])
+
+DiceResultModel::DiceResultModel(QObject *parent)
+    : QAbstractListModel(parent)
 {
-    QApplication app(argc, argv);
+}
 
-    QQmlApplicationEngine engine;
+QVariant DiceResultModel::headerData(int section, Qt::Orientation orientation, int role) const
+{
+    return QVariant();
+}
 
-    engine.rootContext()->setContextProperty("ScreenW",1920);//1920x1080
-    engine.rootContext()->setContextProperty("ScreenH",1080);
-    DiceResultModel* model = new DiceResultModel();
+int DiceResultModel::rowCount(const QModelIndex &parent) const
+{
+    // For list models only the root node (an invalid parent) should return the list's size. For all
+    // other (valid) parents, rowCount() should return 0 so that it does not become a tree model.
+    if (parent.isValid())
+        return 0;
 
-    engine.rootContext()->setContextProperty("_diceModel",model);
+    return m_result.size();
+}
 
-   /* QTextDocument text(NULL);
-    CppHighLighter cppHighLighter(&text);
-    engine.rootContext()->setContextProperty("_hightedDoc",&text);*/
-    //engine.rootContext()->setContextProperty("CppHighLightedDocument",720);
-
-    QmlControler ctr;
-    ctr.setResultModel(model);
-
-    engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
-    QList<QObject*> roots = engine.rootObjects();
-    QObject* root = roots.at(0);
-    QObject::connect(root,SIGNAL(rollDiceCmd(QString)),&ctr,SLOT(rollDice(QString)));
-
-    ctr.setEngine(&engine);
-
-    ctr.setVisible(true);
+QVariant DiceResultModel::data(const QModelIndex &index, int role) const
+{
+    if (!index.isValid())
+        return QVariant();
 
 
-    return app.exec();
+    if(role == Result)
+    {
+        return m_result.at(index.row());
+    }
+    else if(role == Command)
+    {
+        return m_command.at(index.row());
+    }
+    return QVariant();
+}
+QVariant DiceResultModel::getCmd(int i)
+{
+    return m_command.at(i);
+}
+
+bool DiceResultModel::insertResult(QString result)
+{
+    if(!result.isEmpty())
+    {
+        beginInsertRows(QModelIndex(), 0, 0);
+        m_result.prepend(result);
+        endInsertRows();
+    }
+}
+
+bool DiceResultModel::insertCommand(QString cmd)
+{
+    m_command.prepend(cmd);
+}
+QHash<int, QByteArray>  DiceResultModel::roleNames() const
+{
+    QHash<int, QByteArray> roles;
+    roles[Result] = "result";
+    roles[Command] = "cmd";
+    return roles;
 }

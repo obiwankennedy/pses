@@ -7,9 +7,9 @@ Rectangle {
     height: ScreenH
     //    height: 600
     //  anchors.centerIn: parent
-    border.color: "#E3E3E3"
+    border.color: app.bgColor
     border.width: 5
-    color: "#E3E3E3"
+    color: app.bgColor
     property int idState: 0
     focus: true
     Image {
@@ -29,7 +29,7 @@ Rectangle {
         anchors.bottom: image1.bottom
         width: ScreenW*0.5
         height: ScreenH*0.01
-        color: "black"
+        color: app.txtColor
         text: qsTr("De Rolistik à Rolisteam")
         anchors.horizontalCenterOffset: 1
         //anchors.topMargin: -203
@@ -71,7 +71,7 @@ Rectangle {
             width:  ScreenW*0.35
             height: listView1.height/(listView1.count*2)
                 Text {
-                    color: "black"
+                    color: app.txtColor
                     text: name
                     font.pointSize: ScreenH*0.025
                     anchors.top: parent.top
@@ -163,7 +163,7 @@ Rectangle {
                 }
             }
             Text {
-                color: "black"
+                color: app.txtColor
                 text: name
                 font.pointSize: ScreenH*0.025
                 anchors.left: frise.right
