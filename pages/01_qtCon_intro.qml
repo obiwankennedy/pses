@@ -90,16 +90,8 @@ Rectangle {
                 index:2
             }
             ListElement {
-                name: "Completely Customizable"
+                name: "QML"
                 index:3
-            }
-            ListElement {
-                name: "Why QML ?"
-                index:4
-            }
-            ListElement {
-                name: "RCSE"
-                index:5
             }
         }
     }

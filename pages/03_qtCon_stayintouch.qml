@@ -3,8 +3,8 @@ import QtQuick.Window 2.2
 
 Rectangle {
     id: jdr
-    width: Screen.width
-    height: Screen.height
+    width: app.width
+    height: app.height
     border.color: app.bgColor
     border.width: 5
     color: app.bgColor

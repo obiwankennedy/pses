@@ -72,5 +72,7 @@
         <file>rsrc/dragon.jpg</file>
         <file>rsrc/nyc.jpg</file>
         <file>rsrc/square.jpg</file>
+        <file>rsrc/opening_CharacterSheet.mp4</file>
+        <file>rsrc/end.png</file>
     </qresource>
 </RCC>
