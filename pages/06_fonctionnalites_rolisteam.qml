@@ -59,7 +59,7 @@ Rectangle {
             },
             State {
               name: "dice"
-              when: listView1.currentIndex == 1
+              when: listView1.currentIndex == 9
               PropertyChanges {
                   target: screenShotCase
                   source: "qrc:/rsrc/dice.png"
@@ -67,7 +67,7 @@ Rectangle {
             },
             State {
               name: "note"
-              when: listView1.currentIndex == 2
+              when: listView1.currentIndex == 1
               PropertyChanges {
                   target: screenShotCase
                   source: "qrc:/rsrc/notes.png"
@@ -75,7 +75,7 @@ Rectangle {
             },
             State {
               name: "plans"
-              when: listView1.currentIndex == 3
+              when: listView1.currentIndex == 2
               PropertyChanges {
                   target: screenShotCase
                   source: "qrc:/rsrc/map.jpg"
@@ -83,7 +83,7 @@ Rectangle {
             },
             State {
               name: "img"
-              when: listView1.currentIndex == 4
+              when: listView1.currentIndex == 3
               PropertyChanges {
                   target: screenShotCase
                   source: "qrc:/rsrc/picture.png"
@@ -91,12 +91,45 @@ Rectangle {
             },
             State {
               name: "music"
+              when: listView1.currentIndex == 4
+              PropertyChanges {
+                  target: screenShotCase
+                  source: "qrc:/rsrc/music_screen.jpg"
+              }
+            },
+            State {
+              name: "theme"
+              when: listView1.currentIndex == 7
+              PropertyChanges {
+                  target: screenShotCase
+                  source: "qrc:/rsrc/darkfusiontheme.jpg"
+              }
+            },
+            State {
+              name: "convertisseur"
+              when: listView1.currentIndex == 6
+              PropertyChanges {
+                  target: screenShotCase
+                  source: "qrc:/rsrc/generatorConvertor.png"
+              }
+            },
+            State {
+              name: "generateur"
               when: listView1.currentIndex == 5
               PropertyChanges {
                   target: screenShotCase
-                  source: "qrc:/rsrc/sound.png"
+                  source: "qrc:/rsrc/generat.png"
+              }
+            },
+            State {
+              name: "perso"
+              when: listView1.currentIndex == 8
+              PropertyChanges {
+                  target: screenShotCase
+                  source: "qrc:/rsrc/fiche_perso.png"
               }
             }
+
 
         ]
         transitions: [
@@ -130,10 +163,10 @@ Rectangle {
 
     ListView {
         id: listView1
-        x: ScreenW*0.2
-        y: ScreenH/4
+        x: ScreenW*0.18
+        y: ScreenH*0.2
         width: ScreenW*0.32
-        height: ScreenH/2
+        height: ScreenH*0.6
         delegate: Item {
             width: ScreenW/2
             height: listView1.height/listView1.count
@@ -175,24 +208,40 @@ Rectangle {
                 index: 0
             }
             ListElement {
-                name: "Lancer des dés"
+                name: "Notes"
                 index: 1
             }
             ListElement {
-                name: "Notes"
+                name: "Dessiner et partage de plans"
                 index: 2
             }
             ListElement {
-                name: "Dessiner et partage de plans"
+                name: "Partage d'images"
                 index: 3
             }
             ListElement {
-                name: "Partage d'images"
+                name: "Musique d'ambiance (3 pistes)"
                 index: 4
             }
             ListElement {
-                name: "Musique d'ambiance"
+                name: "Générateur de nom"
                 index: 5
+            }
+            ListElement {
+                name: "Convertisseur d’unités"
+                index: 6
+            }
+            ListElement {
+                name: "Personnalisation (themes)"
+                index: 7
+            }
+            ListElement {
+                name: "Fiche de personnage"
+                index: 8
+            }
+            ListElement {
+                name: "Lancer des dés"
+                index: 9
             }
         }
     }

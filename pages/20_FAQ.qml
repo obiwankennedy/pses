@@ -62,13 +62,12 @@ Rectangle {
             }
         }
         model: ListModel {
-            model: ListModel {
                 ListElement {
                     name: "A vos questions!"
                     index:0
                 }
-                ListElement {
-                    name: "Site web: <font color=\"blue\"><b>www.rolisteam.org</b></font>"
+                ListElement {//color=\"blue\"
+                    name: "Site web: <font><b>www.rolisteam.org</b></font>"
                     index:1
                 }
                 ListElement {
@@ -84,6 +83,10 @@ Rectangle {
                     index:1
                 }
                 ListElement {
+                    name: "Youtube: <font color=\"blue\"><b>www.facebook.com/rolisteam</b></font>"
+                    index:1
+                }
+                ListElement {
                     name: "Irc: <font color=\"blue\"><b>#RolisteamOfficial</b></font> on freenode.net"
                     index:1
                 }
@@ -92,7 +95,7 @@ Rectangle {
                     index:1
                 }
             }
-        }
+
     }
 
     Text {

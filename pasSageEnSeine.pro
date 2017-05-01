@@ -18,12 +18,13 @@ QML_IMPORT_PATH = pages
 include(deployment.pri)
 include(DiceParser/diceparser.pri)
 
-OTHER_FILES += pages/*.qml *.qml
+OTHER_FILES += pages/*.qml *.qml pagesQtCon/*.qml
 
 HEADERS += \
     qmlcontroler.h \
     cpphighlighter.h \
     diceresultmodel.h
+
 
 FORMS += \
     qmlcontroler.ui

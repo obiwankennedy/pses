@@ -136,32 +136,32 @@ ApplicationWindow {
                 name: "Dice Parser"
                 path: "13_dice_parser.qml"
                 time: 1
+                next: "RCSE"
+            }
+            ListElement {
+                name: "RCSE"
+                path: "14_rcse.qml"
+                time: 1
                 next: "Début de rolisteam"
             }
-            ListElement {
-                name: "Themes et audio 3 pistes"
-                path: "14_themes_audio_3_pistes.qml"
-                next: "Les nouveautées 1.8"
-                time: 1
-            }
-            ListElement {
-                name: "Les Nouveautés 1.8"
+            /*ListElement {
+                name: "Les Nouveautés 1.9"
                 path: "15_nouveaute_1_8.qml"
                 time: 1
                 next: "À venir"
-            }
+            }*/
             ListElement {
                 name: "Début de rolisteam"
                 path: "07_rolisteam_debut.qml"
                 time: 1
                 next: "rolistik à rolisteam"
             }
-            ListElement {
+           /* ListElement {
                 name: "Rolistik à Rolisteam"
                 path: "08_Rolistik_a_Rolisteam.qml"
                 time: 1
                 next: "Frise"
-            }
+            }*/
             ListElement {
                 name: "La frise"
                 path: "10_frise_chronologique.qml"
@@ -202,7 +202,13 @@ ApplicationWindow {
                 name: "Objectif Rolisteam Libre"
                 path: "19_objectif_rolisteam_libre.qml"
                 time: 1
-                next: "Merci"
+                next: "NeedYou"
+            }
+            ListElement {
+                name: "Rolisteam a besoin de vous "
+                path: "19_grafilabor.qml"
+                time: 1
+                next: ""
             }
             ListElement {
                 name: "Fin "

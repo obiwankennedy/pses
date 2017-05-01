@@ -92,12 +92,8 @@ Rectangle {
                 index:0
             }
             ListElement {
-                name: "Imaginez!"
-                index:2
-            }
-            ListElement {
                 name: "Comment se passe une partie ?"
-                index:3
+                index:2
             }
         }
     }

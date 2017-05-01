@@ -32,7 +32,7 @@
         <file>pages/17_reussites.qml</file>
         <file>pages/16_projet_avenir.qml</file>
         <file>pages/15_nouveaute_1_8.qml</file>
-        <file>pages/14_themes_audio_3_pistes.qml</file>
+        <file>pages/14_rcse.qml</file>
         <file>pages/13_dice_parser.qml</file>
         <file>pages/12_son_fonctionnement.qml</file>
         <file>pages/11_son_usage.qml</file>
@@ -55,9 +55,9 @@
         <file>rsrc/generatorConvertor.png</file>
         <file>rsrc/v1.8.png</file>
         <file>rsrc/fiche_perso.png</file>
-        <file>pages/01_qtCon_intro.qml</file>
-        <file>pages/02_qtCon_rcse.qml</file>
-        <file>pages/03_qtCon_stayintouch.qml</file>
+        <file>pagesQtCon/01_qtCon_intro.qml</file>
+        <file>pagesQtCon/02_qtCon_rcse.qml</file>
+        <file>pagesQtCon/03_qtCon_stayintouch.qml</file>
         <file>rsrc/charactersheet_in_rolisteam.png</file>
         <file>rsrc/design_cs.png</file>
         <file>rsrc/qml_generated.png</file>
