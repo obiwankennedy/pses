@@ -10,7 +10,6 @@ Rectangle {
     border.color: app.bgColor
     border.width: 5
     color: app.bgColor
-    property int idState: 0
 
     Image {
         id: image1
@@ -44,19 +43,19 @@ Rectangle {
     Image {
         id: screenShot
         source : "qrc:/rsrc/screen.png"
-        anchors.verticalCenter: parent.verticalCenter
-        anchors.verticalCenterOffset: -20
-        anchors.left: parent.left
-        anchors.leftMargin: ScreenW*0.15
+        anchors.top: text1.bottom
+        anchors.right: parent.right
+        //anchors.leftMargin: ScreenW*0.05
 
         fillMode: Image.PreserveAspectFit
         width: ScreenW*0.6
         height: ScreenH*0.6
         visible: true
     }
-   /* ListView {
+
+    ListView {
         id: listView1
-        x: ScreenW/4
+        x: ScreenW*0.01
         y: ScreenH/4
         width: ScreenW/2
         height: ScreenH/2
@@ -70,24 +69,33 @@ Rectangle {
                     anchors.verticalCenter: parent.verticalCenter
                     font.bold: true
                 }
-                visible: (listView1.currentIndex >= index ) ? true: false
+                opacity: (listView1.currentIndex >= index ) ? 1.0: 0.0
+                Behavior on opacity {
+                    NumberAnimation {
+                        duration: 1000
+                    }
+                }
         }
         focus: true
         Keys.onUpPressed: {
             decrementCurrentIndex()
         }
         Keys.onDownPressed: {
-            incrementCurrentIndex()
+             incrementCurrentIndex()
         }
+        onCurrentIndexChanged: {
+            trigger.start()
+        }
+
         model: ListModel {
             ListElement {
-                name: "libre"
+                name: "2009 - fork de rolistik"
                 index:0
             }
             ListElement {
-                name: "Jouer à distance"
+                name: "Dépannage"
                 index:1
             }
         }
-    }*/
+    }
 }

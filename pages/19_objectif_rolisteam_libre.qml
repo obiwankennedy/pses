@@ -29,7 +29,7 @@ Rectangle {
         width: ScreenW*0.5
         height: ScreenH*0.01
         color: app.txtColor
-        text: qsTr("Le libre dans le JDR")
+        text: qsTr("Le Libre dans le JDR")
         anchors.horizontalCenterOffset: 1
         font.family: "Verdana"
         font.bold: true

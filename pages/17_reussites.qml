@@ -96,7 +96,7 @@ Rectangle {
                  index: 3
             }
             ListElement {
-                name: "Défi"
+                name: "Défi technique"
                  index: 4
             }
             ListElement {

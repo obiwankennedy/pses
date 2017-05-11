@@ -150,24 +150,24 @@ ApplicationWindow {
                 time: 1
                 next: "À venir"
             }*/
-            ListElement {
+            /*ListElement {
                 name: "Début de rolisteam"
                 path: "07_rolisteam_debut.qml"
                 time: 1
                 next: "rolistik à rolisteam"
-            }
+            }*/
            /* ListElement {
                 name: "Rolistik à Rolisteam"
                 path: "08_Rolistik_a_Rolisteam.qml"
                 time: 1
                 next: "Frise"
             }*/
-            ListElement {
+            /*ListElement {
                 name: "La frise"
                 path: "10_frise_chronologique.qml"
                 time: 1
                 next: "Usage"
-            }
+            }*/
             ListElement {
                 name: "Son usage"
                 path: "11_son_usage.qml"

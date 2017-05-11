@@ -172,7 +172,7 @@ Rectangle {
             height: listView1.height/listView1.count
                 Text {
                     color: app.txtColor
-                    text: name
+                    text: "-"+name
                     font.pointSize: ScreenH/28
                     anchors.verticalCenter: parent.verticalCenter
                     font.bold: true

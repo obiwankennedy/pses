@@ -28,7 +28,7 @@ Rectangle {
         width: ScreenW*0.5
         height: ScreenH*0.01
         color: app.txtColor
-        text: qsTr("Rolisteam a besoin de vous!")
+        text: qsTr("Rolisteam a <i>besoin de vous</i>!")
         anchors.horizontalCenterOffset: 1
         font.family: "Verdana"
         font.bold: true
@@ -98,6 +98,14 @@ Rectangle {
             ListElement {
                 name: "Réflexion d'Ux et de conception d'interface"
                 index:4
+            }
+            ListElement {
+                name: ""
+                index:5
+            }
+            ListElement {
+                name: "et toutes vos idées!"
+                index:5
             }
         }
     }

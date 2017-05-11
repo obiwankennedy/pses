@@ -288,14 +288,15 @@ void QmlControler::rollDice(QString str)
             QString scalarText;
             QString str;
 
-            if(m_diceParser->hasIntegerResultNotInFirst())
-            {
-                scalarText = QString("%1").arg(m_diceParser->getLastIntegerResult());
-            }
-            else if(!list.isEmpty())
+            if(!list.isEmpty())
             {
                 scalarText = QString("%1").arg(m_diceParser->getSumOfDiceResult());
             }
+            else if(m_diceParser->hasIntegerResultNotInFirst())
+            {
+                scalarText = QString("%1").arg(m_diceParser->getLastIntegerResult());
+            }
+
             str = QString("Result: <span style=\"color: #FF0000;font-weight:bold\">%1</span>, details:[%3 (%2)]").arg(scalarText).arg(diceText).arg(m_diceParser->getDiceCommand());
 
 

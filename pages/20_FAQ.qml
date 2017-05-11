@@ -34,7 +34,7 @@ Rectangle {
         width: ScreenW*0.5
         height: ScreenH*0.05
         color: app.txtColor
-        text: qsTr("Merci de m'avoir écouter")
+        text: qsTr("Merci, à vos questions !")
         anchors.horizontalCenterOffset: 1
         //anchors.topMargin: -203
         font.family: "Verdana"
@@ -58,40 +58,36 @@ Rectangle {
                 text: name
                 font.pointSize: ScreenH/28
                 anchors.verticalCenter: parent.verticalCenter
-                font.bold: true
+     //           font.bold: true
             }
         }
         model: ListModel {
-                ListElement {
-                    name: "A vos questions!"
-                    index:0
-                }
                 ListElement {//color=\"blue\"
-                    name: "Site web: <font><b>www.rolisteam.org</b></font>"
+                    name: "<i>Site web</i>: <b>www.rolisteam.org</b>"
                     index:1
                 }
                 ListElement {
-                    name: "Email: <font color=\"blue\"><b>renaud@rolisteam.org</b></font>"
+                    name: "<i>Courriel</i>: <b>renaud@rolisteam.org</b>"
                     index:1
                 }
                 ListElement {
-                    name: "Twitter: <font color=\"blue\"><b>@Rolisteam</b></font>"
+                    name: "<i>Github</i>: <b>github.com/Rolisteam</b>"
                     index:1
                 }
                 ListElement {
-                    name: "Facebook: <font color=\"blue\"><b>www.facebook.com/rolisteam</b></font>"
+                    name: "<i>Twitter</i>: <b>@Rolisteam</b></font>"
                     index:1
                 }
                 ListElement {
-                    name: "Youtube: <font color=\"blue\"><b>www.facebook.com/rolisteam</b></font>"
+                    name: "<i>Facebook</i>: <b>www.facebook.com/rolisteam</b>"
                     index:1
                 }
                 ListElement {
-                    name: "Irc: <font color=\"blue\"><b>#RolisteamOfficial</b></font> on freenode.net"
+                    name: "<i>Youtube</i>: <b>https://www.youtube.com/channel/UC4uoGZl1nQRXbVs8WjxjKvw</b>"
                     index:1
                 }
                 ListElement {
-                    name: "Github: <font color=\"blue\"><b>github.com/Rolisteam</b></font>"
+                    name: "<i>Irc</i>: <b>#RolisteamOfficial</b> on freenode.net"
                     index:1
                 }
             }

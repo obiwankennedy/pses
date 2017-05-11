@@ -39,21 +39,28 @@ Rectangle {
         horizontalAlignment: Text.AlignHCenter
         font.pixelSize: ScreenH/20
     }
-    Image {
-        id: mindmap
+    Rectangle {
+
         anchors.left:image1.right
         anchors.leftMargin: -ScreenW*0.1
         anchors.top: image1.bottom
  //       anchors.topMargin: ScreenW*0.1
         width: ScreenW*0.8
         height: ScreenH*0.8
+        color: "grey"
         opacity: (futurproject.idState == 4 ) ? 1.0: 0.0
-        Behavior on opacity {
-            NumberAnimation {
-                duration: 1000
+
+        Image {
+            id: mindmap
+            anchors.fill: parent
+            opacity: (futurproject.idState == 4 ) ? 1.0: 0.0
+            Behavior on opacity {
+                NumberAnimation {
+                    duration: 1000
+                }
             }
+            source: "qrc:/rsrc/mindmap.svg"
         }
-        source: "qrc:/rsrc/mindmap.svg"
     }
     Keys.onUpPressed: {
         --idState

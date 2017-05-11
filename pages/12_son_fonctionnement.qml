@@ -32,7 +32,7 @@ Rectangle {
         width: ScreenW*0.5
         height: ScreenH*0.01
         color: app.txtColor
-        text: qsTr("Son fonctionnement ?")
+        text: qsTr("Son fonctionnement")
         anchors.horizontalCenterOffset: 1
         //anchors.topMargin: -203
         font.family: "Verdana"
