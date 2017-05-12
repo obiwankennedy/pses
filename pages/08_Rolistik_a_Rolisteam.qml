@@ -3,8 +3,8 @@ import QtQuick.Window 2.2
 
 Rectangle {
     id: tiktoteam
-    width: ScreenW
-    height: ScreenH
+    width: app.width
+    height: app.height
     //    height: 600
     //  anchors.centerIn: parent
     border.color: app.bgColor
@@ -16,10 +16,10 @@ Rectangle {
         id: image1
         anchors.left: parent.left
         anchors.top: parent.top
-        anchors.leftMargin: ScreenW*0.04
+        anchors.leftMargin: app.width*0.04
         fillMode: Image.PreserveAspectFit
         source: "qrc:/rsrc/Rolisteam.svg"
-        width: ScreenW*0.2
+        width: app.width*0.2
     }
 
     Text {
@@ -27,8 +27,8 @@ Rectangle {
         anchors.top:image1.top
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottom: image1.bottom
-        width: ScreenW*0.5
-        height: ScreenH*0.01
+        width: app.width*0.5
+        height: app.height*0.01
         color: app.txtColor
         text: qsTr("De Rolistik à Rolisteam")
         anchors.horizontalCenterOffset: 1
@@ -37,7 +37,7 @@ Rectangle {
         font.bold: true
         verticalAlignment: Text.AlignVCenter
         horizontalAlignment: Text.AlignHCenter
-        font.pixelSize: ScreenH/20
+        font.pixelSize: app.height/20
     }    
     Keys.onUpPressed: {
         --idState
@@ -61,19 +61,19 @@ Rectangle {
      }
     ListView {
         id: listView1
-        x: ScreenW*0.2
-        y: ScreenH*0.20
-        width: ScreenW*0.28
-        height: ScreenH*0.38
-        spacing: ScreenH*0.05
+        x: app.width*0.2
+        y: app.height*0.20
+        width: app.width*0.28
+        height: app.height*0.38
+        spacing: app.height*0.05
         visible: (tiktoteam.idState === 0 || tiktoteam.idState > 2) ? true : false
         delegate: Item {
-            width:  ScreenW*0.35
+            width:  app.width*0.35
             height: listView1.height/(listView1.count*2)
                 Text {
                     color: app.txtColor
                     text: name
-                    font.pointSize: ScreenH*0.025
+                    font.pointSize: (app.height >100 ? app.height : 800)*0.025
                     anchors.top: parent.top
                     //anchors.verticalCenter: parent.verticalCenter
                     font.bold: true
@@ -117,12 +117,12 @@ Rectangle {
         anchors.left: listView1.right
         anchors.top: listView1.top
         anchors.bottom: listView1.bottom
-        width: ScreenW*0.35
-        height: ScreenH*0.4
-        spacing: ScreenH*0.05
+        width: app.width*0.35
+        height: app.height*0.4
+        spacing: app.height*0.05
         visible: (tiktoteam.idState === 0 || tiktoteam.idState > 2) ? true : false
         delegate: Item {
-            width:  ScreenW*0.40
+            width:  app.width*0.40
             height: listView2.height/(listView2.count*2)
             Canvas {
                 id: frise
@@ -165,7 +165,7 @@ Rectangle {
             Text {
                 color: app.txtColor
                 text: name
-                font.pointSize: ScreenH*0.025
+                font.pointSize: (app.height >100 ? app.height : 800)*0.025
                 anchors.left: frise.right
                 anchors.leftMargin: frise.width
                 anchors.top: parent.top
@@ -215,9 +215,9 @@ Rectangle {
         anchors.verticalCenter: parent.verticalCenter
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.horizontalCenterOffset: 55
-        height: ScreenH*0.6
+        height: app.height*0.6
         opacity: tiktoteam.idState == 1 ? 1.0 : 0.0
-        spacing: ScreenH*0.05
+        spacing: app.height*0.05
         Column {
             Text {
                 id: text2
@@ -239,21 +239,21 @@ Rectangle {
                 fillMode: Image.PreserveAspectFit
                 source: "qrc:/rsrc/getIdRolisteam1.png"
                 horizontalAlignment: Image.AlignLeft
-                width: ScreenW*0.3
+                width: app.width*0.3
             }
         }*/
         Column {
             Text {
                 id: text4
                 text: "Rolisteam 1.8"
-                width: ScreenW*0.3
+                width: app.width*0.3
             }
             Image {
                 id: image4
                 fillMode: Image.PreserveAspectFit
                 source: "qrc:/rsrc/getIdRolisteam1.8.png"
                 horizontalAlignment: Image.AlignLeft
-                width: ScreenW*0.3
+                width: app.width*0.3
             }
         }
 
@@ -263,9 +263,9 @@ Rectangle {
         anchors.verticalCenter: parent.verticalCenter
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.horizontalCenterOffset: 55
-        height: ScreenH*0.6
+        height: app.height*0.6
         opacity: tiktoteam.idState == 2 ? 1.0 : 0.0
-        spacing: ScreenH*0.05
+        spacing: app.height*0.05
         Column {
             Text {
                 id: text5
@@ -287,7 +287,7 @@ Rectangle {
                 fillMode: Image.PreserveAspectFit
                 source: "qrc:/rsrc/Rolisteam1Network.png"
                 horizontalAlignment: Image.AlignLeft
-                width: ScreenW*0.3
+                width: app.width*0.3
             }
         }
     }

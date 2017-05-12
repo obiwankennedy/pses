@@ -4,8 +4,8 @@ import QtQuick.Controls 2.0
 
 Rectangle {
     id: rectangle1
-    width: ScreenW
-    height: ScreenH
+    width: app.width
+    height: app.height
     property int idState: 0
     border.color: app.bgColor
     border.width: 5
@@ -15,10 +15,10 @@ Rectangle {
         id: image1
         anchors.left: parent.left
         anchors.top: parent.top
-        anchors.leftMargin: ScreenW*0.04
+        anchors.leftMargin: app.width*0.04
         fillMode: Image.PreserveAspectFit
         source: "qrc:/rsrc/Rolisteam.svg"
-        width: ScreenW*0.2
+        width: app.width*0.2
     }
 
     Text {
@@ -27,14 +27,14 @@ Rectangle {
         anchors.left: image1.right
         anchors.bottom: image1.bottom
         anchors.right: parent.right
-        height: ScreenH*0.01
+        height: app.height*0.01
         color: app.txtColor
         text: qsTr("DiceParser: Le système de dés")
         font.family: "Verdana"
         font.bold: true
         verticalAlignment: Text.AlignVCenter
         horizontalAlignment: Text.AlignHCenter
-        font.pixelSize: ScreenH/20
+        font.pixelSize: app.height/20
     }
     focus: true
     Keys.onUpPressed: {
@@ -63,17 +63,17 @@ Rectangle {
      }
     ListView {
         id: listView1
-        x: ScreenW/4
-        y: ScreenH/4
-        width: ScreenW/2
-        height: ScreenH/2
+        x: app.width/4
+        y: app.height/4
+        width: app.width/2
+        height: app.height/2
         delegate: Item {
-            width: ScreenW/2
+            width: app.width/2
             height: listView1.height/listView1.count
                 Text {
                     color: app.txtColor
                     text: name
-                    font.pointSize: ScreenH/28
+                    font.pointSize: (app.height >100 ? app.height : 800)/28
                     anchors.verticalCenter: parent.verticalCenter
                     font.bold: true
                 }
@@ -110,8 +110,8 @@ Rectangle {
             property int current: 0
             id: diceCommand
             anchors.horizontalCenter: parent.horizontalCenter
-            y: ScreenH*0.2
-            width:ScreenW*0.2
+            y: app.height*0.2
+            width:app.width*0.2
             onEditingFinished:{
                 app.rollDiceCmd(diceCommand.text)
                 diceCommand.text = ""
@@ -146,12 +146,12 @@ Rectangle {
             anchors.top: diceCommand.bottom
             anchors.bottom: parent.bottom
             anchors.horizontalCenter: parent.horizontalCenter
-            width: ScreenW*0.5
+            width: app.width*0.5
             delegate: Item
             {
 
-                width: ScreenW*0.5
-                height: ScreenH*0.05
+                width: app.width*0.5
+                height: app.height*0.05
                 /*Rectangle {
                     color:"#E8E8E8"
                     anchors.fill: parent
@@ -161,7 +161,7 @@ Rectangle {
                     text: result
                     color:app.txtColor
                     textFormat: Text.RichText
-                    font.pointSize: ScreenH*0.02
+                    font.pointSize: (app.height >100 ? app.height : 800)*0.02
                     anchors.verticalCenter: parent.verticalCenter
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
@@ -174,7 +174,7 @@ Rectangle {
 
     /*Text {
         id: panelInfo
-        x: ScreenW/4
+        x: app.width/4
         anchors.top: image1.bottom
         font.pointSize: ScreenH/50
         text: "Lancer N dés à 10 faces allant de 0 à 9<br/> Garder les M plus bas <br/>compter parmis les M ceux qui sont inférieurs ou égaux à P"

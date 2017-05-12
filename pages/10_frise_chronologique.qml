@@ -5,8 +5,8 @@ import QtQuick.Extras 1.4
 
 Rectangle {
     id: rectangle1
-    width: ScreenW
-    height: ScreenH
+    width: app.width
+    height: app.height
     //    height: 600
     //  anchors.centerIn: parent
     border.color: app.bgColor
@@ -18,10 +18,10 @@ Rectangle {
         id: image1
         anchors.left: parent.left
         anchors.top: parent.top
-        anchors.leftMargin: ScreenW*0.04
+        anchors.leftMargin: app.width*0.04
         fillMode: Image.PreserveAspectFit
         source: "qrc:/rsrc/Rolisteam.svg"
-        width: ScreenW*0.2
+        width: app.width*0.2
     }
 
     Text {
@@ -29,8 +29,8 @@ Rectangle {
         anchors.top:image1.top
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottom: image1.bottom
-        width: ScreenW*0.5
-        height: ScreenH*0.01
+        width: app.width*0.5
+        height: app.height*0.01
         color: app.txtColor
         text: qsTr("La chronologie")
         anchors.horizontalCenterOffset: 1
@@ -39,7 +39,7 @@ Rectangle {
         font.bold: true
         verticalAlignment: Text.AlignVCenter
         horizontalAlignment: Text.AlignHCenter
-        font.pixelSize: ScreenH/20
+        font.pixelSize: app.height/20
     }
 
     Canvas {
@@ -48,9 +48,9 @@ Rectangle {
         anchors.right: parent.right
         anchors.verticalCenter: parent.verticalCenter
         anchors.verticalCenterOffset: -200
-        height: ScreenH/4
+        height: app.height/4
         onPaint : {
-            var heightOfArrow = ScreenH/20
+            var heightOfArrow = app.height/20
             var lineW = 4
             var ctx = getContext("2d")
             //ctx.fillStyle = Qt.rgba(0, 0, 0, 1);
@@ -90,9 +90,9 @@ Rectangle {
         x: 0.08*sizePerYear
         anchors.verticalCenter: frise.verticalCenter
         anchors.verticalCenterOffset: 0
-        width:   ScreenW/48
-        height:   ScreenW/48
-        radius: ScreenW/25
+        width:   app.width/48
+        height:   app.width/48
+        radius: app.width/25
         property int index: 0
         scale: listView1.currentIndex === index ? 1.2 : 1.0
         visible: listView1.currentIndex >= index ? true : false
@@ -103,7 +103,7 @@ Rectangle {
             color: app.txtColor
             anchors.fill:parent
             font.bold: true
-            font.pixelSize: ScreenH/60
+            font.pixelSize: app.height/60
         }
         border.width: 3
         border.color: app.txtColor
@@ -113,9 +113,9 @@ Rectangle {
         x: 0.9*sizePerYear
         anchors.verticalCenter: frise.verticalCenter
         anchors.verticalCenterOffset: -frise.height/4
-        width:   ScreenW/48
-        height:   ScreenW/48
-        radius: ScreenW/25
+        width:   app.width/48
+        height:   app.width/48
+        radius: app.width/25
         property int index: 1
         scale: listView1.currentIndex === 1 ? 1.2 : 1.0
         visible: listView1.currentIndex >= 1 ? true : false
@@ -126,7 +126,7 @@ Rectangle {
             color: app.txtColor
             anchors.fill:parent
             font.bold: true
-            font.pixelSize: ScreenH/60
+            font.pixelSize: app.height/60
         }
         border.width: 3
         border.color: app.txtColor
@@ -135,9 +135,9 @@ Rectangle {
     Canvas{
         id: mark1
         anchors.top: frise.top
-        anchors.topMargin:  ScreenH/20
+        anchors.topMargin:  app.height/20
         anchors.bottom: frise.bottom
-        anchors.bottomMargin:  ScreenH/20
+        anchors.bottomMargin:  app.height/20
         x: 1.02*sizePerYear
  //       anchors.horizontalCenter: v2.horizontalCenter
         width: 4
@@ -161,10 +161,10 @@ Rectangle {
         id: v2
         x: 1.02*sizePerYear
         anchors.verticalCenter: frise.verticalCenter
-        anchors.verticalCenterOffset: -frise.height/4 +   ScreenW/48
-        width:   ScreenW/48
-        height:   ScreenW/48
-        radius: ScreenW/25
+        anchors.verticalCenterOffset: -frise.height/4 +   app.width/48
+        width:   app.width/48
+        height:   app.width/48
+        radius: app.width/25
         property int index: 2
         scale: listView1.currentIndex === index ? 1.2 : 1.0
         visible: listView1.currentIndex >= index ? true : false
@@ -184,10 +184,10 @@ Rectangle {
     /*Rectangle {//15 février 2010
         x: 1.08*sizePerYear
         anchors.verticalCenter: frise.verticalCenter
-        anchors.verticalCenterOffset: -frise.height/4 + 2*  ScreenW/48
-        width:   ScreenW/48
-        height:   ScreenW/48
-        radius: ScreenW/25
+        anchors.verticalCenterOffset: -frise.height/4 + 2*  app.width/48
+        width:   app.width/48
+        height:   app.width/48
+        radius: app.width/25
         property int index: 3
         scale: listView1.currentIndex === index ? 1.2 : 1.0
         visible: listView1.currentIndex >= index ? true : false
@@ -207,10 +207,10 @@ Rectangle {
     Rectangle {//6 mars 2010
         x: 1.11*sizePerYear
         anchors.verticalCenter: frise.verticalCenter
-        anchors.verticalCenterOffset: -frise.height/4 + 3*  ScreenW/48
-        width:   ScreenW/48
-        height:   ScreenW/48
-        radius: ScreenW/25
+        anchors.verticalCenterOffset: -frise.height/4 + 3*  app.width/48
+        width:   app.width/48
+        height:   app.width/48
+        radius: app.width/25
         property int index: 2
         scale: listView1.currentIndex === index ? 1.2 : 1.0
         visible: listView1.currentIndex >= index ? true : false
@@ -221,7 +221,7 @@ Rectangle {
             color: app.txtColor
             anchors.fill:parent
             font.bold: true
-                        font.pixelSize: ScreenH/60
+                        font.pixelSize: app.height/60
         }
         border.width: 3
         border.color: app.txtColor
@@ -231,9 +231,9 @@ Rectangle {
         x: 1*sizePerYear+0.8*sizePerYear
         anchors.verticalCenter: frise.verticalCenter
         anchors.verticalCenterOffset: 0
-        width:   ScreenW/48
-        height:   ScreenW/48
-        radius: ScreenW/25
+        width:   app.width/48
+        height:   app.width/48
+        radius: app.width/25
         property int index: 3
         scale: listView1.currentIndex === index ? 1.2 : 1.0
         visible: listView1.currentIndex >= index ? true : false
@@ -244,7 +244,7 @@ Rectangle {
             color: app.txtColor
             anchors.fill:parent
             font.bold: true
-                        font.pixelSize: ScreenH/60
+                        font.pixelSize: app.height/60
         }
         border.width: 3
         border.color: app.txtColor
@@ -254,9 +254,9 @@ Rectangle {
         x: 2.7*sizePerYear
         anchors.verticalCenter: frise.verticalCenter
         anchors.verticalCenterOffset: -frise.height/4
-        width:   ScreenW/48
-        height:   ScreenW/48
-        radius: ScreenW/25
+        width:   app.width/48
+        height:   app.width/48
+        radius: app.width/25
         property int index: 4
         scale: listView1.currentIndex === index ? 1.2 : 1.0
         visible: listView1.currentIndex >= index ? true : false
@@ -267,7 +267,7 @@ Rectangle {
             color: app.txtColor
             anchors.fill:parent
             font.bold: true
-                        font.pixelSize: ScreenH/60
+                        font.pixelSize: app.height/60
         }
         border.width: 3
         border.color: app.txtColor
@@ -276,10 +276,10 @@ Rectangle {
     /*Rectangle {//26 octobre 2011
         x: 2.75*sizePerYear
         anchors.verticalCenter: frise.verticalCenter
-        anchors.verticalCenterOffset: -frise.height/4+  ScreenW/48
-        width:   ScreenW/48
-        height:   ScreenW/48
-        radius: ScreenW/25
+        anchors.verticalCenterOffset: -frise.height/4+  app.width/48
+        width:   app.width/48
+        height:   app.width/48
+        radius: app.width/25
         property int index: 4
         scale: listView1.currentIndex === index ? 1.2 : 1.0
         visible: listView1.currentIndex >= index ? true : false
@@ -299,9 +299,9 @@ Rectangle {
     Canvas{
         id: mark2
         anchors.top: frise.top
-        anchors.topMargin:  ScreenH/20
+        anchors.topMargin:  app.height/20
         anchors.bottom: frise.bottom
-        anchors.bottomMargin:  ScreenH/20
+        anchors.bottomMargin:  app.height/20
         anchors.horizontalCenter: v152.horizontalCenter
         width: 4
         onPaint : {
@@ -323,10 +323,10 @@ Rectangle {
         id: v152
         x: 2.78*sizePerYear
         anchors.verticalCenter: frise.verticalCenter
-        anchors.verticalCenterOffset: -frise.height/4+2*  ScreenW/48
-        width:   ScreenW/48
-        height:   ScreenW/48
-        radius: ScreenW/25
+        anchors.verticalCenterOffset: -frise.height/4+2*  app.width/48
+        width:   app.width/48
+        height:   app.width/48
+        radius: app.width/25
         property int index: 5
         scale: listView1.currentIndex === index ? 1.2 : 1.0
         visible: listView1.currentIndex >= index ? true : false
@@ -337,7 +337,7 @@ Rectangle {
             color: app.txtColor
             anchors.fill:parent
             font.bold: true
-            font.pixelSize: ScreenH/60
+            font.pixelSize: app.height/60
         }
         border.width: 3
         border.color: app.txtColor
@@ -346,10 +346,10 @@ Rectangle {
     Rectangle {//29 novembre 2011
         x: 2.85*sizePerYear
         anchors.verticalCenter: frise.verticalCenter
-        anchors.verticalCenterOffset: -frise.height/4+3*  ScreenW/48
-        width:   ScreenW/48
-        height:   ScreenW/48
-        radius: ScreenW/25
+        anchors.verticalCenterOffset: -frise.height/4+3*  app.width/48
+        width:   app.width/48
+        height:   app.width/48
+        radius: app.width/25
         property int index: 6
         scale: listView1.currentIndex === index ? 1.2 : 1.0
         visible: listView1.currentIndex >= index ? true : false
@@ -360,7 +360,7 @@ Rectangle {
             color: app.txtColor
             anchors.fill:parent
             font.bold: true
-                        font.pixelSize: ScreenH/60
+                        font.pixelSize: app.height/60
         }
         border.width: 3
         border.color: app.txtColor
@@ -369,9 +369,9 @@ Rectangle {
     Canvas{
         id: mark3
         anchors.top: frise.top
-        anchors.topMargin:  ScreenH/20
+        anchors.topMargin:  app.height/20
         anchors.bottom: frise.bottom
-        anchors.bottomMargin:  ScreenH/20
+        anchors.bottomMargin:  app.height/20
         anchors.horizontalCenter: v160.horizontalCenter
         width: 4
         onPaint : {
@@ -394,9 +394,9 @@ Rectangle {
         x: 4.81*sizePerYear
         anchors.verticalCenter: frise.verticalCenter
         anchors.verticalCenterOffset: 0
-        width:   ScreenW/48
-        height:   ScreenW/48
-        radius: ScreenW/25
+        width:   app.width/48
+        height:   app.width/48
+        radius: app.width/25
         property int index: 7
         scale: listView1.currentIndex === index ? 1.2 : 1.0
         visible: listView1.currentIndex >= index ? true : false
@@ -407,7 +407,7 @@ Rectangle {
             color: app.txtColor
             anchors.fill:parent
             font.bold: true
-                        font.pixelSize: ScreenH/60
+                        font.pixelSize: app.height/60
         }
         border.width: 3
         border.color: app.txtColor
@@ -416,10 +416,10 @@ Rectangle {
     Rectangle {//29 décembre 2013
         x: 4.99*sizePerYear
         anchors.verticalCenter: frise.verticalCenter
-        anchors.verticalCenterOffset:   ScreenW/48
-        width:   ScreenW/48
-        height:   ScreenW/48
-        radius: ScreenW/25
+        anchors.verticalCenterOffset:   app.width/48
+        width:   app.width/48
+        height:   app.width/48
+        radius: app.width/25
         property int index: 8
         scale: listView1.currentIndex === index ? 1.2 : 1.0
         visible: listView1.currentIndex >= index ? true : false
@@ -430,7 +430,7 @@ Rectangle {
             color: app.txtColor
             anchors.fill:parent
             font.bold: true
-                        font.pixelSize: ScreenH/60
+                        font.pixelSize: app.height/60
         }
         border.width: 3
         border.color: app.txtColor
@@ -440,9 +440,9 @@ Rectangle {
         x: 6*sizePerYear+0.02*sizePerYear
         anchors.verticalCenter: frise.verticalCenter
         anchors.verticalCenterOffset: -frise.height/4
-        width:   ScreenW/48
-        height:   ScreenW/48
-        radius: ScreenW/25
+        width:   app.width/48
+        height:   app.width/48
+        radius: app.width/25
         property int index: 12
         scale: listView1.currentIndex === index ? 1.2 : 1.0
         visible: listView1.currentIndex >= index ? true : false
@@ -462,10 +462,10 @@ Rectangle {
     Rectangle {//18 février 2015
         x: 6.03*sizePerYear
         anchors.verticalCenter: frise.verticalCenter
-        anchors.verticalCenterOffset: -frise.height/4+  ScreenW/48
-        width:   ScreenW/48
-        height:   ScreenW/48
-        radius: ScreenW/25
+        anchors.verticalCenterOffset: -frise.height/4+  app.width/48
+        width:   app.width/48
+        height:   app.width/48
+        radius: app.width/25
         property int index: 9
         scale: listView1.currentIndex === index ? 1.2 : 1.0
         visible: listView1.currentIndex >= index ? true : false
@@ -476,7 +476,7 @@ Rectangle {
             color: app.txtColor
             anchors.fill:parent
             font.bold: true
-                        font.pixelSize: ScreenH/60
+                        font.pixelSize: app.height/60
         }
         border.width: 3
         border.color: app.txtColor
@@ -485,10 +485,10 @@ Rectangle {
    /* Rectangle {//27 mai 2015
         x: 6.40*sizePerYear
         anchors.verticalCenter: frise.verticalCenter
-        anchors.verticalCenterOffset: -frise.height/4+2*  ScreenW/48
-        width:   ScreenW/48
-        height:   ScreenW/48
-        radius: ScreenW/25
+        anchors.verticalCenterOffset: -frise.height/4+2*  app.width/48
+        width:   app.width/48
+        height:   app.width/48
+        radius: app.width/25
         property int index: 10
         scale: listView1.currentIndex === index ? 1.2 : 1.0
         visible: listView1.currentIndex >= index ? true : false
@@ -508,10 +508,10 @@ Rectangle {
   /*  Rectangle {//22 août 2015
         x: 6*sizePerYear+0.55*sizePerYear
         anchors.verticalCenter: frise.verticalCenter
-        anchors.verticalCenterOffset: -frise.height/4+3*  ScreenW/48
-        width:   ScreenW/48
-        height:   ScreenW/48
-        radius: ScreenW/25
+        anchors.verticalCenterOffset: -frise.height/4+3*  app.width/48
+        width:   app.width/48
+        height:   app.width/48
+        radius: app.width/25
         property int index: 15
         scale: listView1.currentIndex === index ? 1.2 : 1.0
         visible: listView1.currentIndex >= index ? true : false
@@ -531,10 +531,10 @@ Rectangle {
     Rectangle {//5 septembre 2015
         x: 6.6*sizePerYear
         anchors.verticalCenter: frise.verticalCenter
-        anchors.verticalCenterOffset: -frise.height/4+4*  ScreenW/48
-        width:   ScreenW/48
-        height:   ScreenW/48
-        radius: ScreenW/25
+        anchors.verticalCenterOffset: -frise.height/4+4*  app.width/48
+        width:   app.width/48
+        height:   app.width/48
+        radius: app.width/25
         property int index: 10
         scale: listView1.currentIndex === index ? 1.2 : 1.0
         visible: listView1.currentIndex >= index ? true : false
@@ -545,7 +545,7 @@ Rectangle {
             color: app.txtColor
             anchors.fill:parent
             font.bold: true
-                        font.pixelSize: ScreenH/60
+                        font.pixelSize: app.height/60
         }
         border.width: 3
         border.color: app.txtColor
@@ -554,10 +554,10 @@ Rectangle {
     /*Rectangle {//Pas Sage en seine
         x: 7.55*sizePerYear
         anchors.verticalCenter: frise.verticalCenter
-        anchors.verticalCenterOffset: -frise.height/4+4*  ScreenW/48
-        width:   ScreenW/48
-        height:   ScreenW/48
-        radius: ScreenW/25
+        anchors.verticalCenterOffset: -frise.height/4+4*  app.width/48
+        width:   app.width/48
+        height:   app.width/48
+        radius: app.width/25
         property int index: 12
         scale: listView1.currentIndex === index ? 1.2 : 1.0
         visible: listView1.currentIndex >= index ? true : false
@@ -577,10 +577,10 @@ Rectangle {
     Rectangle {//v1.8.0
         x: 8.13*sizePerYear
         anchors.verticalCenter: frise.verticalCenter
-        anchors.verticalCenterOffset: -frise.height/4*  ScreenW/48
-        width:   ScreenW/48
-        height:   ScreenW/48
-        radius: ScreenW/25
+        anchors.verticalCenterOffset: -frise.height/4*  app.width/48
+        width:   app.width/48
+        height:   app.width/48
+        radius: app.width/25
         property int index: 11
         scale: listView1.currentIndex === index ? 1.2 : 1.0
         visible: listView1.currentIndex >= index ? true : false
@@ -596,7 +596,7 @@ Rectangle {
             color: app.txtColor
             anchors.fill:parent
             font.bold: true
-            font.pixelSize: ScreenH/60
+            font.pixelSize: app.height/60
         }
         border.width: 3
         border.color: app.txtColor
@@ -605,10 +605,10 @@ Rectangle {
     Rectangle {//v1.8.1
         x: 8.15*sizePerYear
         anchors.verticalCenter: frise.verticalCenter
-        anchors.verticalCenterOffset: -frise.height/4*  ScreenW/48
-        width:   ScreenW/48
-        height:   ScreenW/48
-        radius: ScreenW/25
+        anchors.verticalCenterOffset: -frise.height/4*  app.width/48
+        width:   app.width/48
+        height:   app.width/48
+        radius: app.width/25
         property int index: 12
         scale: listView1.currentIndex === index ? 1.2 : 1.0
         visible: listView1.currentIndex >= index ? true : false
@@ -619,7 +619,7 @@ Rectangle {
             color: app.txtColor
             anchors.fill:parent
             font.bold: true
-            font.pixelSize: ScreenH/60
+            font.pixelSize: app.height/60
         }
         border.width: 3
         border.color: app.txtColor
@@ -628,10 +628,10 @@ Rectangle {
    /* Rectangle {//v1.8.1
         x: 8.14*sizePerYear
         anchors.verticalCenter: frise.verticalCenter
-        anchors.verticalCenterOffset:  -frise.height/4*ScreenW/48
-        width:   ScreenW/48
-        height:   ScreenW/48
-        radius: ScreenW/25
+        anchors.verticalCenterOffset:  -frise.height/4*app.width/48
+        width:   app.width/48
+        height:   app.width/48
+        radius: app.width/25
         property int index: 15
         scale: listView1.currentIndex === index ? 1.2 : 1.0
         visible: listView1.currentIndex >= index ? true : false
@@ -650,12 +650,12 @@ Rectangle {
     }*/
        ListView {
            id: listView1
-           width: ScreenW*0.7
+           width: app.width*0.7
            anchors.top: frise.bottom
            anchors.bottom: parent.bottom
            anchors.bottomMargin: 0
            anchors.left: parent.left
-           anchors.leftMargin: ScreenW*0.15
+           anchors.leftMargin: app.width*0.15
            onCurrentIndexChanged: {
                console.log("current Index:"+currentIndex)
            }
@@ -671,8 +671,8 @@ Rectangle {
                onTriggered: app.currentItemChanged(view.currentItem)
            }
            delegate: Item {
-               width: ScreenW*0.6
-               height: ScreenH/50+ScreenH*0.01
+               width: app.width*0.6
+               height: app.height/50+app.height*0.01
                Rectangle {
                    color: colorItem
                    anchors.fill: parent
@@ -684,9 +684,9 @@ Rectangle {
                    id: row1
                    Text {
                        color: app.txtColor
-                       width: ScreenW/120
+                       width: app.width/120
                        text: index
-                       font.pixelSize: ScreenH/50
+                       font.pixelSize: app.height/50
                        anchors.verticalCenter: parent.verticalCenter
                        verticalAlignment: Qt.AlignTop
                    }
@@ -694,15 +694,15 @@ Rectangle {
                        color: app.txtColor
                        width: sizePerYear
                        text: date
-                       font.pixelSize:ScreenH/50
+                       font.pixelSize:app.height/50
                        anchors.verticalCenter: parent.verticalCenter
                        verticalAlignment: Qt.AlignTop
                    }
                    Text {
                        color: app.txtColor
-                       width: ScreenW/12
+                       width: app.width/12
                        text: desc
-                       font.pixelSize: ScreenH/50
+                       font.pixelSize: app.height/50
                        anchors.verticalCenter: parent.verticalCenter
                        verticalAlignment: Qt.AlignTop
                    }
@@ -844,9 +844,9 @@ Rectangle {
             id: text2
             anchors.verticalCenter: frise.verticalCenter
             anchors.right: frise.right
-            anchors.rightMargin: ScreenW/28
+            anchors.rightMargin: app.width/28
             text: qsTr("2017")
-            font.pixelSize: ScreenH/20
+            font.pixelSize: app.height/20
             color:"white"
         }
 
@@ -854,10 +854,10 @@ Rectangle {
             id: text3
             anchors.verticalCenter: frise.verticalCenter
             anchors.left: frise.left
-            anchors.leftMargin: ScreenW/28
+            anchors.leftMargin: app.width/28
             text: qsTr("2009")
             horizontalAlignment: Text.AlignHCenter
-            font.pixelSize: ScreenH/20
+            font.pixelSize: app.height/20
             color:"white"
         }
 

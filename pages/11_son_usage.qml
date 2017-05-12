@@ -7,10 +7,10 @@ import QtQuick.Layouts 1.2
 
 Rectangle {
     id: usage
-  //  property int  ScreenW: 1024
+  //  property int  app.width: 1024
     //property int  ScreenH: 800
-    width: ScreenW
-    height: ScreenH
+    width: app.width
+    height: app.height
     //    height: 600
     //  anchors.centerIn: parent
     border.color: app.bgColor
@@ -23,10 +23,10 @@ Rectangle {
         id: image1
         anchors.left: parent.left
         anchors.top: parent.top
-        anchors.leftMargin: ScreenW*0.04
+        anchors.leftMargin: app.width*0.04
         fillMode: Image.PreserveAspectFit
         source: "qrc:/rsrc/Rolisteam.svg"
-        width: ScreenW*0.2
+        width: app.width*0.2
     }
 
     Text {
@@ -34,8 +34,8 @@ Rectangle {
         anchors.top:image1.top
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottom: image1.bottom
-        width: ScreenW*0.5
-        height: ScreenH*0.01
+        width: app.width*0.5
+        height: app.height*0.01
         color: app.txtColor
         text: qsTr("Son usage")
         anchors.horizontalCenterOffset: 1
@@ -44,7 +44,7 @@ Rectangle {
         font.bold: true
         verticalAlignment: Text.AlignVCenter
         horizontalAlignment: Text.AlignHCenter
-        font.pixelSize: ScreenH/20
+        font.pixelSize: app.height/20
     }
     focus: true
     Keys.onUpPressed: {
@@ -72,17 +72,17 @@ Rectangle {
      }
     ListView {
         id: listView1
-        x: ScreenW/4
-        y: ScreenH/8
-        width: ScreenW/2
-        height: ScreenH/3
+        x: app.width/4
+        y: app.height/8
+        width: app.width/2
+        height: app.height/3
         delegate: Item {
-            width: ScreenW/2
+            width: app.width/2
             height: listView1.height/listView1.count
             Text {
                 color: app.txtColor
                 text: name
-                font.pointSize: ScreenH/28
+                font.pointSize: (app.height >100 ? app.height : 800)/28
                 anchors.verticalCenter: parent.verticalCenter
                 font.bold: true
             }
@@ -97,7 +97,7 @@ Rectangle {
 
         model: ListModel {
             ListElement {
-                name: "4 cas de figure: MJ, Joueur, Client ou Serveur"
+                name: "4 cas de figure"
                 index: 0
             }
             ListElement {
@@ -113,17 +113,36 @@ Rectangle {
         }
     }
     Image {
-        x: ScreenW*0.6
+
+
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.verticalCenter: parent.verticalCenter
+
+
+        width: app.width*0.4
+        height: app.height*0.4
+        fillMode: Image.PreserveAspectFit
+
+        source: "qrc:/rsrc/diagram.jpg"
+        opacity: (usage.idState == 0 ) ? 1.0: 0.0
+        Behavior on opacity {
+            NumberAnimation {
+                duration: 1000
+            }
+        }
+    }
+    Image {
+        x: app.width*0.6
         anchors.right: parent.right
         anchors.top: listView1.top
-        anchors.topMargin: ScreenH*0.2
+        anchors.topMargin: app.height*0.2
 
-        width: ScreenW*0.4
-        height: ScreenH*0.4
+        width: app.width*0.4
+        height: app.height*0.4
         fillMode: Image.PreserveAspectFit
 
         source: "qrc:/rsrc/entree.png"
-        opacity: (usage.idState < 2 ) ? 1.0: 0.0
+        opacity: (usage.idState ==1 ) ? 1.0: 0.0
         Behavior on opacity {
             NumberAnimation {
                 duration: 1000
@@ -134,9 +153,9 @@ Rectangle {
         anchors.verticalCenter: parent.verticalCenter
         anchors.verticalCenterOffset: -20
         anchors.left: parent.left
-        anchors.leftMargin: ScreenW*0.15
-        width: ScreenW*0.7
-        height: ScreenH*0.7
+        anchors.leftMargin: app.width*0.15
+        width: app.width*0.7
+        height: app.height*0.7
         source: "qrc:/rsrc/screen.png"
         opacity: (usage.idState == 2 ) ? 1.0: 0.0
         Behavior on opacity {

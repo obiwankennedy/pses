@@ -3,8 +3,8 @@ import QtQuick.Window 2.2
 
 Rectangle {
     id: futurproject
-    width: ScreenW
-    height: ScreenH
+    width: app.width
+    height: app.height
     //    height: 600
     //  anchors.centerIn: parent
     border.color: app.bgColor
@@ -17,10 +17,10 @@ Rectangle {
         id: image1
         anchors.left: parent.left
         anchors.top: parent.top
-        anchors.leftMargin: ScreenW*0.04
+        anchors.leftMargin: app.width*0.04
         fillMode: Image.PreserveAspectFit
         source: "qrc:/rsrc/Rolisteam.svg"
-        width: ScreenW*0.2
+        width: app.width*0.2
     }
 
     Text {
@@ -28,8 +28,8 @@ Rectangle {
         anchors.top:image1.top
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottom: image1.bottom
-        width: ScreenW*0.5
-        height: ScreenH*0.01
+        width: app.width*0.5
+        height: app.height*0.01
         color: app.txtColor
         text: qsTr("Dans l'avenir")
         anchors.horizontalCenterOffset: 1
@@ -37,16 +37,16 @@ Rectangle {
         font.bold: true
         verticalAlignment: Text.AlignVCenter
         horizontalAlignment: Text.AlignHCenter
-        font.pixelSize: ScreenH/20
+        font.pixelSize: app.height/20
     }
     Rectangle {
 
         anchors.left:image1.right
-        anchors.leftMargin: -ScreenW*0.1
+        anchors.leftMargin: -app.width*0.1
         anchors.top: image1.bottom
- //       anchors.topMargin: ScreenW*0.1
-        width: ScreenW*0.8
-        height: ScreenH*0.8
+ //       anchors.topMargin: app.width*0.1
+        width: app.width*0.8
+        height: app.height*0.8
         color: "grey"
         opacity: (futurproject.idState == 4 ) ? 1.0: 0.0
 
@@ -81,19 +81,19 @@ Rectangle {
      }
     ListView {
         id: listView1
-        x: ScreenW/4
-        y: ScreenH/4
+        x: app.width/4
+        y: app.height/4
         visible: idState != 4 ? true : false
         //spacing: ScreenH*0.1
-        width: ScreenW*0.4
-        height: ScreenH*0.4
+        width: app.width*0.4
+        height: app.height*0.4
         delegate: Item {
-            width: ScreenW/2
+            width: app.width/2
             height: listView1.height/listView1.count
                 Text {
                     color: app.txtColor
                     text: name
-                    font.pointSize: ScreenH/28
+                    font.pointSize: (app.height >100 ? app.height : 800)/28
                     anchors.verticalCenter: parent.verticalCenter
                     font.bold: index=== 0 ? true : false
                 }
@@ -135,17 +135,17 @@ Rectangle {
         anchors.bottom: listView1.bottom
 
         //spacing: ScreenH*0.1
-        width: ScreenW*0.3
-        height: ScreenH/2
+        width: app.width*0.3
+        height: app.height/2
         visible: idState != 4 ? true : false
 
         delegate: Item {
-            width: ScreenW/2
+            width: app.width/2
             height: listView2.height/listView2.count
                 Text {
                     color: app.txtColor
                     text: name
-                    font.pointSize: ScreenH/28
+                    font.pointSize: (app.height >100 ? app.height : 800)/28
                     anchors.verticalCenter: parent.verticalCenter
                     font.bold: index=== 6 ? true : false
                 }

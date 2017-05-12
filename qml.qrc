@@ -75,5 +75,6 @@
         <file>rsrc/opening_CharacterSheet.mp4</file>
         <file>rsrc/end.png</file>
         <file>pages/19_grafilabor.qml</file>
+        <file>rsrc/diagram.jpg</file>
     </qresource>
 </RCC>

@@ -8,8 +8,8 @@ import QtGraphicalEffects 1.0
 ApplicationWindow {
     id: app
     visibility: Window.FullScreen;
-    width: app.width
-    height: app.height
+   // width: app.width
+   // height: app.height
     visible: true
     title: qsTr("End Users and QML in Rolisteam!")
 
@@ -310,7 +310,7 @@ ApplicationWindow {
                 Text {
                     color: view.currentIndex>=index ? "black" : "gray"
                     text: name
-                    font.pointSize: ScreenH/48
+                    font.pointSize: (app.height >100 ? app.height : 800)/48
                     anchors.verticalCenter: parent.verticalCenter
                     font.bold: true
 

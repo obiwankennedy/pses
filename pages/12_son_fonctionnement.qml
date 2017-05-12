@@ -7,8 +7,8 @@ import QtQuick.Layouts 1.2
 
 Rectangle {
     id: howitwork
-    width: ScreenW
-    height: ScreenH
+    width: app.width
+    height: app.height
     property int idState : 0
     border.color: app.bgColor
     border.width: 5
@@ -18,10 +18,10 @@ Rectangle {
         id: image1
         anchors.left: parent.left
         anchors.top: parent.top
-        anchors.leftMargin: ScreenW*0.04
+        anchors.leftMargin: app.width*0.04
         fillMode: Image.PreserveAspectFit
         source: "qrc:/rsrc/Rolisteam.svg"
-        width: ScreenW*0.2
+        width: app.width*0.2
     }
 
     Text {
@@ -29,8 +29,8 @@ Rectangle {
         anchors.top:image1.top
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottom: image1.bottom
-        width: ScreenW*0.5
-        height: ScreenH*0.01
+        width: app.width*0.5
+        height: app.height*0.01
         color: app.txtColor
         text: qsTr("Son fonctionnement")
         anchors.horizontalCenterOffset: 1
@@ -39,7 +39,7 @@ Rectangle {
         font.bold: true
         verticalAlignment: Text.AlignVCenter
         horizontalAlignment: Text.AlignHCenter
-        font.pixelSize: ScreenH/20
+        font.pixelSize: app.height/20
     }
     focus: true
     Keys.onUpPressed: {
@@ -60,17 +60,17 @@ Rectangle {
      }
     ListView {
         id: listView1
-        x: ScreenW/4
-        y: ScreenH/8
-        width: ScreenW/2
-        height: ScreenH/3
+        x: app.width/4
+        y: app.height/8
+        width: app.width/2
+        height: app.height/3
         delegate: Item {
-            width: ScreenW/2
+            width: app.width/2
             height: listView1.height/listView1.count
             Text {
                 color: app.txtColor
                 text: name
-                font.pointSize: ScreenH/28
+                font.pointSize: (app.height >100 ? app.height : 800)/28
                 anchors.verticalCenter: parent.verticalCenter
                 font.bold: true
             }
@@ -156,15 +156,41 @@ Rectangle {
         }
     }
     TableView {
-        //width: ScreenW/2
+        //width: app.width/2
         //height: ScreenH/2
         anchors.left: listView1.left
         anchors.right:listView1.right
         anchors.top: listView1.bottom
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 100
+        Layout.preferredHeight: 1000
         model:codeData
         opacity: (idState >= 3 ) ? 1.0: 0.0
+        headerDelegate : Item {
+            height: 40
+            Text {
+                text: styleData.value
+                horizontalAlignment: Text.AlignHCenter
+                font.pointSize: (app.height >100 ? app.height : 800)/50
+            }
+        }
+
+        rowDelegate: Rectangle{
+            width: childrenRect.width
+            height: 40
+            color: (styleData.row%2==0) ? "grey" : "white"
+        }
+        itemDelegate: Item {
+
+            Text {
+                anchors.verticalCenter: parent.verticalCenter
+                color: "black" //styleData.textColor
+                elide: styleData.elideMode
+                text: styleData.value
+                font.pointSize: (app.height >100 ? app.height : 800)/50
+            }
+        }
+
         Behavior on opacity {
             NumberAnimation {
                 duration: 1000
@@ -173,25 +199,25 @@ Rectangle {
         TableViewColumn {
             role: "Language"
             title: "Language"
-            width: ScreenW/8.01
+            width: app.width/8.01
         }
         TableViewColumn {
             role: "files"
             title: "Fichiers"
-            horizontalAlignment: Text.AlignRight
-            width: ScreenW/8.01
+            horizontalAlignment: Text.AlignHCenter
+            width: app.width/8.01
         }
         TableViewColumn {
             role: "comment"
             title: "Commentaire"
-            horizontalAlignment: Text.AlignRight
-            width: ScreenW/8.01
+            horizontalAlignment: Text.AlignHCenter
+            width: app.width/8.01
         }
         TableViewColumn {
             role: "code"
             title: "Code"
-            horizontalAlignment: Text.AlignRight
-            width: ScreenW/8.01
+            horizontalAlignment: Text.AlignHCenter
+            width: app.width/8.01
         }
     }
 }

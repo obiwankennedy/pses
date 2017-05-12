@@ -146,7 +146,7 @@ Bye.
     m_commentData << "4";
     m_commentData << "5";
     m_commentData << "6";
-    m_commentData << "7";
+    m_commentData << "2d6<br/>10D10s<br/>2d6c[%2=0]<br/>6d10e10k3<br/>(4D6)D10<br/>1L[tete,buste,ventre,bras,jambe]<br/>100190D6666666s";
     m_commentData << "8";
     m_commentData << "9";
     m_commentData << "10";
@@ -288,14 +288,15 @@ void QmlControler::rollDice(QString str)
             QString scalarText;
             QString str;
 
-            if(!list.isEmpty())
-            {
-                scalarText = QString("%1").arg(m_diceParser->getSumOfDiceResult());
-            }
-            else if(m_diceParser->hasIntegerResultNotInFirst())
+            if(m_diceParser->hasIntegerResultNotInFirst())
             {
                 scalarText = QString("%1").arg(m_diceParser->getLastIntegerResult());
             }
+            else if(!list.isEmpty())
+            {
+                scalarText = QString("%1").arg(m_diceParser->getSumOfDiceResult());
+            }
+
 
             str = QString("Result: <span style=\"color: #FF0000;font-weight:bold\">%1</span>, details:[%3 (%2)]").arg(scalarText).arg(diceText).arg(m_diceParser->getDiceCommand());
 

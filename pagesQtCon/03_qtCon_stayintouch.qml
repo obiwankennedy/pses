@@ -52,7 +52,7 @@ Rectangle {
                 Text {
                     color: app.txtColor
                     text: name
-                    font.pointSize: ScreenH/28
+                    font.pointSize: (app.height >100 ? app.height : 800)/28
                     anchors.verticalCenter: parent.verticalCenter
                 }
                 opacity: (jdr.idState >= index ) ? 1.0: 0.0
@@ -99,7 +99,7 @@ Rectangle {
         anchors.bottom: parent.bottom
         anchors.right: parent.right
         text: "PS: This slide presentation is in QML"
-        font.pointSize: app.height/48
+        font.pointSize: (app.height >100 ? app.height : 800)/48
     }
 
 }

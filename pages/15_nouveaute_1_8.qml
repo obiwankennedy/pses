@@ -3,8 +3,8 @@ import QtQuick.Window 2.2
 
 Rectangle {
     id: rectangle1
-    width: ScreenW
-    height: ScreenH
+    width: app.width
+    height: app.height
     //    height: 600
     //  anchors.centerIn: parent
     border.color: app.bgColor
@@ -16,10 +16,10 @@ Rectangle {
         id: image1
         anchors.left: parent.left
         anchors.top: parent.top
-        anchors.leftMargin: ScreenW*0.04
+        anchors.leftMargin: app.width*0.04
         fillMode: Image.PreserveAspectFit
         source: "qrc:/rsrc/Rolisteam.svg"
-        width: ScreenW*0.2
+        width: app.width*0.2
     }
 
     Text {
@@ -29,8 +29,8 @@ Rectangle {
         anchors.left: image1.right
         anchors.bottom: image1.bottom
         anchors.right: parent.right
-        width: ScreenW*0.5
-        height: ScreenH*0.01
+        width: app.width*0.5
+        height: app.height*0.01
         color: app.txtColor
         text: qsTr("Les nouveautés v1.8")
         anchors.horizontalCenterOffset: 1
@@ -38,7 +38,7 @@ Rectangle {
         font.bold: true
         verticalAlignment: Text.AlignVCenter
         horizontalAlignment: Text.AlignHCenter
-        font.pixelSize: ScreenH/20
+        font.pixelSize: app.height/20
     }
     Keys.onUpPressed: {
         --idState
@@ -57,17 +57,17 @@ Rectangle {
     }
     ListView {
         id: listView1
-        x: ScreenW/4
-        y: ScreenH/4
-        width: ScreenW/2
-        height: ScreenH/2
+        x: app.width/4
+        y: app.height/4
+        width: app.width/2
+        height: app.height/2
         delegate: Item {
-            width: ScreenW/2
+            width: app.width/2
             height: listView1.height/listView1.count
             Text {
                 color: app.txtColor
                 text: name
-                font.pointSize: ScreenH/28
+                font.pointSize: (app.height >100 ? app.height : 800)/28
                 anchors.verticalCenter: parent.verticalCenter
                 font.bold: true
             }
@@ -104,11 +104,11 @@ Rectangle {
     }
     Image {
         anchors.left:image1.right
-        anchors.leftMargin: -ScreenW*0.1
+        anchors.leftMargin: -app.width*0.1
         anchors.top: image1.bottom
-       // anchors.topMargin: ScreenW*0.1
-        width: ScreenW*0.8
-        height: ScreenH*0.8
+       // anchors.topMargin: app.width*0.1
+        width: app.width*0.8
+        height: app.height*0.8
         opacity: (rectangle1.idState == 1 ) ? 1.0: 0.0
         fillMode: Image.PreserveAspectFit
         source:"qrc:/rsrc/v1.8.png"
@@ -120,11 +120,11 @@ Rectangle {
     }
     Image {
         anchors.left:image1.right
-        anchors.leftMargin: -ScreenW*0.1
+        anchors.leftMargin: -app.width*0.1
         anchors.top: image1.bottom
-        //anchors.topMargin: ScreenW*0.1
-        width: ScreenW*0.8
-        height: ScreenH*0.8
+        //anchors.topMargin: app.width*0.1
+        width: app.width*0.8
+        height: app.height*0.8
         opacity: (rectangle1.idState == 3 ) ? 1.0: 0.0
         fillMode: Image.PreserveAspectFit
         source:"qrc:/rsrc/fiche_perso.png"
@@ -136,11 +136,11 @@ Rectangle {
     }
     Row {
         anchors.left:image1.right
-        anchors.leftMargin: -ScreenW*0.1
+        anchors.leftMargin: -app.width*0.1
         anchors.top: image1.bottom
-        anchors.topMargin: ScreenW*0.1
-        width: ScreenW*0.8
-        height: ScreenH*0.8
+        anchors.topMargin: app.width*0.1
+        width: app.width*0.8
+        height: app.height*0.8
         opacity: (rectangle1.idState == 5 ) ? 1.0: 0.0
         Behavior on opacity {
             NumberAnimation {
