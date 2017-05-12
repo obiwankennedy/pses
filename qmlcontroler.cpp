@@ -146,11 +146,16 @@ Bye.
     m_commentData << "4";
     m_commentData << "5";
     m_commentData << "6";
-    m_commentData << "2d6<br/>10D10s<br/>2d6c[%2=0]<br/>6d10e10k3<br/>(4D6)D10<br/>1L[tete,buste,ventre,bras,jambe]<br/>100190D6666666s";
+    m_commentData << "2d6<br/>10D10s<br/>2d6c[%2=0]<br/>6d10e10k3<br/>(4D6)D10<br/>1L[tete,buste,ventre,bras,jambe]<br/>100190D6666666s<br/>6d10e10kl3<br/>1d100i[&lt;50]{\"Succes %1\"}{\"Echec %1\"}";
     m_commentData << "8";
     m_commentData << "9";
     m_commentData << "10";
     m_commentData << "11";
+    m_commentData << "Roll20<br/>Fantasy Ground<br/>MapTool";
+    m_commentData << "13";
+    m_commentData << "14";
+    m_commentData << "15";
+    m_commentData << "16";
 
     m_currentScreen = 0;
 
@@ -218,8 +223,8 @@ void QmlControler::currentPageHasChanged(int i)
     static int count = 0;
 
 
-    img.save(tr("/home/renaud/application/mine/pasSageEnSeine/screen/%1_screen.png").arg(++count,3,10,QChar('0')),"png");
-    //qDebug() << "screen shot save" << count;
+    //img.save(tr("/home/renaud/application/mine/pasSageEnSeine/screen/%1_screen.png").arg(++count,3,10,QChar('0')),"png");
+    qDebug() << "id page shot save" << i;
 
     m_ratioImage = (double)img.size().width()/img.size().height();
     m_ratioImageBis = (double)img.size().height()/img.size().width();
