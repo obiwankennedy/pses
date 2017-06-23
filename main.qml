@@ -302,10 +302,10 @@ ApplicationWindow {
         id: listView1
         x: app.width*0.02
         y: app.height*0.3
-        width: app.width/2
+        width: parent.width/2
         height: app.height*0.2
         delegate: Item {
-            width: app.width/2
+            width: parent.width
             height: listView1.height/listView1.count
                 Text {
                     color: view.currentIndex>=index ? "black" : "gray"

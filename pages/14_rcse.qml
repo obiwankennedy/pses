@@ -69,7 +69,7 @@ Rectangle {
                 index:0
             }
             ListElement {
-                name: "Génère le QML"
+                name: "Génère la fiche"
                 index:2
             }
             ListElement {
