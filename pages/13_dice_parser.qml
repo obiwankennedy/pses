@@ -59,7 +59,7 @@ Rectangle {
          id: trigger
          interval: 1001
          repeat: false
-         onTriggered: app.currentItemChanged(view.currentItem)
+         onTriggered: app.currentItemChanged(6)
      }
     ListView {
         id: listView1
