@@ -46,7 +46,7 @@ Rectangle {
 
     ListView {
         id: listView1
-        x: app.width/4
+        x: app.width*0.2
         y: app.height/4
         width: app.width/2
         height: app.height/2
@@ -83,7 +83,7 @@ Rectangle {
                     index:1
                 }
                 ListElement {
-                    name: "<i>Youtube</i>: <b>https://www.youtube.com/channel/UC4uoGZl1nQRXbVs8WjxjKvw</b>"
+                    name: "<i>Youtube</i>: https://www.youtube.com/channel/UC4uoGZl1nQRXbVs8WjxjKvw"
                     index:1
                 }
                 ListElement {

@@ -65,15 +65,15 @@ Rectangle {
 
         model: ListModel {
             ListElement {
-                name: "Dessine la fiche"
+                name: "Dessiner la fiche"
                 index:0
             }
             ListElement {
-                name: "Génère le QML"
+                name: "Génèrer la fiche"
                 index:2
             }
             ListElement {
-                name: "Apprend le QML"
+                name: "Apprendre le QML"
                 index:4
             }
             ListElement {

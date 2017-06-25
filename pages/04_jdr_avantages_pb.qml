@@ -128,7 +128,7 @@ Rectangle {
                 index:0
             }
             ListElement {
-                name: "Temps (boulot, vie de famille…)"
+                name: "Temps (vie professionelle, de famille…)"
                 index:1
             }
             ListElement {

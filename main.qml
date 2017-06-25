@@ -105,23 +105,23 @@ ApplicationWindow {
                 name: "Présentation de Rolisteam"
                 path: "02_presentation.qml"
                 time: 1
-                next: "définition app"
+                next: "définition Jdr"
             }
             ListElement {
-                name: "Introduction au app"
+                name: "Introduction au jdr"
                 path: "03_jdr_et_rolisteam.qml"
                 time: 1
                 next: "Les contraintes"
             }
             ListElement {
-                name: "Advantages du app et Inconvénients"
+                name: "Contraintes"
                 path: "04_jdr_avantages_pb.qml"
                 time: 1
                 next: "Avantages de l'informatique"
             }
 
             ListElement {
-                name: "Pourquoi faire de app ?"
+                name: "Le jdr virtuel le plus"
                 path: "05_avantage_jdr_virtuel.qml"
                 time: 1
                 next: "Fonctionnalités"
@@ -142,7 +142,7 @@ ApplicationWindow {
                 name: "RCSE"
                 path: "14_rcse.qml"
                 time: 1
-                next: "Début de rolisteam"
+                next: "Son usage"
             }
             /*ListElement {
                 name: "Les Nouveautés 1.9"
@@ -178,7 +178,7 @@ ApplicationWindow {
                 name: "Son fonctionnement"
                 path: "12_son_fonctionnement.qml"
                 time: 1
-                next: "Thème et audio"
+                next: "L'avenir"
             }
             ListElement {
                 name: "Projets d'avenir"
@@ -202,13 +202,13 @@ ApplicationWindow {
                 name: "Objectif Rolisteam Libre"
                 path: "19_objectif_rolisteam_libre.qml"
                 time: 1
-                next: "NeedYou"
+                next: "Need You"
             }
             ListElement {
                 name: "Rolisteam a besoin de vous "
                 path: "19_grafilabor.qml"
                 time: 1
-                next: ""
+                next: "Fin FAQ"
             }
             ListElement {
                 name: "Fin "

@@ -90,11 +90,11 @@ Rectangle {
                 index: 0
             }
             ListElement {
-                name: "Client: Rolisteam, IRC Bot, CLI"
+                name: "Client: Rolisteam, Bot Irc, CLI, Bot twitter"
                 index: 1
             }
             ListElement {
-                name: "Simple et puissant"
+                name: "Générique"
                 index: 2
             }
 

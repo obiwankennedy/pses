@@ -57,7 +57,10 @@ QVariant DiceResultModel::data(const QModelIndex &index, int role) const
 }
 QVariant DiceResultModel::getCmd(int i)
 {
-    return m_command.at(i);
+    if((i>0)&&(i<m_command.size()))
+        return m_command.at(i);
+    else
+        return QString();
 }
 
 bool DiceResultModel::insertResult(QString result)
@@ -67,7 +70,9 @@ bool DiceResultModel::insertResult(QString result)
         beginInsertRows(QModelIndex(), 0, 0);
         m_result.prepend(result);
         endInsertRows();
+        return true;
     }
+    return false;
 }
 
 bool DiceResultModel::insertCommand(QString cmd)
