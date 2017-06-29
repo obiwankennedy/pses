@@ -1,50 +1,26 @@
 import QtQuick 2.0
 import QtQuick.Window 2.2
 
-Rectangle {
+SlidePage {
     id: rectangle1
-    width: app.width
-    height: app.height
-    //    height: 600
-    //  anchors.centerIn: parent
-    border.color: app.bgColor
-    border.width: 5
-    color: app.bgColor
-    Image {
-        id: image1
-        anchors.left: parent.left
-        anchors.top: parent.top
-        anchors.leftMargin: app.width*0.04
-        fillMode: Image.PreserveAspectFit
-        source: "qrc:/rsrc/Rolisteam.svg"
-        width: app.width*0.2
-    }
-
-    Text {
-        id: text1
-        anchors.top:image1.top
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.bottom: image1.bottom
-        width: app.width*0.5
-        height: app.height*0.01
-        color: app.txtColor
-        text: qsTr("Fonctionnalités")
-        anchors.horizontalCenterOffset: 1
-        font.family: "Verdana"
-        font.bold: true
-        verticalAlignment: Text.AlignVCenter
-        horizontalAlignment: Text.AlignHCenter
-        font.pixelSize: app.height/20
+    anchors.fill: parent
+    logo: "qrc:/rsrc/Rolisteam.svg"
+    focus: true
+    title: "Fonctionnalités"
+    Component.onCompleted:
+    {
+        points = listSection
+        anchors.fill = parent
     }
 
     Image {
         id: screenShotCase
         property string newSource: "qrc:/rsrc/chat.png"
-        anchors.left: text1.right
-        anchors.leftMargin: -app.width*0.1
-        anchors.top: text1.bottom
-        anchors.bottom: listView1.bottom
-        anchors.right: parent.right
+        x: parent.width * 0.8
+        y: parent.height * 0.8
+        width: parent.width * 0.2
+        height: parent.height * 0.2
+
         fillMode: Image.PreserveAspectFit
         source:  "qrc:/rsrc/chat.png"
         state : "msg"
@@ -143,11 +119,6 @@ Rectangle {
                         from: 1.0
                         to: 0.0
                     }
-                  /*  PropertyAction {
-                        target: screenShotCase
-                        property: "source"
-                        value:screenShotCase.newSource
-                    }*/
                     PropertyAnimation {
                         target: screenShotCase
                         property: "opacity"
@@ -161,48 +132,8 @@ Rectangle {
     }
 
 
-    ListView {
-        id: listView1
-        x: app.width*0.18
-        y: app.height*0.2
-        width: app.width*0.32
-        height: app.height*0.8
-        delegate: Item {
-            width: app.width/2
-            height: listView1.height/listView1.count
-                Text {
-                    color: app.txtColor
-                    text: "-"+name
-                    font.pointSize: (app.height >100 ? app.height : 800)/28
-                    anchors.verticalCenter: parent.verticalCenter
-                    font.bold: true
-                }
-                opacity: (listView1.currentIndex >= index ) ? 1.0: 0.0
-                Behavior on opacity {
-                    NumberAnimation {
-                        duration: 1000
-                    }
-                }
-
-        }
-        focus: true
-        Keys.onUpPressed: {
-            decrementCurrentIndex()
-        }
-        Keys.onDownPressed: {
-             incrementCurrentIndex()
-        }
-        onCurrentIndexChanged: {
-            trigger.start()
-        }
-
-        Timer {
-             id: trigger
-             interval: 1001
-             repeat: false
-             onTriggered: app.currentItemChanged(view.currentItem)
-         }
-        model: ListModel {
+   ListModel {
+       id: listSection
             ListElement {
                 name: "Messagerie Instantanée"
                 index: 0
@@ -243,7 +174,7 @@ Rectangle {
                 name: "Lancer des dés"
                 index: 9
             }
-        }
     }
+
 
 }

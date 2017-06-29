@@ -76,5 +76,7 @@
         <file>rsrc/end.png</file>
         <file>pages/19_grafilabor.qml</file>
         <file>rsrc/diagram.jpg</file>
+        <file>pages/SlidePage.qml</file>
+        <file alias="pages/CodePage.qml">CodePage.qml</file>
     </qresource>
 </RCC>

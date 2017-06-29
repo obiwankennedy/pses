@@ -5,85 +5,19 @@ import QtQuick.Extras 1.4
 import QtQuick.Layouts 1.2
 
 
-Rectangle {
-    id: howitwork
-    width: app.width
-    height: app.height
-    property int idState : 0
-    border.color: app.bgColor
-    border.width: 5
-    color: app.bgColor
-    property alias listView1: listView1
-    Image {
-        id: image1
-        anchors.left: parent.left
-        anchors.top: parent.top
-        anchors.leftMargin: app.width*0.04
-        fillMode: Image.PreserveAspectFit
-        source: "qrc:/rsrc/Rolisteam.svg"
-        width: app.width*0.2
-    }
-
-    Text {
-        id: text1
-        anchors.top:image1.top
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.bottom: image1.bottom
-        width: app.width*0.5
-        height: app.height*0.01
-        color: app.txtColor
-        text: qsTr("Son fonctionnement")
-        anchors.horizontalCenterOffset: 1
-        //anchors.topMargin: -203
-        font.family: "Verdana"
-        font.bold: true
-        verticalAlignment: Text.AlignVCenter
-        horizontalAlignment: Text.AlignHCenter
-        font.pixelSize: app.height/20
-    }
+SlidePage {
+    id: rectangle1
+    anchors.fill: parent
+    logo: "qrc:/rsrc/Rolisteam.svg"
     focus: true
-    Keys.onUpPressed: {
-        --idState
+    title: "Son fonctionnement"
+    Component.onCompleted:
+    {
+        points = listSection
+        anchors.fill = parent
     }
-    Keys.onDownPressed: {
-        ++idState
-    }
-    onIdStateChanged: {
-        trigger.start()
-    }
-
-    Timer {
-         id: trigger
-         interval: 1001
-         repeat: false
-         onTriggered: app.currentItemChanged(view.currentItem)
-     }
-    ListView {
-        id: listView1
-        x: app.width/4
-        y: app.height/8
-        width: app.width/2
-        height: app.height/3
-        delegate: Item {
-            width: app.width/2
-            height: listView1.height/listView1.count
-            Text {
-                color: app.txtColor
-                text: name
-                font.pointSize: (app.height >100 ? app.height : 800)/28
-                anchors.verticalCenter: parent.verticalCenter
-                font.bold: true
-            }
-            opacity: (howitwork.idState >= index ) ? 1.0: 0.0
-            Behavior on opacity {
-                NumberAnimation {
-                    id: bouncebehavior
-                    duration: 1000
-                }
-            }
-        }
-
-        model: ListModel {
+      ListModel {
+          id: listSection
             ListElement {
                 name: "Application Client/Serveur TCP/IP"
                 index: 0
@@ -96,8 +30,8 @@ Rectangle {
                 name: "C++/Qt"
                 index:2
             }
-        }
-    }
+     }
+
     ListModel {
         id: codeData
         ListElement {

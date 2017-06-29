@@ -3,44 +3,20 @@ import QtQuick.Window 2.2
 import QtQuick.Controls 1.3
 import QtQuick.Extras 1.4
 
-Rectangle {
+SlidePage {
     id: rectangle1
-    width: app.width
-    height: app.height
-    //    height: 600
-    //  anchors.centerIn: parent
-    border.color: app.bgColor
-    border.width: 3
-    color: app.bgColor
+    anchors.fill: parent
+    logo: "qrc:/rsrc/Rolisteam.svg"
+    focus: true
+    title: "La chronologie"
+    Component.onCompleted:
+    {
+        points = listSection
+        anchors.fill = parent
+    }
+
     property real sizePerYear: Screen.width/((2017-2009)+1)
 
-    Image {
-        id: image1
-        anchors.left: parent.left
-        anchors.top: parent.top
-        anchors.leftMargin: app.width*0.04
-        fillMode: Image.PreserveAspectFit
-        source: "qrc:/rsrc/Rolisteam.svg"
-        width: app.width*0.2
-    }
-
-    Text {
-        id: text1
-        anchors.top:image1.top
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.bottom: image1.bottom
-        width: app.width*0.5
-        height: app.height*0.01
-        color: app.txtColor
-        text: qsTr("La chronologie")
-        anchors.horizontalCenterOffset: 1
-        //anchors.topMargin: -203
-        font.family: "Verdana"
-        font.bold: true
-        verticalAlignment: Text.AlignVCenter
-        horizontalAlignment: Text.AlignHCenter
-        font.pixelSize: app.height/20
-    }
 
     Canvas {
         id: frise

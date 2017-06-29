@@ -1,94 +1,22 @@
 import QtQuick 2.0
 import QtQuick.Window 2.2
 
-Rectangle {
-    id: tiktoteam
-    width: app.width
-    height: app.height
-    //    height: 600
-    //  anchors.centerIn: parent
-    border.color: app.bgColor
-    border.width: 5
-    color: app.bgColor
-    property int idState: 0
+SlidePage {
+    id: rectangle1
+    anchors.fill: parent
+    logo: "qrc:/rsrc/Rolisteam.svg"
     focus: true
-    Image {
-        id: image1
-        anchors.left: parent.left
-        anchors.top: parent.top
-        anchors.leftMargin: app.width*0.04
-        fillMode: Image.PreserveAspectFit
-        source: "qrc:/rsrc/Rolisteam.svg"
-        width: app.width*0.2
+    title: "De Rolistik à Rolisteam"
+    Component.onCompleted:
+    {
+        points = listSection
+        anchors.fill = parent
     }
 
-    Text {
-        id: text1
-        anchors.top:image1.top
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.bottom: image1.bottom
-        width: app.width*0.5
-        height: app.height*0.01
-        color: app.txtColor
-        text: qsTr("De Rolistik à Rolisteam")
-        anchors.horizontalCenterOffset: 1
-        //anchors.topMargin: -203
-        font.family: "Verdana"
-        font.bold: true
-        verticalAlignment: Text.AlignVCenter
-        horizontalAlignment: Text.AlignHCenter
-        font.pixelSize: app.height/20
-    }    
-    Keys.onUpPressed: {
-        --idState
-        console.log(idState)
 
-    }
-    Keys.onDownPressed: {
-        ++idState
-        console.log(idState)
 
-    }
-    onIdStateChanged: {
-        trigger.start()
-    }
-
-    Timer {
-         id: trigger
-         interval: 1001
-         repeat: false
-         onTriggered: app.currentItemChanged(view.currentItem)
-     }
-    ListView {
-        id: listView1
-        x: app.width*0.2
-        y: app.height*0.20
-        width: app.width*0.28
-        height: app.height*0.38
-        spacing: app.height*0.05
-        visible: (tiktoteam.idState === 0 || tiktoteam.idState > 2) ? true : false
-        delegate: Item {
-            width:  app.width*0.35
-            height: listView1.height/(listView1.count*2)
-                Text {
-                    color: app.txtColor
-                    text: name
-                    font.pointSize: (app.height >100 ? app.height : 800)*0.025
-                    anchors.top: parent.top
-                    //anchors.verticalCenter: parent.verticalCenter
-                    font.bold: true
-                }
-                opacity: (tiktoteam.idState >= index ) ? 1.0: 0.0
-                Behavior on opacity {
-                    NumberAnimation {
-                        id: bouncebehavior
-                        //to: 1.0
-                        duration: 1000
-                    }
-                }
-
-        }
-        model: ListModel {
+    ListModel {
+        id: listSection
             ListElement {
                 name: "Code mal architecturé"
                 index: 0
@@ -109,8 +37,8 @@ Rectangle {
                 name: "Aucun Standard"
                 index: 10
             }
-        }
-    }
+     }
+
 
     ListView {
         id: listView2
@@ -229,19 +157,7 @@ Rectangle {
                 source: "qrc:/rsrc/getIdmediaRolistik.png"
             }
         }
-      /*  Column {
-            Text {
-                id: text3
-                text: "Rolisteam 1.6"
-            }
-            Image {
-                id: image3
-                fillMode: Image.PreserveAspectFit
-                source: "qrc:/rsrc/getIdRolisteam1.png"
-                horizontalAlignment: Image.AlignLeft
-                width: app.width*0.3
-            }
-        }*/
+
         Column {
             Text {
                 id: text4

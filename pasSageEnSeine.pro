@@ -30,6 +30,7 @@ FORMS += \
     qmlcontroler.ui
 
 DISTFILES += \
-    pages/051_license_libre_et_jdr.qml
+    pages/051_license_libre_et_jdr.qml \
+    pages/SlidePage.qml
 
 

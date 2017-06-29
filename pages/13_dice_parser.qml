@@ -2,89 +2,20 @@ import QtQuick 2.0
 import QtQuick.Window 2.2
 import QtQuick.Controls 2.0
 
-Rectangle {
+SlidePage {
     id: rectangle1
-    width: app.width
-    height: app.height
-    property int idState: 0
-    border.color: app.bgColor
-    border.width: 5
-    color: app.bgColor
-    state: ""
-    Image {
-        id: image1
-        anchors.left: parent.left
-        anchors.top: parent.top
-        anchors.leftMargin: app.width*0.04
-        fillMode: Image.PreserveAspectFit
-        source: "qrc:/rsrc/Rolisteam.svg"
-        width: app.width*0.2
-    }
-
-    Text {
-        id: text1
-        anchors.top:image1.top
-        anchors.left: image1.right
-        anchors.bottom: image1.bottom
-        anchors.right: parent.right
-        height: app.height*0.01
-        color: app.txtColor
-        text: qsTr("DiceParser: Le système de dés")
-        font.family: "Verdana"
-        font.bold: true
-        verticalAlignment: Text.AlignVCenter
-        horizontalAlignment: Text.AlignHCenter
-        font.pixelSize: app.height/20
-    }
+    anchors.fill: parent
+    logo: "qrc:/rsrc/Rolisteam.svg"
     focus: true
-    Keys.onUpPressed: {
-        --idState;
-        if(idState==-1)
-        {
-            idState=0;
-        }
-    }
-    Keys.onDownPressed: {
-        ++idState;
-        if(idState==6)
-        {
-            idState=1;
-        }
-    }
-    onIdStateChanged: {
-        trigger.start()
+    title: "DiceParser: Le système de dés"
+    Component.onCompleted:
+    {
+        points = listSection
+        anchors.fill = parent
     }
 
-    Timer {
-         id: trigger
-         interval: 1001
-         repeat: false
-         onTriggered: app.currentItemChanged(6)
-     }
-    ListView {
-        id: listView1
-        x: app.width/4
-        y: app.height/4
-        width: app.width/2
-        height: app.height/2
-        delegate: Item {
-            width: app.width/2
-            height: listView1.height/listView1.count
-                Text {
-                    color: app.txtColor
-                    text: name
-                    font.pointSize: (app.height >100 ? app.height : 800)/28
-                    anchors.verticalCenter: parent.verticalCenter
-                    font.bold: true
-                }
-                opacity: (rectangle1.idState >= index ) ? 1.0: 0.0
-                Behavior on opacity {
-                    NumberAnimation {
-                        duration: 1000
-                    }
-                }
-        }
-        model: ListModel {
+    ListModel {
+         id: listSection
             ListElement {
                 name: "Interpreteur de commandes"
                 index: 0
@@ -99,8 +30,6 @@ Rectangle {
             }
 
         }
-        opacity: (rectangle1.idState < 3 ) ? 1.0: 0.0
-    }
 
     Item {
         id: diceRoller
@@ -152,11 +81,6 @@ Rectangle {
 
                 width: app.width*0.5
                 height: app.height*0.05
-                /*Rectangle {
-                    color:"#E8E8E8"
-                    anchors.fill: parent
-                    opacity: 0.5
-                }*/
                 Text {
                     text: result
                     color:app.txtColor
@@ -169,49 +93,5 @@ Rectangle {
                 }
             }
         }
-
     }
-
-    /*Text {
-        id: panelInfo
-        x: app.width/4
-        anchors.top: image1.bottom
-        font.pointSize: ScreenH/50
-        text: "Lancer N dés à 10 faces allant de 0 à 9<br/> Garder les M plus bas <br/>compter parmis les M ceux qui sont inférieurs ou égaux à P"
-        opacity: (rectangle1.idState >= 3 ) ? 1.0: 0.0
-        Behavior on opacity {
-            NumberAnimation {
-                duration: 1000
-            }
-        }
-    }
-    Text {
-        id: panelInfo2
-        anchors.left: panelInfo.left
-        anchors.top: panelInfo.bottom
-        anchors.right: panelInfo.right
-        font.pointSize: ScreenH/50
-        text: "(.*)day(.*),(.*) => \\1d[0-9]kl\\2c[<=\\3]"
-        opacity: (rectangle1.idState >= 4 ) ? 1.0: 0.0
-        Behavior on opacity {
-            NumberAnimation {
-                duration: 1000
-            }
-        }
-    }
-    Image {
-        id: img
-        anchors.top: panelInfo2.bottom
-        anchors.left: listView1.left
-        fillMode: Image.PreserveAspectFit
-        anchors.right: listView1.right
-        source: "qrc:/rsrc/ddaydice.png"
-        opacity: (rectangle1.idState >= 5 ) ? 1.0: 0.0
-        Behavior on opacity {
-            NumberAnimation {
-                duration: 1000
-            }
-        }
-    }*/
-
 }

@@ -1,38 +1,12 @@
 import QtQuick 2.0
 import QtQuick.Window 2.2
 
-Rectangle {
+SlidePage {
     id: rectangle1
-    width: app.width //app.width
-    height: app.height //ScreenH
-
-    border.width: 0
-    color: app.bgColor
-
-    Image {
-        id: image1
-        width: app.width*0.75
-        height: app.height*0.75
-        fillMode: Image.PreserveAspectFit
-        anchors.top: parent.top
-        anchors.horizontalCenter: parent.horizontalCenter
-        source: "qrc:/rsrc/Rolisteam.svg"
-    }
-
-    Text {
-        id: text1
-        anchors.top:image1.bottom
-        anchors.horizontalCenter: parent.horizontalCenter
-        width: app.width*0.5
-        height: app.height*0.1
-        color: app.txtColor
-        text: qsTr("Libérez vos parties!")
-        font.family: "Verdana"
-        font.bold: true
-        verticalAlignment: Text.AlignVCenter
-        horizontalAlignment: Text.AlignHCenter
-        font.pixelSize: app.height/20
-    }
+    anchors.fill: parent
+    logo: "qrc:/rsrc/Rolisteam.svg"
+    focus: true
+    title: "Libérez vos parties"
 
     Text {
         id: text2
