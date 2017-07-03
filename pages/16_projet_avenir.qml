@@ -2,7 +2,7 @@ import QtQuick 2.0
 import QtQuick.Window 2.2
 
 SlidePage {
-    id: rectangle1
+    id: page
     anchors.fill: parent
     logo: "qrc:/rsrc/Rolisteam.svg"
     focus: true
@@ -16,19 +16,18 @@ SlidePage {
 
     Rectangle {
 
-        anchors.left:image1.right
-        anchors.leftMargin: -app.width*0.1
-        anchors.top: image1.bottom
+        x: page.width * 0.1
+        y: page.height * 0.1
  //       anchors.topMargin: app.width*0.1
         width: app.width*0.8
         height: app.height*0.8
         color: "grey"
-        opacity: (futurproject.idState == 4 ) ? 1.0: 0.0
+        opacity: (page.idState == 4 ) ? 1.0: 0.0
 
         Image {
             id: mindmap
             anchors.fill: parent
-            opacity: (futurproject.idState == 4 ) ? 1.0: 0.0
+            opacity: (page.idState == 4 ) ? 1.0: 0.0
             Behavior on opacity {
                 NumberAnimation {
                     duration: 1000
@@ -63,13 +62,13 @@ SlidePage {
     }
     ListView {
         id: listView2
-        x: parent.width * 0.8
-        y: parent.height * 0.8
-        width: parent.width * 0.2
-        height: parent.height * 0.2
+        x: parent.width * 0.5
+        y: parent.height * 0.2
+        width: parent.width * 0.5
+        height: parent.height * 0.8
 
 
-        visible: idState != 4 ? true : false
+        visible: page.idState != 4 ? true : false
 
         delegate: Item {
             width: app.width/2
@@ -81,7 +80,7 @@ SlidePage {
                     anchors.verticalCenter: parent.verticalCenter
                     font.bold: index=== 6 ? true : false
                 }
-                opacity: (futurproject.idState >= index ) ? 1.0: 0.0
+                opacity: (page.idState >= index ) ? 1.0: 0.0
                 Behavior on opacity {
                     NumberAnimation {
                         id: bouncebehavior2
