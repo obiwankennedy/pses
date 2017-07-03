@@ -2,7 +2,7 @@ import QtQuick 2.0
 import QtQuick.Window 2.2
 
 SlidePage {
-    id: rectangle1
+    id: page
     anchors.fill: parent
     logo: "qrc:/rsrc/Rolisteam.svg"
     focus: true
@@ -11,12 +11,12 @@ SlidePage {
     Image {
         id: screenShot
         source : "qrc:/rsrc/screen.png"
-        anchors.top: text1.bottom
-        anchors.right: parent.right
+        y: parent.height * 0.2
+        x: parent.width * 0.5
         //anchors.leftMargin: app.width*0.05
 
         fillMode: Image.PreserveAspectFit
-        width: app.width*0.6
+        width: app.width*0.5
         height: app.height*0.6
         visible: true
     }
@@ -38,5 +38,4 @@ SlidePage {
                 index:1
             }
         }
-
 }
