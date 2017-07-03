@@ -41,11 +41,11 @@ SlidePage {
 
     Image {
         id: img
-        x: parent.width * 0.8
-        y: parent.height * 0.8
-        width: parent.width * 0.2
-        height: parent.height * 0.2
-        anchors.bottom: listView1.bottom
+        x: parent.width * 0.5
+        y: parent.height * 0.2
+        width: parent.width * 0.5
+        height: parent.height * 0.5
+        anchors.bottom: view.bottom
         fillMode: Image.PreserveAspectFit
         source: "qrc:/rsrc/design_cs.png"
         opacity: (rectangle1.idState === 1 ) ? 1.0: 0.0
@@ -58,10 +58,10 @@ SlidePage {
 
     Image {
         id: img2
-        x: parent.width * 0.8
-        y: parent.height * 0.8
-        width: parent.width * 0.2
-        height: parent.height * 0.2
+        x: parent.width * 0.5
+        y: parent.height * 0.2
+        width: parent.width * 0.5
+        height: parent.height * 0.5
         fillMode: Image.PreserveAspectFit
         source: "qrc:/rsrc/qml_generated.png"
         opacity: (rectangle1.idState === 4 ) ? 1.0: 0.0
@@ -74,10 +74,10 @@ SlidePage {
 
     Image {
         id: img3
-        x: parent.width * 0.8
-        y: parent.height * 0.8
-        width: parent.width * 0.2
-        height: parent.height * 0.2
+        x: parent.width * 0.5
+        y: parent.height * 0.2
+        width: parent.width * 0.5
+        height: parent.height * 0.5
         fillMode: Image.PreserveAspectFit
         source: "qrc:/rsrc/test_rcse.png"
         opacity: (rectangle1.idState === 3 ) ? 1.0: 0.0
