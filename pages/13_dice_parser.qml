@@ -1,9 +1,10 @@
 import QtQuick 2.0
 import QtQuick.Window 2.2
-import QtQuick.Controls 2.0
+import QtQuick.Controls 2.2
+import QtQuick.Layouts 1.1
 
 SlidePage {
-    id: rectangle1
+    id: page
     anchors.fill: parent
     logo: "qrc:/rsrc/Rolisteam.svg"
     focus: true
@@ -12,6 +13,14 @@ SlidePage {
     {
         points = listSection
         anchors.fill = parent
+    }
+    onIdStateChanged: {
+        if(idState >= 4)
+        {
+            view.visible = false;
+        }
+        else
+            view.visible = true;
     }
 
     ListModel {
@@ -25,25 +34,31 @@ SlidePage {
                 index: 1
             }
             ListElement {
-                name: "Générique"
+                name: "2 types de jets, 11 operateurs, 6 comparateurs logiques,\n 3 combinateurs logiques"
                 index: 2
             }
-
+            ListElement {
+                name: "Générique"
+                index: 3
+            }
         }
 
     Item {
         id: diceRoller
         anchors.fill: parent
-        opacity: (rectangle1.idState == 3 ) ? 1.0: 0.0
+        opacity: (page.idState == 4 ) ? 1.0: 0.0
         TextField {
             property int current: 0
             id: diceCommand
             anchors.horizontalCenter: parent.horizontalCenter
             y: app.height*0.2
             width:app.width*0.2
-            onEditingFinished:{
-                app.rollDiceCmd(diceCommand.text)
-                diceCommand.text = ""
+            onEditingFinished: {
+                if(diceCommand.text != "")
+                {
+                    app.rollDiceCmd(diceCommand.text)
+                    diceCommand.text = ""
+                }
             }
             Keys.onUpPressed: {
                 current++;
@@ -93,5 +108,83 @@ SlidePage {
                 }
             }
         }
+        ColumnLayout {
+            id: commands
+            x: parent.width * 0.8
+            y: parent.height * 0.2
+            width: parent.width * 0.2
+            height: parent.height * 0.8
+            Layout.alignment: Qt.AlignVCenter
+            Layout.preferredWidth: parent.width * 0.2
+            Button {
+               text: "1d20+3"
+               onClicked: app.rollDiceCmd(text)
+               focusPolicy: Qt.ClickFocus
+            }
+            Button {
+               text: "6d10e10r1k3"
+               onClicked: app.rollDiceCmd(text)
+               focusPolicy: Qt.ClickFocus
+            }
+            Button {
+               text: "6GS3"
+               onClicked: app.rollDiceCmd(text)
+               focusPolicy: Qt.ClickFocus
+            }
+            Button {
+               text: "1L[épée,arc,couteau,pistolet,fusil]"
+               onClicked: app.rollDiceCmd(text)
+               focusPolicy: Qt.ClickFocus
+            }
+            Button {
+                text: "5-5*5+5"
+                onClicked: app.rollDiceCmd(text)
+                focusPolicy: Qt.ClickFocus
+            }
+            Button {
+                text: "(3+2D6)D10"
+                onClicked: app.rollDiceCmd(text)
+                focusPolicy: Qt.ClickFocus
+            }
+            Button {
+                text: "4d[-1-1]"
+                onClicked: app.rollDiceCmd(text)
+                focusPolicy: Qt.ClickFocus
+            }
+            Button {
+                text: "1d[-10--1]"
+                onClicked: app.rollDiceCmd(text)
+                focusPolicy: Qt.ClickFocus
+            }
+            Button {
+                text: "4d10e6i[>7]{\"Succès\"}{\"Échec\"}"
+                onClicked: app.rollDiceCmd(text)
+                focusPolicy: Qt.ClickFocus
+            }
+            Button {
+                text: "10029D66666666s"
+                onClicked: app.rollDiceCmd(text)
+                focusPolicy: Qt.ClickFocus
+            }
+
+        }
+
     }
+    /*Item {
+        visible: false
+        anchors.fill: parent
+        Rectangle {
+            id: cursor
+            color: "red"
+            width: 10
+            height: 10
+        }
+        MouseArea {
+            anchors.fill: parent
+            onPressed: {
+                cursor.x = mouse.x
+                cursor.y = mouse.y
+            }
+        }
+    }*/
 }
