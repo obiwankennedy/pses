@@ -9,6 +9,7 @@ Item {
     property alias  title: text1.text
     property alias view: listView1
     property alias slideCode: slideCode
+    property bool richText: false
 
     MouseArea {
         anchors.fill: parent
@@ -39,15 +40,15 @@ Item {
         anchors.top: parent.top
         anchors.leftMargin: root.width*0.04
         fillMode: Image.PreserveAspectFit
-        width: root.width*0.05
-        height: root.height*0.1
+        width: root.width*0.2
+        height: root.height*0.2
     }
     Keys.onUpPressed: {
-        console.log("up")
+        //console.log("up")
         --idState;
     }
     Keys.onDownPressed: {
-        console.log("down")
+       // console.log("down")
         ++idState
     }
     Keys.onPressed: {
@@ -89,8 +90,7 @@ Item {
                     elide: Text.ElideLeft
                     onLinkActivated: Qt.openUrlExternally(link)
                     linkColor: "white"
-                    textFormat: Text.StyledText
-
+                    textFormat: richText ? Text.RichText : Text.StyledText
                 }
                 opacity: (root.idState >= index ) ? 1.0: 0.0
                 Behavior on opacity {
