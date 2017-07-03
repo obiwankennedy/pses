@@ -136,6 +136,12 @@ ApplicationWindow {
                 name: "Dice Parser"
                 path: "13_dice_parser.qml"
                 time: 1
+                next: "Dice Parser 2"
+            }
+            ListElement {
+                name: "Dice Parser 2"
+                path: "14_deep_in_dice_parser.qml"
+                time: 1
                 next: "RCSE"
             }
             ListElement {
@@ -273,6 +279,7 @@ ApplicationWindow {
                 trigger.start()
             }
         }
+        interactive: false
         focus: true
         Keys.onLeftPressed: {
             decrementCurrentIndex()
