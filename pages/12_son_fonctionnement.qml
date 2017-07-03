@@ -15,6 +15,7 @@ SlidePage {
     {
         points = listSection
         anchors.fill = parent
+        view.height = rectangle1.height * 0.4
     }
       ListModel {
           id: listSection
@@ -90,11 +91,9 @@ SlidePage {
         }
     }
     TableView {
-        //width: app.width/2
-        //height: ScreenH/2
-        anchors.left: listView1.left
-        anchors.right:listView1.right
-        anchors.top: listView1.bottom
+        anchors.left: view.left
+        anchors.right:view.right
+        anchors.top: view.bottom
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 100
         Layout.preferredHeight: 1000
