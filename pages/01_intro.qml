@@ -6,7 +6,17 @@ SlidePage {
     anchors.fill: parent
     logo: "qrc:/rsrc/Rolisteam.svg"
     focus: true
-    title: "Libérez vos parties"
+    title: ""//Libérez vos parties
+
+    Text {
+        id: grandTitre
+        anchors.fill: parent
+        color: app.txtColor
+        text: qsTr("Libérez vos parties!")
+        font.pixelSize: app.height/8
+        horizontalAlignment: Qt.AlignHCenter
+        verticalAlignment: Qt.AlignVCenter
+    }
 
     Text {
         id: text2
@@ -19,8 +29,9 @@ SlidePage {
 
     Image {
         id: image2
-        anchors.top: parent.top
-       // anchors.topMargin: ScreenH*0.1
+        anchors.top:  view.bottom
+        anchors.topMargin: -100
+
         anchors.left: parent.left
         anchors.leftMargin: app.width*0.01
         width: app.width*0.1
