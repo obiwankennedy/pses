@@ -26,6 +26,7 @@
 #include <QLabel>
 #include "diceparser.h"
 #include "diceresultmodel.h"
+#include <QTimer>
 
 namespace Ui {
 class QmlControler;
@@ -49,6 +50,7 @@ public:
 public slots:
     void currentPageHasChanged(int i);
     void rollDice(QString);
+    void refreshView();
 protected:
     void initConnection();
     void resizeEvent(QResizeEvent *event);
@@ -67,6 +69,7 @@ private:
     int m_currentScreen;
     DiceParser* m_diceParser;
     DiceResultModel* m_resultModel;
+    QTimer* m_timer;
 };
 
 #endif // QMLCONTROLER_H

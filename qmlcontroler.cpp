@@ -54,8 +54,16 @@ QmlControler::QmlControler(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    m_timer = new QTimer();
+    m_timer->setInterval(100);
+    connect(m_timer,SIGNAL(timeout()),this,SLOT(refreshView()));
+
+
     m_diceParser = new DiceParser();
     m_resultModel = new DiceResultModel();
+
+    m_diceParser->insertAlias(new DiceAlias("GS","d10e10r1k"),1);
+    m_diceParser->insertAlias(new DiceAlias("G","d10e10k"),0);
 
     m_label = new QLabel();
     m_label->setLineWidth(0);
@@ -65,82 +73,14 @@ QmlControler::QmlControler(QWidget *parent) :
     ui->scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     ui->scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
-    /*
-     * End Users and QML in Rolisteam
-
-Hi everyone !
-
-I’m Renaud Guezennec, and I’m the lead developer of a project called Rolisteam.
-It’s a virtual tabletop software to manage role playing games written in C++/Qt.
-It offers to players from around the world the possibility to play together.
-
-As you may know, to play role playing game you need character sheets.
-Managing them leads to two main issues:
-1 - Character sheet is gathering all data about a character and those need to be accessible by other parts of the software (such as a dice roller).
-2 -  Each game has its own character sheet, which requires a high level of customization for UI.
-
-
-As rolisteam is a Qt application, QML is the logical answer to those points. It is also a great technical challenge.
-
-As end users are not QML developers, the main constraint becomes to provide an easy way to create character sheet, and to initiate them on QML coding.
-
-Slide 2/
-
-To do so, I wrote Rolisteam Character Sheet Editor.
-(Obviously, the name explains what it does).
-Its first feature is to design the User Interface. You drop the character sheet background and put fields where you want them.
-Of course, field properties can be amended : Positioning, Background color and so on.
-when set, the editor generates corresponding QML code.
-
-The final result is displayed through QQuickWidget. It is displayed exactly as it will be in rolisteam. Both softwares share the same code.
-
-The QML code is also displayed offering a good way to study it.
-When users are confident enough, they can edit the qml code to process data, add animations and transitions.
-
-The last step is to load the character sheet into rolisteam and play with it.
-
-Slide 3/
-
-That’s all for me. I hope you enjoy the presentation..
-Thanks for your attention.
-Bye.
-*/
-
     //connect(m_label)
-    m_commentData << "Hi everyone !<br/>"
-                     "<br/>"
-                     "I’m Renaud Guezennec, and I’m the lead developer of a project called Rolisteam.<br/>"
-                     "It’s a virtual tabletop software to manage role playing games written in C++/Qt.<br/>"
-                     "It offers to players from around the world the possibility to play together.<br/>"
-                     "<br/>"
-                     "As you may know, to play role playing game you need character sheets.<br/>"
-                     "Managing them leads to two main issues:<br/>"
-                     "1 - Character sheet is gathering all data about a character and those need to be accessible by other parts of the software (such as a dice roller).<br/>"
-                     "2 -  Each game has its own character sheet, which requires a high level of customization for UI.<br/>"
-                     "<br/>"
-                     "<br/>"
-                     "As rolisteam is a Qt application, QML is the logical answer to those points. It is also a great technical challenge.<br/>"
-                     "<br/>"
-                     "As end users are not QML developers, the main constraint becomes to provide an easy way to create character sheet, and to initiate them on QML coding.<br/>";
+    m_commentData << "<br/>";
 
 
-    m_commentData << "To do so, I wrote Rolisteam Character Sheet Editor.<br/>"
-                     "(Obviously, the name explains what it does).<br/>"
-                     "Its first feature is to design the User Interface. You drop the character sheet background and put fields where you want them.<br/>"
-                     "Of course, field properties can be amended : Positioning, Background color and so on.<br/>"
-                     "when set, the editor generates corresponding QML code.<br/>"
-                     "<br/>"
-                     "The final result is displayed through QQuickWidget. It is displayed exactly as it will be in rolisteam. Both softwares share the same code.<br/>"
-                     "<br/>"
-                     "The QML code is also displayed offering a good way to study it.<br/>(As you can see, generated QML code is using custom Items. They are here to update the data model or be updated by it).<br/>"
-                     "When users are confident enough, they can edit the qml code to process data, add animations and transitions.<br/>"
-                     "<br/>"
-                     "The last step is to load the character sheet into rolisteam and play with it.<br/>";
+    m_commentData << "<br/>";
 
 
-    m_commentData << "I hope you enjoy the presentation.<br/>By the way, the presentation is in QML<br/>That’s all for me."
-                     "Thanks for your attention.<br/>"
-                     "Bye.<br/>";
+    m_commentData << "<br/>";
 
 
     m_commentData << "4";
@@ -160,23 +100,14 @@ Bye.
     m_currentScreen = 0;
 
     ui->scrollArea->installEventFilter(this);
+    m_label->installEventFilter(this);
 }
 
 QmlControler::~QmlControler()
 {
     delete ui;
 }
-bool QmlControler::eventFilter(QObject* label, QEvent* vt)
-{
-    if(label==ui->scrollArea)
-    {
-        if(vt->type() == QEvent::Resize)
-        {
-            resizeLabel();
-        }
-    }
-    return false;
-}
+
 
 DiceResultModel *QmlControler::getResultModel() const
 {
@@ -208,9 +139,59 @@ void QmlControler::initConnection()
     connect(root,SIGNAL(currentItemChanged(int)),this,SLOT(currentPageHasChanged(int)));
 
 
+m_timer->start();
 
 
+}
+#include <QMouseEvent>
+bool QmlControler::eventFilter(QObject* label, QEvent* vt)
+{
+    if(label==ui->scrollArea)
+    {
+        if(vt->type() == QEvent::Resize)
+        {
+            resizeLabel();
+        }
+    }
+    else if((label == m_label)&&
+           ((vt->type() == QEvent::MouseButtonPress)||(vt->type() == QEvent::MouseButtonRelease)||(vt->type() == QEvent::MouseMove)))
+    {
+        QMouseEvent* evt = static_cast<QMouseEvent*>(vt);
+        QPoint posOnLabel= evt->pos();
 
+
+        int w = m_label->geometry().width();
+        int h = m_label->geometry().height();
+
+        qreal ratioW =  (qreal)m_window->width()/ ((qreal)w);
+        qreal ratioH =  (qreal)m_window->height()/((qreal)h) ;
+
+        qreal x = (posOnLabel.x()) * ratioW;
+        qreal y = (posOnLabel.y()) * ratioH;
+
+        QPointF posOnQML(x,y);
+        QMouseEvent* event = new QMouseEvent(evt->type(),posOnQML.toPoint(),evt->button(),evt->buttons(),evt->modifiers());
+
+        QObject* root = m_engine->rootObjects().first();
+        //QCoreApplication::sendEvent(m_window,event);
+        QCoreApplication::sendEvent(root,event);
+        //m_window->sendEvent(m_window->contentItem(),event);
+    }
+    return false;
+}
+void QmlControler::refreshView()
+{
+    if(m_window != nullptr)
+    {
+        QImage img = m_window->grabWindow();
+
+
+        m_ratioImage = (double)img.size().width()/img.size().height();
+            m_ratioImageBis = (double)img.size().height()/img.size().width();
+
+            m_label->setPixmap(QPixmap::fromImage(img));
+            resizeLabel();
+    }
 }
 void QmlControler::currentPageHasChanged(int i)
 {
@@ -224,7 +205,7 @@ void QmlControler::currentPageHasChanged(int i)
 
 
     //img.save(tr("/home/renaud/application/mine/pasSageEnSeine/screen/%1_screen.png").arg(++count,3,10,QChar('0')),"png");
-    qDebug() << "id page shot save" << i;
+    //qDebug() << "id page shot save" << i;
 
     m_ratioImage = (double)img.size().width()/img.size().height();
     m_ratioImageBis = (double)img.size().height()/img.size().width();
