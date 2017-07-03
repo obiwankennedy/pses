@@ -6,7 +6,7 @@ import QtQuick.Layouts 1.2
 
 
 SlidePage {
-    id: rectangle1
+    id: page
     anchors.fill: parent
     logo: "qrc:/rsrc/Rolisteam.svg"
     focus: true
@@ -27,20 +27,32 @@ SlidePage {
                 index: 1
             }
         }
+     onIdStateChanged: {
+         if(idState === 2)
+         {
+            view.visible = false
+         }
+         else
+         {
+
+             view.visible = true
+         }
+     }
 
 
     Image {
 
+        anchors.right: parent.right
+        anchors.top: view.top
+        anchors.topMargin: app.height*0.2
 
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.verticalCenter: parent.verticalCenter
-        width: parent.width * 0.4
-        height: parent.height * 0.4
+        width: app.width*0.4
+        height: app.height*0.4
 
         fillMode: Image.PreserveAspectFit
 
         source: "qrc:/rsrc/diagram.jpg"
-        opacity: (usage.idState == 0 ) ? 1.0: 0.0
+        opacity: (page.idState === 0 ) ? 1.0: 0.0
         Behavior on opacity {
             NumberAnimation {
                 duration: 1000
@@ -50,7 +62,7 @@ SlidePage {
     Image {
         x: app.width*0.6
         anchors.right: parent.right
-        anchors.top: listView1.top
+        anchors.top: view.top
         anchors.topMargin: app.height*0.2
 
         width: app.width*0.4
@@ -58,7 +70,7 @@ SlidePage {
         fillMode: Image.PreserveAspectFit
 
         source: "qrc:/rsrc/entree.png"
-        opacity: (usage.idState ==1 ) ? 1.0: 0.0
+        opacity: (page.idState ===1 ) ? 1.0: 0.0
         Behavior on opacity {
             NumberAnimation {
                 duration: 1000
@@ -66,6 +78,7 @@ SlidePage {
         }
     }
     Image {
+        id: screenshot
         anchors.verticalCenter: parent.verticalCenter
         anchors.verticalCenterOffset: -20
         anchors.left: parent.left
@@ -73,7 +86,7 @@ SlidePage {
         width: app.width*0.7
         height: app.height*0.7
         source: "qrc:/rsrc/screen.png"
-        opacity: (usage.idState == 2 ) ? 1.0: 0.0
+        opacity: (page.idState === 2 ) ? 1.0: 0.0
         Behavior on opacity {
             NumberAnimation {
                 duration: 1000
