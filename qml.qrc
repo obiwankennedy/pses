@@ -78,5 +78,7 @@
         <file>rsrc/diagram.jpg</file>
         <file>pages/SlidePage.qml</file>
         <file alias="pages/CodePage.qml">CodePage.qml</file>
+        <file>pages/14_deep_in_dice_parser.qml</file>
+        <file>rsrc/commande_des_schema.jpg</file>
     </qresource>
 </RCC>
