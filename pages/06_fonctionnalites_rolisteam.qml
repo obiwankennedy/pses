@@ -2,7 +2,7 @@ import QtQuick 2.0
 import QtQuick.Window 2.2
 
 SlidePage {
-    id: rectangle1
+    id: page
     anchors.fill: parent
     logo: "qrc:/rsrc/Rolisteam.svg"
     focus: true
@@ -16,10 +16,10 @@ SlidePage {
     Image {
         id: screenShotCase
         property string newSource: "qrc:/rsrc/chat.png"
-        x: parent.width * 0.8
-        y: parent.height * 0.8
-        width: parent.width * 0.2
-        height: parent.height * 0.2
+        x: parent.width * 0.51
+        y: parent.height * 0.2
+        width: parent.width * 0.4
+        height: parent.height * 0.8
 
         fillMode: Image.PreserveAspectFit
         source:  "qrc:/rsrc/chat.png"
@@ -27,7 +27,7 @@ SlidePage {
         states: [
             State {
               name: "msg"
-              when: listView1.currentIndex == 0
+              when: page.idState === 0
               PropertyChanges {
                   target: screenShotCase
                   source: "qrc:/rsrc/chat.png"
@@ -35,7 +35,7 @@ SlidePage {
             },
             State {
               name: "dice"
-              when: listView1.currentIndex == 9
+              when: page.idState === 9
               PropertyChanges {
                   target: screenShotCase
                   source: "qrc:/rsrc/dice.png"
@@ -43,7 +43,7 @@ SlidePage {
             },
             State {
               name: "note"
-              when: listView1.currentIndex == 1
+              when: page.idState === 1
               PropertyChanges {
                   target: screenShotCase
                   source: "qrc:/rsrc/notes.png"
@@ -51,7 +51,7 @@ SlidePage {
             },
             State {
               name: "plans"
-              when: listView1.currentIndex == 2
+              when: page.idState === 2
               PropertyChanges {
                   target: screenShotCase
                   source: "qrc:/rsrc/map.jpg"
@@ -59,7 +59,7 @@ SlidePage {
             },
             State {
               name: "img"
-              when: listView1.currentIndex == 3
+              when: page.idState === 3
               PropertyChanges {
                   target: screenShotCase
                   source: "qrc:/rsrc/picture.png"
@@ -67,7 +67,7 @@ SlidePage {
             },
             State {
               name: "music"
-              when: listView1.currentIndex == 4
+              when: page.idState === 4
               PropertyChanges {
                   target: screenShotCase
                   source: "qrc:/rsrc/music_screen.jpg"
@@ -75,7 +75,7 @@ SlidePage {
             },
             State {
               name: "theme"
-              when: listView1.currentIndex == 7
+              when: page.idState === 7
               PropertyChanges {
                   target: screenShotCase
                   source: "qrc:/rsrc/darkfusiontheme.jpg"
@@ -83,7 +83,7 @@ SlidePage {
             },
             State {
               name: "convertisseur"
-              when: listView1.currentIndex == 6
+              when: page.idState === 6
               PropertyChanges {
                   target: screenShotCase
                   source: "qrc:/rsrc/generatorConvertor.png"
@@ -91,7 +91,7 @@ SlidePage {
             },
             State {
               name: "generateur"
-              when: listView1.currentIndex == 5
+              when: page.idState === 5
               PropertyChanges {
                   target: screenShotCase
                   source: "qrc:/rsrc/generat.png"
@@ -99,7 +99,7 @@ SlidePage {
             },
             State {
               name: "perso"
-              when: listView1.currentIndex == 8
+              when: page.idState >= 8
               PropertyChanges {
                   target: screenShotCase
                   source: "qrc:/rsrc/fiche_perso.png"
