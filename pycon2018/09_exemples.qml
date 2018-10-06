@@ -49,6 +49,8 @@ SlidePage {
     onIdStateChanged: {
         if(idState == 2)
         {
+            video.stop()
+            video2.stop()
             view.opacity = 0
             slideCode.visible = true;
             slideCode.code ="from moviepy.editor import *
@@ -64,6 +66,8 @@ clip.ipython_display(width=180)
         }
         else if(idState == 4)
         {
+            video.stop()
+            video2.stop()
             view.opacity = 0
             slideCode.visible = true;
             slideCode.code ="import gizeh
@@ -85,6 +89,8 @@ clip.write_gif(\"circle.gif\",fps=15, opt=\"OptimizePlus\", fuzz=10)
         }
         else if(idState == 6)
         {
+            video.stop()
+            video2.stop()
             view.opacity = 0
             slideCode.visible = true;
             slideCode.code ="clip = ImageSequenceClip(images_list, fps=25)
@@ -92,6 +98,8 @@ clip.write_videofile(\"sequences.mp4\")"
         }
         else if(idState == 8)
         {
+            video.stop()
+            video2.stop()
             view.opacity = 0
             slideCode.visible = true;
             slideCode.code ="my_clip.write_videofile(\"movie.mp4\",fps=15)
@@ -100,6 +108,8 @@ my_clip.write_videofile(\"movie.webm\") # webm format
         }
         else if(idState == 10)
         {
+            video.stop()
+            video2.stop()
             view.opacity = 0
             slideCode.visible = true;
             slideCode.code ="# =============== FIRST PART : SIMULATION WITH PyODE
@@ -195,6 +205,8 @@ my_clip.write_videofile(\"movie.webm\") # webm format
         }
         else if(idState == 13)
         {
+            video.stop()
+            video2.stop()
             view.opacity = 0
             slideCode.visible = true;
             slideCode.code ="from moviepy.editor import *
@@ -239,6 +251,8 @@ cc.resize(0.6).write_videofile(\"composition.mp4\")"
         }
         else if(idState == 16)
         {
+            video.stop()
+            video2.stop()
             view.opacity = 0
             slideCode.visible = true;
             slideCode.code = "import numpy as np
@@ -387,12 +401,13 @@ annotated_clips = [ annotate(clip,text) for clip,text in [
 
 concatenate_videoclips(annotated_clips).write_videofile('tutorial.avi', fps=5)"
         }
-
         else
         {
             view.opacity = 1
             slideCode.visible = false
             view.focus = false
+            video.stop()
+            video2.stop()
         }
     }
 

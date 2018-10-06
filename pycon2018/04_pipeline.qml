@@ -24,43 +24,43 @@ SlidePage {
         }
         ListElement {
             name: "2: Avatar Highlight + SSR + TS + plugin v1"
-            index: 2
+            index: 3
         }
         ListElement {
             name: "     En sortie: Un fichier vidéo, un fichier son (non synchronisé)"
-            index:3
+            index:4
         }
         ListElement {
             name: ""
-            index:3
+            index:4
         }
         ListElement {
             name: "3: Avatar Highlight + SSR + TS + plugin v2"
-            index: 4
+            index: 5
         }
         ListElement {
             name: "     En sortie: Un fichier vidéo, un fichier son synchronisé"
-            index:5
-        }
-        ListElement {
-            name: ""
-            index:5
-        }
-        ListElement {
-            name: "4: OBS Studio + Avatar Highlight + Rolisteam"
             index:6
         }
         ListElement {
+            name: ""
+            index:8
+        }
+        ListElement {
+            name: "4: OBS Studio + Avatar Highlight + Rolisteam"
+            index:8
+        }
+        ListElement {
             name: "     En sortie: Une vidéo avec du son (2017)"
-            index:7
+            index:9
         }
         ListElement {
             name: ""
-            index:7
+            index:10
         }
         ListElement {
             name: "A retenir"
-            index:8
+            index:10
         }
     }
     Component.onCompleted:
@@ -88,12 +88,12 @@ SlidePage {
     }
 
     onIdStateChanged: {
-        if(idState == 1)
+        if(idState == 2)
         {
             video.visible = true
             video.play()
         }
-        else if(idState == 6)
+        else if(idState == 7)
         {
             video.visible = true
             video.volume = 1.0
@@ -102,6 +102,7 @@ SlidePage {
         }
         else
         {
+            video.stop()
             video.visible = false
         }
     }

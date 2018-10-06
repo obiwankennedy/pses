@@ -197,6 +197,7 @@ void QmlControler::setEngine(QQmlApplicationEngine *engine)
 {
     m_engine = engine;
     connect(m_engine, &QQmlApplicationEngine::objectCreated,this,&QmlControler::initConnection);
+
 }
 void QmlControler::initConnection()
 {

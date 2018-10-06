@@ -9,22 +9,18 @@ SlidePage {
     title: "Conclusion"
     ListModel {
         id: listSection
-        ListElement {//color=\"blue\"
-            name: "Conclusion"
+        ListElement {
+            name: "moviepy dans mon process"
             index:1
         }
         ListElement {
-            name: "moviepy dans mon process"
-            index:2
-        }
-        ListElement {
             name: "Quand utiliser Moviepy ?"
-            index:4
+            index:3
         }
         ListElement {
             name: "Trouver des exemples d'utilisation:
 https://gist.github.com/Zulko"
-            index: 5
+            index: 4
         }
     }
 
@@ -36,7 +32,7 @@ https://gist.github.com/Zulko"
     }
 
     onIdStateChanged: {
-        if(idState == 3)
+        if(idState == 2)
         {
             view.opacity = 0.0
             slideCode.visible = true;
