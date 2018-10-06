@@ -6,36 +6,25 @@ SlidePage {
     anchors.fill: parent
     logo: "qrc:/rsrc/Rolisteam.svg"
     focus: true
-    title: "Exemples"
+    title: "Conclusion"
     ListModel {
         id: listSection
         ListElement {//color=\"blue\"
-            name: "Editor"
+            name: "Conclusion"
             index:1
         }
         ListElement {
-            name: "Dessiner avec gizeh"
-            index:3
+            name: "moviepy dans mon process"
+            index:2
         }
         ListElement {
-            name: "Séquence d'images"
-            index:5
+            name: "Quand utiliser Moviepy ?"
+            index:4
         }
         ListElement {
-            name: "Conversion de format/Codec"
-            index:7
-        }
-        ListElement {
-            name: "Animation vectorielle & 3D"
-            index:9
-        }
-        ListElement {
-            name: "Placement des clips en fonction d'une image"
-            index:11
-        }
-        ListElement {
-            name: "Générique de Star Wars"
-            index:13
+            name: "Trouver des exemples d'utilisation:
+https://gist.github.com/Zulko"
+            index: 5
         }
     }
 
@@ -47,56 +36,19 @@ SlidePage {
     }
 
     onIdStateChanged: {
-        if(idState == 2)
+        if(idState == 3)
         {
-            slideCode.visible = true;
-            slideCode.code ="from moviepy.editor import *
-
-clip = VideoFileClip(\"lac.mp4\").rotate(180)
-
-clip.preview() # visuel dans une fenetre pygame
-clip.show(10.5) # idem, permet de voir une frame
-
-#visualiser dans ipython
-clip.ipython_display(width=180)
-"
-        }
-        else if(idState == 4)
-        {
-            slideCode.visible = true;
-            slideCode.code ="import gizeh
-import moviepy.editor as mpy
-
-W,H = 128,128 # width, height, in pixels
-duration = 2 # duration of the clip, in seconds
-
-def make_frame(t):
-    surface = gizeh.Surface(W,H)
-    radius = W*(1+ (t*(duration-t))**2 )/6
-    circle = gizeh.circle(radius, xy = (W/2,H/2), fill=(1,0,0))
-    circle.draw(surface)
-    return surface.get_npimage()
-
-clip = mpy.VideoClip(make_frame, duration=duration)
-clip.write_gif(\"circle.gif\",fps=15, opt=\"OptimizePlus\", fuzz=10)
-"
-        }
-        else if(idState == 6)
-        {
+            view.opacity = 0.0
             slideCode.visible = true;
             slideCode.code ="
+# Ensemble des commandes pour l'enregistrement
+# Episode 22 campagne warhammer
 
-clip = ImageSequenceClip(images_list, fps=25)
-clip.write_videofile(\"sequences.mp4\")
-"
-        }
-        else if(idState == 8)
-        {
-            slideCode.visible = true;
-            slideCode.code ="
+promo 22 w
 
-my_clip.write_videofile(\"movie.mp4\",fps=15)
-my_clip.write_videofile(\"movie.webm\") # webm format
+makeep 22 w # utilisation de moviepy
+
+uploadYT.py -n 22 -c w
 "
         }
         else

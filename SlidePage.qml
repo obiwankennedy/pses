@@ -1,5 +1,4 @@
 import QtQuick 2.0
-import QtQuick.Window 2.2
 
 Item {
     id: root
@@ -9,6 +8,8 @@ Item {
     property alias  title: text1.text
     property alias view: listView1
     property alias slideCode: slideCode
+    property alias imageWidth: image1.width
+    property alias imageHeight: image1.height
 
     MouseArea {
         anchors.fill: parent
@@ -37,10 +38,11 @@ Item {
         id: image1
         anchors.left: parent.left
         anchors.top: parent.top
-        anchors.leftMargin: root.width*0.04
+        anchors.leftMargin: 40
         fillMode: Image.PreserveAspectFit
-        width: root.width*0.05
+        width: root.width*0.5
         height: root.height*0.1
+        horizontalAlignment: Image.AlignLeft
     }
     Keys.onUpPressed: {
         console.log("up")
@@ -68,7 +70,7 @@ Item {
          id: trigger
          interval: 1001
          repeat: false
-         //onTriggered: app.currentItemChanged(view.currentItem)
+         onTriggered: app.currentItemChanged(view.currentItem)
      }
     ListView {
         id: listView1

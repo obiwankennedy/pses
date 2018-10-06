@@ -76,5 +76,31 @@
         <file>rsrc/end.png</file>
         <file>pages/19_grafilabor.qml</file>
         <file>rsrc/diagram.jpg</file>
+        <file>pycon2018/01_intro.qml</file>
+        <file>pycon2018/02_rolisteam.qml</file>
+        <file>pycon2018/03_besoin.qml</file>
+        <file>pycon2018/04_pipeline.qml</file>
+        <file>pycon2018/05_solutions.qml</file>
+        <file>pycon2018/06_pyMovie.qml</file>
+        <file>pycon2018/07_concept.qml</file>
+        <file>pycon2018/08_code.qml</file>
+        <file>pycon2018/09_exemples.qml</file>
+        <file>pycon2018/10_conclusion.qml</file>
+        <file>pycon2018/11_fin.qml</file>
+        <file>rsrc/font/inria-sans/InriaSans-Bold.otf</file>
+        <file>rsrc/font/inria-sans/InriaSans-BoldItalic.otf</file>
+        <file>rsrc/font/inria-sans/InriaSans-Italic.otf</file>
+        <file>rsrc/font/inria-sans/InriaSans-Light.otf</file>
+        <file>rsrc/font/inria-sans/InriaSans-LightItalic.otf</file>
+        <file>rsrc/font/inria-sans/InriaSans-Regular.otf</file>
+        <file alias="pycon2018/SlidePage.qml">SlidePage.qml</file>
+        <file alias="pycon2018/CodePage.qml">CodePage.qml</file>
+        <file>rsrc/pycon/redball.gif</file>
+        <file>rsrc/pycon/01_first_video.mp4</file>
+        <file>rsrc/pycon/01_second_video.mp4</file>
+        <file>rsrc/pycon/cube.gif</file>
+        <file>rsrc/pycon/Star_Worms.mp4</file>
+        <file>rsrc/pycon/composing_image.mp4</file>
+        <file>rsrc/pycon/compo_from_image.jpeg</file>
     </qresource>
 </RCC>

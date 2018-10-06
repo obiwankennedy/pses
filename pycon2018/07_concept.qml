@@ -6,31 +6,22 @@ SlidePage {
     anchors.fill: parent
     logo: "qrc:/rsrc/Rolisteam.svg"
     focus: true
-    title: "MoviePy!"
+    title: "Les concepts"
     ListModel {
         id: listSection
         ListElement {
-            name: "MoviePy"
+            name: "Les clips: Audio, Video, VideoFile, Text, Image, Sequence"
             index:0
         }
         ListElement {
-            name: "Dev principal: Zulko - https://github.com/Zulko/"
+            name: "Créer, Éditer (couper, ralentir, assombrir, etc…) ou Mixer"
             index:1
         }
         ListElement {
-            name: "Install: pip install moviepy"
+            name: "SubClip, resize et les effets"
             index:2
         }
-        ListElement {
-            name: "Documentation: http://zulko.github.io/moviepy"
-            index:3
-        }
-        ListElement {
-            name: "ffmpeg"
-            index:4
-        }
     }
-
     Component.onCompleted:
     {
         points = listSection

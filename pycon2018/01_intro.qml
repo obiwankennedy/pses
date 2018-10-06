@@ -1,36 +1,30 @@
 import QtQuick 2.0
-import QtQuick.Window 2.2
 
 SlidePage {
     id: jdr
     anchors.fill: parent
     logo: "qrc:/rsrc/Rolisteam.svg"
     focus: true
-    title: "MoviePy!"
+    title: "Rolisteam et MoviePy!"
     ListModel {
         id: listSection
         ListElement {
-            name: "MoviePy"
+            name: "Renaud Guezennec"
             index:0
         }
         ListElement {
-            name: "Dev principal: Zulko - https://github.com/Zulko/"
+            name: "dev C++/Qt"
             index:1
         }
         ListElement {
-            name: "Install: pip install moviepy"
+            name: "Expérience Python"
             index:2
         }
         ListElement {
-            name: "Documentation: http://zulko.github.io/moviepy"
+            name: "Rolisteam"
             index:3
         }
-        ListElement {
-            name: "ffmpeg"
-            index:4
-        }
     }
-
     Component.onCompleted:
     {
         points = listSection

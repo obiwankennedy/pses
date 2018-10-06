@@ -1,106 +1,109 @@
 import QtQuick 2.0
 import QtQuick.Window 2.2
+import QtMultimedia 5.8
 
-Rectangle {
-    id: rectangle1
-    width: app.width
-    height: app.height
-    //    height: 600
-    //  anchors.centerIn: parent
-    border.color: app.bgColor
-    border.width: 5
-    color: app.bgColor
-    property alias listView1: listView1
-    property int idState: 0
-
+SlidePage {
+    id: jdr
+    anchors.fill: parent
+    logo: "qrc:/rsrc/Rolisteam.svg"
     focus: true
-
-    Image {
-        id: image1
-        anchors.left: parent.left
-        anchors.top: parent.top
-        anchors.leftMargin: app.width*0.04
-        fillMode: Image.PreserveAspectFit
-        source: "qrc:/rsrc/Rolisteam.svg"
-        width: app.width*0.2
-    }
-
-    Text {
-        id: text1
-        anchors.top:image1.top
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.bottom: image1.bottom
-
-        width: app.width*0.5
-        height: app.height*0.05
-        color: app.txtColor
-        text: qsTr("Merci, à vos questions !")
-        anchors.horizontalCenterOffset: 1
-        //anchors.topMargin: -203
-        font.family: "Verdana"
-        font.bold: true
-        verticalAlignment: Text.AlignVCenter
-        horizontalAlignment: Text.AlignHCenter
-        font.pixelSize: app.height/20
-    }
-
-    ListView {
-        id: listView1
-        x: app.width*0.2
-        y: app.height/4
-        width: app.width/2
-        height: app.height/2
-        delegate: Item {
-            width: app.width/2
-            height: listView1.height/listView1.count
-            Text {
-                color: app.txtColor
-                text: name
-                font.pointSize: (app.height >100 ? app.height : 800)/28
-                anchors.verticalCenter: parent.verticalCenter
-     //           font.bold: true
-            }
+    title: "Mes Pipelines d'enregistrement"
+    ListModel {
+        id: listSection
+        ListElement {
+            name: "1: SimpleScreenRecorder (SSR) + Teamspeak (TS)(2015)"
+            index:0
         }
-        model: ListModel {
-                ListElement {//color=\"blue\"
-                    name: "<i>Site web</i>: <b>www.rolisteam.org</b>"
-                    index:1
-                }
-                ListElement {
-                    name: "<i>Courriel</i>: <b>renaud@rolisteam.org</b>"
-                    index:1
-                }
-                ListElement {
-                    name: "<i>Github</i>: <b>github.com/Rolisteam</b>"
-                    index:1
-                }
-                ListElement {
-                    name: "<i>Twitter</i>: <b>@Rolisteam</b></font>"
-                    index:1
-                }
-                ListElement {
-                    name: "<i>Facebook</i>: <b>www.facebook.com/rolisteam</b>"
-                    index:1
-                }
-                ListElement {
-                    name: "<i>Youtube</i>: https://www.youtube.com/channel/UC4uoGZl1nQRXbVs8WjxjKvw"
-                    index:1
-                }
-                ListElement {
-                    name: "<i>Irc</i>: <b>#RolisteamOfficial</b> on freenode.net"
-                    index:1
-                }
-            }
+        ListElement {
+            name: "     En sortie: Un fichier vidéo, un fichier son (non synchronisé)"
+            index:1
+        }
+        ListElement {
+            name: ""
+            index:1
+        }
+        ListElement {
+            name: "2: Avatar Highlight + SSR + TS + plugin v1"
+            index: 2
+        }
+        ListElement {
+            name: "     En sortie: Un fichier vidéo, un fichier son (non synchronisé)"
+            index:3
+        }
+        ListElement {
+            name: ""
+            index:3
+        }
+        ListElement {
+            name: "3: Avatar Highlight + SSR + TS + plugin v2"
+            index: 4
+        }
+        ListElement {
+            name: "     En sortie: Un fichier vidéo, un fichier son synchronisé"
+            index:5
+        }
+        ListElement {
+            name: ""
+            index:5
+        }
+        ListElement {
+            name: "4: OBS Studio + Avatar Highlight + Rolisteam"
+            index:6
+        }
+        ListElement {
+            name: "     En sortie: Une vidéo avec du son (2017)"
+            index:7
+        }
+        ListElement {
+            name: ""
+            index:7
+        }
+        ListElement {
+            name: "A retenir"
+            index:8
+        }
+    }
+    Component.onCompleted:
+    {
+        points = listSection
+        anchors.fill = parent
+    }
+    Video {
+        id: video
+        anchors.centerIn: parent
+        width: parent.width*0.5
+        height: parent.height*0.5
+        source: "qrc:/rsrc/pycon/01_first_video.mp4"
+        volume:0.0
+
+        onPlaybackStateChanged:{
+            console.log("state:"+playbackState)
+            if(playbackState == MediaPlayer.PlayingState)
+                view.opacity = 0.0
+            else
+                view.opacity = 1.0
+
+        }
 
     }
 
-    Text {
-        id: text2
-        anchors.bottom: parent.bottom
-        anchors.right: parent.right
-        anchors.rightMargin: app.width*0.4
-        anchors.bottomMargin: 50
-        color: app.txtColor
-        text: qsTr("Merci à : Chewba, Hythlodée, Henriette")
+    onIdStateChanged: {
+        if(idState == 1)
+        {
+            video.visible = true
+            video.play()
+        }
+        else if(idState == 6)
+        {
+            video.visible = true
+            video.volume = 1.0
+            video.source = "qrc:/rsrc/pycon/01_second_video.mp4"
+            video.play()
+        }
+        else
+        {
+            video.visible = false
+        }
     }
+
 }
