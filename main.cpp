@@ -45,13 +45,13 @@ int main(int argc, char *argv[])
 
     QmlControler ctr;
     ctr.setResultModel(model);
+    ctr.setEngine(&engine);
 
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
     QList<QObject*> roots = engine.rootObjects();
     QObject* root = roots.at(0);
     QObject::connect(root,SIGNAL(rollDiceCmd(QString)),&ctr,SLOT(rollDice(QString)));
 
-    ctr.setEngine(&engine);
 
     ctr.setVisible(true);
 

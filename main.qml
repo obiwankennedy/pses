@@ -11,7 +11,7 @@ ApplicationWindow {
    // width: app.width
    // height: app.height
     visible: true
-    title: qsTr("End Users and QML in Rolisteam!")
+    title: qsTr("Pycon2018: Rolisteam et pyMovie!")
 
     property color bgColor: "transparent"
     property color txtColor: "white"
@@ -19,6 +19,9 @@ ApplicationWindow {
 
     signal currentItemChanged(int current)
     property alias current: view.currentIndex
+
+    FontLoader {id: inriaSan; source:"qrc:/rsrc/font/inria-sans/InriaSans-Regular.otf"}
+
     onCurrentChanged: {
         //topcornerimage.visible = false
         //bottomcornerimage.visible = false
@@ -73,163 +76,75 @@ ApplicationWindow {
 
     signal rollDiceCmd(string cmd)
     ListModel {
-            id: qtConModel
-            ListElement {
-                name: "Intro"
-                path: "01_qtCon_intro.qml"
-                time: 1
-                next: "rcse"
-            }
-            ListElement {
-                name: "Rolisteam CharacterSheet Editor"
-                path: "02_qtCon_rcse.qml"
-                time: 1
-                next: "stay in touch"
-            }
-            ListElement {
-                name: "Stay In Touch"
-                path: "03_qtCon_stayintouch.qml"
-                time: 1
-                next: ""
-            }
-    }
-    ListModel {
-            id: panelModel
+            id: pyCon2018
             ListElement {
                 name: "Intro"
                 path: "01_intro.qml"
                 time: 1
-                next: "Présentation de Rolisteam"
+                next: "rolisteam"
             }
             ListElement {
-                name: "Présentation de Rolisteam"
-                path: "02_presentation.qml"
+                name: "Rolisteam"
+                path: "02_rolisteam.qml"
                 time: 1
-                next: "définition Jdr"
+                next: "besoin"
             }
             ListElement {
-                name: "Introduction au jdr"
-                path: "03_jdr_et_rolisteam.qml"
+                name: "Le besoin"
+                path: "03_besoin.qml"
                 time: 1
-                next: "Les contraintes"
+                next: "pipeline"
             }
             ListElement {
-                name: "Contraintes"
-                path: "04_jdr_avantages_pb.qml"
+                name: "Les pipelines Vidéos"
+                path: "04_pipeline.qml"
                 time: 1
-                next: "Avantages de l'informatique"
+                next: "solution"
             }
+            ListElement {
+                name: "Les solutions logicielles"
+                path: "05_solutions.qml"
+                time: 1
+                next: "moviepy"
+            }
+            ListElement {
+                name: "Présentation pyMovie"
+                path: "06_pyMovie.qml"
+                time: 1
+                next: "Les concepts"
+            }
+            ListElement {
+                name: "Les concepts"
+                path: "07_concept.qml"
+                time: 1
+                next: "Le code"
+            }
+            ListElement {
+                name: "Le code"
+                path: "08_code.qml"
+                time: 1
+                next: "Exemples"
+            }
+            ListElement {
+                name: "Exemples"
+                path: "09_exemples.qml"
+                time: 1
+                next: "Conclusion"
+            }
+            ListElement {
+                name: "Conclusion"
+                path: "10_conclusion.qml"
+                time: 1
+                next: "Fin"
+            }
+            ListElement {
+                name: "Fin"
+                path: "11_fin.qml"
+                time: 1
+                next: ""
+            }
+    }
 
-            ListElement {
-                name: "Le jdr virtuel le plus"
-                path: "05_avantage_jdr_virtuel.qml"
-                time: 1
-                next: "Fonctionnalités"
-            }
-            ListElement {
-                name: "Fonctionnalités Rolisteam"
-                path: "06_fonctionnalites_rolisteam.qml"
-                time: 1
-                next: "Système de dés"
-            }
-            ListElement {
-                name: "Dice Parser"
-                path: "13_dice_parser.qml"
-                time: 1
-                next: "RCSE"
-            }
-            ListElement {
-                name: "RCSE"
-                path: "14_rcse.qml"
-                time: 1
-                next: "Son usage"
-            }
-            /*ListElement {
-                name: "Les Nouveautés 1.9"
-                path: "15_nouveaute_1_8.qml"
-                time: 1
-                next: "À venir"
-            }*/
-            /*ListElement {
-                name: "Début de rolisteam"
-                path: "07_rolisteam_debut.qml"
-                time: 1
-                next: "rolistik à rolisteam"
-            }*/
-           /* ListElement {
-                name: "Rolistik à Rolisteam"
-                path: "08_Rolistik_a_Rolisteam.qml"
-                time: 1
-                next: "Frise"
-            }*/
-            /*ListElement {
-                name: "La frise"
-                path: "10_frise_chronologique.qml"
-                time: 1
-                next: "Usage"
-            }*/
-            ListElement {
-                name: "Son usage"
-                path: "11_son_usage.qml"
-                time: 1
-                next: "Fonctionnement"
-            }
-            ListElement {
-                name: "Son fonctionnement"
-                path: "12_son_fonctionnement.qml"
-                time: 1
-                next: "L'avenir"
-            }
-            ListElement {
-                name: "Projets d'avenir"
-                path: "16_projet_avenir.qml"
-                time: 1
-                next: "Réussites"
-            }
-            ListElement {
-                name: "Réussites"
-                path: "17_reussites.qml"
-                time: 1
-                next: "Leçons"
-            }
-            ListElement {
-                name: "Les leçons"
-                path: "18_les_lecons.qml"
-                time: 1
-                next: "Libre et Rolisteam"
-            }
-            ListElement {
-                name: "Objectif Rolisteam Libre"
-                path: "19_objectif_rolisteam_libre.qml"
-                time: 1
-                next: "Need You"
-            }
-            ListElement {
-                name: "Rolisteam a besoin de vous "
-                path: "19_grafilabor.qml"
-                time: 1
-                next: "Fin FAQ"
-            }
-            ListElement {
-                name: "Fin "
-                path: "20_FAQ.qml"
-                time: 1
-                next: ""
-            }
-            /*ListElement {
-                name: "Contact"
-                path: "03_qtCon_stayintouch.qml"
-                time: 1
-                next: ""
-            }*/
-        }
-    //Component.onCompleted: app.currentItemChanged(0)
-   /* onVisibleChanged: trigger.start()
-    Rectangle {
-        id: rect
-        anchors.fill: parent
-        color: app.bgColor
-    }*/
     Image {
         id: bgimg
         anchors.fill: parent
@@ -249,12 +164,12 @@ ApplicationWindow {
     PathView {
         id: view
         anchors.fill: parent
-        model: panelModel
+        model: pyCon2018
         highlightRangeMode:PathView.StrictlyEnforceRange
         snapMode: PathView.SnapOneItem
         delegate:  Loader {
             //property variant model: model
-             source: "pages/"+path
+             source: "pycon2018/"+path
              width: app.width
              height: app.height
         }
@@ -294,7 +209,7 @@ ApplicationWindow {
         path: Path {
             startX: view.width/2
             startY: view.height/2
-            PathLine { x: view.width/2+view.width*panelModel.count; y: view.height/2 }
+            PathLine { x: view.width/2+view.width*pyCon2018.count; y: view.height/2 }
         }
     }
 
@@ -346,6 +261,7 @@ ApplicationWindow {
         color: app.txtColor
         text: (view.currentIndex+1)+"/"+view.count
         visible: view.currentIndex>0 ? true : false
+        font.family: inriaSan.name
     }
 
     Image {
@@ -359,7 +275,8 @@ ApplicationWindow {
         anchors.top: parent.top
         color: app.txtColor
         anchors.right: parent.right
-        text: panelModel.get(view.currentIndex).next+">"
-        visible: panelModel.get(view.currentIndex).next !== "" ? true : false
+        font.family: inriaSan.name
+        text: pyCon2018.get(view.currentIndex).next+">"
+        visible: pyCon2018.get(view.currentIndex).next !== "" ? true : false
     }
 }

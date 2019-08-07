@@ -196,7 +196,8 @@ QQmlApplicationEngine *QmlControler::getEngine() const
 void QmlControler::setEngine(QQmlApplicationEngine *engine)
 {
     m_engine = engine;
-    initConnection();
+    connect(m_engine, &QQmlApplicationEngine::objectCreated,this,&QmlControler::initConnection);
+
 }
 void QmlControler::initConnection()
 {
@@ -206,14 +207,12 @@ void QmlControler::initConnection()
     m_label->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
 
     connect(root,SIGNAL(currentItemChanged(int)),this,SLOT(currentPageHasChanged(int)));
-
-
-
-
-
 }
 void QmlControler::currentPageHasChanged(int i)
 {
+    if(nullptr == m_window)
+        return;
+
     m_currentScreen = i;
     QImage img = m_window->grabWindow();
 
@@ -224,7 +223,6 @@ void QmlControler::currentPageHasChanged(int i)
 
 
     //img.save(tr("/home/renaud/application/mine/pasSageEnSeine/screen/%1_screen.png").arg(++count,3,10,QChar('0')),"png");
-    qDebug() << "id page shot save" << i;
 
     m_ratioImage = (double)img.size().width()/img.size().height();
     m_ratioImageBis = (double)img.size().height()/img.size().width();

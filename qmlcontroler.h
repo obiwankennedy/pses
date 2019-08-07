@@ -59,7 +59,7 @@ protected:
 private:
     Ui::QmlControler *ui;
     QQmlApplicationEngine* m_engine;
-    QQuickWindow* m_window;
+    QQuickWindow* m_window = nullptr;
     QStringList m_commentData;
     QLabel* m_label;
     qreal m_ratioImage;
