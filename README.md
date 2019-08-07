@@ -17,3 +17,8 @@ make
 
 or load the project with QtCreator.
 
+## Dependencies:
+
+* Qt5, Qml
+* DiceParser (useful to demonstrate DiceParser Capability, you can remove it for your own presentation) It will be put under compilation flag.
+
